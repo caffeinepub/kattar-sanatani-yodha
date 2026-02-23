@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 7,
+  "projectStateVersion": 9,
   "summary": "Website for non-profit organization named 'KATTAR SANATANI YODHA'",
   "architectural_notes": [],
   "known_issues": [],
@@ -69,6 +69,22 @@
         "REQ-8"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-in-the-programs-page-replace-the-vedic-study-circles-program-card-title-from-vedic-study-circles-to",
+      "title": "In the Programs page, replace the 'Vedic Study Circles' program card title from 'Vedic Study Circles' to 'वैदिक स्टडी सर्कल'",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-in-the-programs-page-replace-the-vedic-study-circles-program-card-description-from-regular-sessions-for-studying-and-discussing-sacred-texts-including-vedas-upanishads-and-bhagavad-gita-learn-from-experienced-scholars-and-deepen-your-spiritual-understanding-to",
+      "title": "In the Programs page, replace the 'Vedic Study Circles' program card description from 'Regular sessions for studying and discussing sacred texts including Vedas, Upanishads, and Bhagavad Gita. Learn from experienced scholars and deepen your spiritual understanding.' to 'वेद, उपनिषद और भगवद गीता जैसे पवित्र ग्रंथों की पढ़ाई और चर्चा के लिए रेगुलर सेशन। अनुभवी विद्वानों से सीखें और अपनी आध्यात्मिक समझ को गहरा करें।'",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -81,6 +97,12 @@
     {
       "id": "AR-2",
       "summary": "Change homepage tagline from 'Guardians of Eternal Truth • Protectors of Sacred Heritage' to 'धर्मो रक्षति रक्षितः'",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Change 'Vedic Study Circles' program text from English to Hindi (वैदिक स्टडी सर्कल)",
       "reqIds": [],
       "status": "pending"
     }

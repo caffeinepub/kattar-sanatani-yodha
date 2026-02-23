@@ -9,7 +9,7 @@
   "frontend/src/components/Mission.tsx": "Mission statement section displaying core values (Devotion, Protection, Knowledge, Unity) in a grid layout with icons and descriptions using traditional aesthetics.",
   "frontend/src/pages/Home.tsx": "Homepage assembling Hero, Mission, highlights of organizational work, and call-to-action sections with smooth scrolling and warm color palette.",
   "frontend/src/pages/About.tsx": "About page featuring organization story, purpose, vision, values, community info, and core beliefs with traditional design elements and pattern backgrounds.",
-  "frontend/src/pages/Programs.tsx": "Programs page showcasing six organizational initiatives (Vedic studies, festivals, youth education, gatherings, welfare, heritage) in card grid with impact statistics.",
+  "frontend/src/pages/Programs.tsx": "Programs page showcasing six organizational initiatives with the first program card (Vedic Study Circles) now displaying Hindi text for both title and description, while other programs remain in English, along with impact statistics and call-to-action sections.",
   "frontend/src/components/ProgramCard.tsx": "Reusable card component for displaying individual programs with icon, title, and description, featuring hover effects and consistent styling.",
   "frontend/src/pages/Contact.tsx": "Contact page with form (name, email, message fields with validation), contact information cards, social media links, and success/error feedback using backend integration.",
   "frontend/src/hooks/useContactForm.ts": "Custom hook managing contact form submission to backend, handling loading states, success, and error scenarios with actor integration.",

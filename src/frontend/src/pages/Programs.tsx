@@ -5,8 +5,8 @@ export default function Programs() {
   const programs = [
     {
       icon: BookOpen,
-      title: 'Vedic Study Circles',
-      description: 'Regular sessions for studying and discussing sacred texts including Vedas, Upanishads, and Bhagavad Gita. Learn from experienced scholars and deepen your spiritual understanding.',
+      title: 'वैदिक स्टडी सर्कल',
+      description: 'वेद, उपनिषद और भगवद गीता जैसे पवित्र ग्रंथों की पढ़ाई और चर्चा के लिए रेगुलर सेशन। अनुभवी विद्वानों से सीखें और अपनी आध्यात्मिक समझ को गहरा करें।',
     },
     {
       icon: Sparkles,

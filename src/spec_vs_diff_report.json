@@ -1,14 +1,14 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-23T16:33:00.652Z",
-  "summary": "REQ-8 has been successfully implemented. The tagline in the Hero component has been changed from 'Guardians of Eternal Truth • Protectors of Sacred Heritage' to 'धर्मो रक्षति रक्षितः'. The Sanskrit text is properly encoded in UTF-8 within the React component, and styling/positioning have been preserved (still using the same CSS classes: font-serif text-xl md:text-2xl text-white/95 italic). No requirements are missing and no hallucinated features were added.",
+  "generatedAt": "2026-02-23T16:40:11.323Z",
+  "summary": "The diff shows successful implementation of both requirements. The Programs.tsx file now displays the Vedic Study Circles program card with Hindi text for both title ('वैदिक स्टडी सर्कल') and description ('वेद, उपनिषद और भगवद गीता जैसे पवित्र ग्रंथों की पढ़ाई और चर्चा के लिए रेगुलर सेशन। अनुभवी विद्वानों से सीखें और अपनी आध्यात्मिक समझ को गहरा करें।'). Other program cards remain unchanged, maintaining the constraint to only modify the specific Vedic Study Circles card.",
   "missing_requirements": [],
   "hallucinated_features": [],
   "confidence": 0.95,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/components/Hero.tsx",
+    "frontend/src/pages/Programs.tsx",
     "project_state.json"
   ]
 }
