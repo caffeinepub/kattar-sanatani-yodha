@@ -29,12 +29,10 @@ export default function Mission() {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Our Sacred Mission
+            हमारा पवित्र मिशन
           </h2>
           <p className="font-serif text-lg md:text-xl text-muted-foreground leading-relaxed">
-            KATTAR SANATANI YODHA stands as a beacon of unwavering faith and dedication to Sanatana Dharma. 
-            We are committed to preserving the eternal truths, protecting our sacred heritage, and empowering 
-            our community to live according to the timeless principles of righteousness and duty.
+            कट्टर सनातनी योद्धा सनातन धर्म के प्रति अटूट विश्वास और समर्पण की एक मिसाल है। हम हमेशा रहने वाले सच को बचाने, अपनी पवित्र विरासत की रक्षा करने और अपने समुदाय को नेकी और कर्तव्य के हमेशा रहने वाले सिद्धांतों के अनुसार जीने के लिए मज़बूत बनाने के लिए कमिटेड हैं।
           </p>
         </div>
 

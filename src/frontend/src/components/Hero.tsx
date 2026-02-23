@@ -28,7 +28,7 @@ export default function Hero() {
             धर्मो रक्षति रक्षितः
           </p>
           <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-            Dedicated to preserving, protecting, and promoting the timeless wisdom and values of Sanatana Dharma for future generations.
+            आने वाली पीढ़ियों के लिए सनातन धर्म के हमेशा रहने वाले ज्ञान और मूल्यों को बचाने, उनकी रक्षा करने और उन्हें बढ़ावा देने के लिए समर्पित।
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
             <button

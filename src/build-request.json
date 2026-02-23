@@ -1,57 +1,37 @@
 {
   "kind": "build_request",
-  "title": "Replace Vedic Study Circles text with Hindi translation",
+  "title": "Change Mission section heading to Hindi text",
   "projectName": "KATTAR SANATANI YODHA",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-9",
-      "text": "In the Programs page, replace the 'Vedic Study Circles' program card title from 'Vedic Study Circles' to 'वैदिक स्टडी सर्कल'",
+      "id": "REQ-13",
+      "text": "In the Mission component, replace the heading text at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[2]/div[1]/div[1]/h2[1] with 'हमारा पवित्र मिशन'",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-last"
+          "msg-latest"
         ],
         "quotes": [
-          "CHANGE FROM Vedic Study Circles",
-          "TO वैदिक स्टडी सर्कल"
+          "CHANGE TO हमारा पवित्र मिशन"
         ]
       },
       "acceptanceCriteria": [
-        "The program card title displays 'वैदिक स्टडी सर्कल' instead of 'Vedic Study Circles'",
-        "The Hindi text renders correctly with proper Unicode support",
-        "The title maintains consistent styling with other program cards"
-      ]
-    },
-    {
-      "id": "REQ-10",
-      "text": "In the Programs page, replace the 'Vedic Study Circles' program card description from 'Regular sessions for studying and discussing sacred texts including Vedas, Upanishads, and Bhagavad Gita. Learn from experienced scholars and deepen your spiritual understanding.' to 'वेद, उपनिषद और भगवद गीता जैसे पवित्र ग्रंथों की पढ़ाई और चर्चा के लिए रेगुलर सेशन। अनुभवी विद्वानों से सीखें और अपनी आध्यात्मिक समझ को गहरा करें।'",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "Regular sessions for studying and discussing sacred texts including Vedas, Upanishads, and Bhagavad Gita. Learn from experienced scholars and deepen your spiritual understanding.",
-          "वेद, उपनिषद और भगवद गीता जैसे पवित्र ग्रंथों की पढ़ाई और चर्चा के लिए रेगुलर सेशन। अनुभवी विद्वानों से सीखें और अपनी आध्यात्मिक समझ को गहरा करें।"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The program card description displays the Hindi text correctly",
-        "The Hindi text renders with proper Unicode support and readability",
-        "The description maintains consistent formatting and spacing with other program cards"
+        "The h2 heading element in the Mission component displays 'हमारा पवित्र मिशन'",
+        "The heading is properly rendered with UTF-8 encoding showing Hindi Devanagari script",
+        "The heading maintains its existing styling and positioning in the Mission section"
       ]
     }
   ],
   "constraints": [
-    "Only modify the specific program card for Vedic Study Circles",
-    "Do not change other program cards or page structure",
-    "Maintain existing styling and layout of the Programs page"
+    "Only modify the specific h2 heading element at the provided XPath",
+    "Do not change any other text or elements in the Mission component",
+    "Preserve all existing styling and layout"
   ],
   "nonGoals": [
-    "Translating other program cards to Hindi",
-    "Changing the overall page layout or design",
-    "Modifying backend logic or data structures"
+    "Translating any other text on the page",
+    "Modifying the Mission component structure or styling",
+    "Changing backend functionality"
   ],
   "imageRequirements": {
     "required": [],

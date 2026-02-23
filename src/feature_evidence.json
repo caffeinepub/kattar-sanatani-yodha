@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-in-the-programs-page-replace-the-vedic-study-circles-program-card-title-from-vedic-study-circles-to",
-      "featureTitle": "In the Programs page, replace the 'Vedic Study Circles' program card title from 'Vedic Study Circles' to 'वैदिक स्टडी सर्कल'",
+      "featureId": "feature-in-the-mission-component-replace-the-heading-text-at-xpath-html-1-body-1-div-1-div-1-main-1-div-1-section-2-div-1-div-1-h2-1-with",
+      "featureTitle": "In the Mission component, replace the heading text at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[2]/div[1]/div[1]/h2[1] with 'हमारा पवित्र मिशन'",
       "files": [
-        "frontend/src/pages/Programs.tsx"
+        "frontend/src/components/Mission.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -15,25 +15,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-9"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-in-the-programs-page-replace-the-vedic-study-circles-program-card-description-from-regular-sessions-for-studying-and-discussing-sacred-texts-including-vedas-upanishads-and-bhagavad-gita-learn-from-experienced-scholars-and-deepen-your-spiritual-understanding-to",
-      "featureTitle": "In the Programs page, replace the 'Vedic Study Circles' program card description from 'Regular sessions for studying and discussing sacred texts including Vedas, Upanishads, and Bhagavad Gita. Learn from experienced scholars and deepen your spiritual understanding.' to 'वेद, उपनिषद और भगवद गीता जैसे पवित्र ग्रंथों की पढ़ाई और चर्चा के लिए रेगुलर सेशन। अनुभवी विद्वानों से सीखें और अपनी आध्यात्मिक समझ को गहरा करें।'",
-      "files": [
-        "frontend/src/pages/Programs.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-10"
+        "REQ-13"
       ],
       "confidence": "high"
     }

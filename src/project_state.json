@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 9,
+  "projectStateVersion": 15,
   "summary": "Website for non-profit organization named 'KATTAR SANATANI YODHA'",
   "architectural_notes": [],
   "known_issues": [],
@@ -85,6 +85,30 @@
         "REQ-10"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-in-the-hero-component-replace-the-mission-statement-text-in-the-paragraph-element-xpath-html-1-body-1-div-1-div-1-main-1-div-1-section-1-div-2-div-1-p-2-with",
+      "title": "In the Hero component, replace the mission statement text in the paragraph element (XPath: /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[1]/div[2]/div[1]/p[2]) with 'आने वाली पीढ़ियों के लिए सनातन धर्म के हमेशा रहने वाले ज्ञान और मूल्यों को बचाने, उनकी रक्षा करने और उन्हें बढ़ावा देने के लिए समर्पित।'",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-in-the-mission-component-replace-the-paragraph-text-at-xpath-html-1-body-1-div-1-div-1-main-1-div-1-section-2-div-1-div-1-p-1-with",
+      "title": "In the Mission component, replace the paragraph text at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[2]/div[1]/div[1]/p[1] with 'कट्टर सनातनी योद्धा सनातन धर्म के प्रति अटूट विश्वास और समर्पण की एक मिसाल है। हम हमेशा रहने वाले सच को बचाने, अपनी पवित्र विरासत की रक्षा करने और अपने समुदाय को नेकी और कर्तव्य के हमेशा रहने वाले सिद्धांतों के अनुसार जीने के लिए मज़बूत बनाने के लिए कमिटेड हैं।'",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-in-the-mission-component-replace-the-heading-text-at-xpath-html-1-body-1-div-1-div-1-main-1-div-1-section-2-div-1-div-1-h2-1-with",
+      "title": "In the Mission component, replace the heading text at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[2]/div[1]/div[1]/h2[1] with 'हमारा पवित्र मिशन'",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -103,6 +127,24 @@
     {
       "id": "AR-3",
       "summary": "Change 'Vedic Study Circles' program text from English to Hindi (वैदिक स्टडी सर्कल)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Change mission/about text to Hindi: 'आने वाली पीढ़ियों के लिए सनातन धर्म के हमेशा रहने वाले ज्ञान और मूल्यों को बचाने, उनकी रक्षा करने और उन्हें बढ़ावा देने के लिए समर्पित।'",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Change About/Mission text to: 'कट्टर सनातनी योद्धा सनातन धर्म के प्रति अटूट विश्वास और समर्पण की एक मिसाल है। हम हमेशा रहने वाले सच को बचाने, अपनी पवित्र विरासत की रक्षा करने और अपने समुदाय को नेकी और कर्तव्य के हमेशा रहने वाले सिद्धांतों के अनुसार जीने के लिए मज़बूत बनाने के लिए कमिटेड हैं।'",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Change heading text to 'हमारा पवित्र मिशन'",
       "reqIds": [],
       "status": "pending"
     }

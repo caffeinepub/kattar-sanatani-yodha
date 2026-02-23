@@ -1,37 +1,21 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Replace Vedic Study Circles text with Hindi translation",
+  "title": "Change Mission section heading to Hindi text",
   "requirements": [
     {
-      "id": "REQ-9",
-      "summary": "Replace the 'Vedic Study Circles' program card title with Hindi translation 'वैदिक स्टडी सर्कल'",
+      "id": "REQ-13",
+      "summary": "Replace the Mission component heading text with Hindi text 'हमारा पवित्र मिशन'",
       "acceptanceCriteria": [
-        "The program card title displays 'वैदिक स्टडी सर्कल' instead of 'Vedic Study Circles'",
-        "The Hindi text renders correctly with proper Unicode support",
-        "The title maintains consistent styling with other program cards"
+        "The h2 heading element in the Mission component displays 'हमारा पवित्र मिशन'",
+        "The heading is properly rendered with UTF-8 encoding showing Hindi Devanagari script",
+        "The heading maintains its existing styling and positioning in the Mission section"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/Programs.tsx",
+          "path": "frontend/src/components/Mission.tsx",
           "operation": "modify",
-          "description": "Update the 'Vedic Study Circles' ProgramCard component title prop from 'Vedic Study Circles' to 'वैदिक स्टडी सर्कल'. Locate the ProgramCard with the Vedic Study Circles content and change only the title prop value while preserving all other props and styling."
-        }
-      ]
-    },
-    {
-      "id": "REQ-10",
-      "summary": "Replace the 'Vedic Study Circles' program card description with Hindi translation",
-      "acceptanceCriteria": [
-        "The program card description displays the Hindi text correctly",
-        "The Hindi text renders with proper Unicode support and readability",
-        "The description maintains consistent formatting and spacing with other program cards"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/Programs.tsx",
-          "operation": "modify",
-          "description": "Update the 'Vedic Study Circles' ProgramCard component description prop from 'Regular sessions for studying and discussing sacred texts including Vedas, Upanishads, and Bhagavad Gita. Learn from experienced scholars and deepen your spiritual understanding.' to 'वेद, उपनिषद और भगवद गीता जैसे पवित्र ग्रंथों की पढ़ाई और चर्चा के लिए रेगुलर सेशन। अनुभवी विद्वानों से सीखें और अपनी आध्यात्मिक समझ को गहरा करें।'. Locate the same ProgramCard for Vedic Study Circles and replace only the description prop value while maintaining consistent formatting with other program cards."
+          "description": "Update the h2 heading element text from its current value to 'हमारा पवित्र मिशन'. Locate the h2 element within the Mission section div structure and replace only the text content while preserving all existing className attributes and styling. Ensure the file maintains UTF-8 encoding to properly render the Hindi Devanagari script."
         }
       ]
     }

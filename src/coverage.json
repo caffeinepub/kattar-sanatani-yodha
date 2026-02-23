@@ -1,35 +1,24 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-23T16:40:11.326Z",
+  "generatedAt": "2026-02-23T17:29:48.510Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 2,
+    "total": 1,
+    "implemented": 1,
     "items": [
       {
-        "id": "REQ-10",
-        "summary": "In the Programs page, replace the 'Vedic Study Circles' program card description from 'Regular sessions for studying and discussing sacred texts including Vedas, Upanishads, and Bhagavad Gita. Learn from experienced scholars and deepen your spiritual understanding.' to 'वेद, उपनिषद और भगवद गीता जैसे पवित्र ग्रंथों की पढ़ाई और चर्चा के लिए रेगुलर सेशन। अनुभवी विद्वानों से सीखें और अपनी आध्यात्मिक समझ को गहरा करें।'",
+        "id": "REQ-13",
+        "summary": "In the Mission component, replace the heading text at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[2]/div[1]/div[1]/h2[1] with 'हमारा पवित्र मिशन'",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/Programs.tsx"
+          "frontend/src/components/Mission.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/pages/Programs.tsx"
-        ]
-      },
-      {
-        "id": "REQ-9",
-        "summary": "In the Programs page, replace the 'Vedic Study Circles' program card title from 'Vedic Study Circles' to 'वैदिक स्टडी सर्कल'",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/Programs.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/Programs.tsx"
+          "frontend/src/components/Mission.tsx"
         ]
       }
     ]
@@ -39,7 +28,7 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/pages/Programs.tsx",
+    "frontend/src/components/Mission.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",
