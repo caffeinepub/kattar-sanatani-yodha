@@ -1,0 +1,23 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-replace-the-tagline-text-guardians-of-eternal-truth-protectors-of-sacred-heritage-with-in-the-hero-component",
+      "featureTitle": "Replace the tagline text 'Guardians of Eternal Truth • Protectors of Sacred Heritage' with 'धर्मो रक्षति रक्षितः' in the Hero component",
+      "files": [
+        "frontend/src/components/Hero.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

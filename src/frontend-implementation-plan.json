@@ -1,0 +1,23 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Update homepage tagline to Sanskrit phrase",
+  "requirements": [
+    {
+      "id": "REQ-8",
+      "summary": "Replace the English tagline with Sanskrit phrase 'धर्मो रक्षति रक्षितः' in the Hero component",
+      "acceptanceCriteria": [
+        "The Hero component displays 'धर्मो रक्षति रक्षितः' as the tagline",
+        "The Sanskrit text is properly encoded and displays correctly in all browsers",
+        "The tagline styling and positioning remain consistent with the existing design"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Hero.tsx",
+          "operation": "modify",
+          "description": "Replace the tagline text 'Guardians of Eternal Truth • Protectors of Sacred Heritage' with 'धर्मो रक्षति रक्षितः'. Ensure UTF-8 encoding is preserved and the Sanskrit text displays correctly across all browsers. Maintain all existing styling, spacing, and layout properties of the tagline element."
+        }
+      ]
+    }
+  ]
+}

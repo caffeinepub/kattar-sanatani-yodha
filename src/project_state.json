@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 7,
+  "summary": "Website for non-profit organization named 'KATTAR SANATANI YODHA'",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-a-homepage-that-introduces-kattar-sanatani-yodha-as-a-non-profit-organization-with-a-hero-section-mission-statement-and-overview-of-the-organization-s-purpose",
+      "title": "Create a homepage that introduces KATTAR SANATANI YODHA as a non-profit organization with a hero section, mission statement, and overview of the organization's purpose",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-an-about-section-that-provides-detailed-information-about-the-organization-s-background-values-and-goals",
+      "title": "Create an About section that provides detailed information about the organization's background, values, and goals",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-programs-activities-section-showcasing-the-organization-s-initiatives-and-community-work",
+      "title": "Create a Programs/Activities section showcasing the organization's initiatives and community work",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-contact-section-with-a-contact-form-allowing-visitors-to-reach-out-to-the-organization",
+      "title": "Create a Contact section with a contact form allowing visitors to reach out to the organization",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-donate-support-section-explaining-how-visitors-can-contribute-to-or-support-the-organization",
+      "title": "Create a Donate/Support section explaining how visitors can contribute to or support the organization",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-cohesive-visual-theme-inspired-by-traditional-sanatani-cultural-aesthetics-incorporating-warm-earth-tones-saffron-deep-orange-terracotta-gold-accents-traditional-patterns-or-motifs-as-decorative-elements-and-elegant-serif-or-display-typography-that-conveys-dignity-and-heritage",
+      "title": "Implement a cohesive visual theme inspired by traditional Sanatani cultural aesthetics, incorporating warm earth tones (saffron, deep orange, terracotta, gold accents), traditional patterns or motifs as decorative elements, and elegant serif or display typography that conveys dignity and heritage",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-existing-logo-placeholder-throughout-the-website-with-the-uploaded-kattar-sanatani-yodha-logo-jpg-image-ensuring-it-appears-in-the-navigation-component-header-and-footer-component",
+      "title": "Replace the existing logo placeholder throughout the website with the uploaded 'kattar sanatani yodha logo.jpg' image, ensuring it appears in the Navigation component header and Footer component",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-tagline-text-guardians-of-eternal-truth-protectors-of-sacred-heritage-with-in-the-hero-component",
+      "title": "Replace the tagline text 'Guardians of Eternal Truth • Protectors of Sacred Heritage' with 'धर्मो रक्षति रक्षितः' in the Hero component",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create website for non-profit organization",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Change homepage tagline from 'Guardians of Eternal Truth • Protectors of Sacred Heritage' to 'धर्मो रक्षति रक्षितः'",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "KATTAR SANATANI YODHA",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

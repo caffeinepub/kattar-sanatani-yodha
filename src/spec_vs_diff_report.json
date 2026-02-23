@@ -1,0 +1,14 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-23T16:33:00.652Z",
+  "summary": "REQ-8 has been successfully implemented. The tagline in the Hero component has been changed from 'Guardians of Eternal Truth • Protectors of Sacred Heritage' to 'धर्मो रक्षति रक्षितः'. The Sanskrit text is properly encoded in UTF-8 within the React component, and styling/positioning have been preserved (still using the same CSS classes: font-serif text-xl md:text-2xl text-white/95 italic). No requirements are missing and no hallucinated features were added.",
+  "missing_requirements": [],
+  "hallucinated_features": [],
+  "confidence": 0.95,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/src/components/Hero.tsx",
+    "project_state.json"
+  ]
+}

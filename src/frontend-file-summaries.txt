@@ -1,0 +1,19 @@
+{
+  "frontend/src/index.css": "Global styles with Sanatani-inspired warm color palette (saffron, deep orange, terracotta, gold) using OKLCH color system, custom fonts (Cinzel, Cormorant Garamond), and traditional design utilities including pattern overlays and gradients.",
+  "frontend/tailwind.config.js": "Extended Tailwind configuration with custom Sanatani color palette, elegant serif/display fonts, varied border radii, warm shadows, and cultural design tokens for consistent theming.",
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, defining all routes (Home, About, Programs, Contact, Donate) with Layout wrapper for consistent navigation and footer.",
+  "frontend/src/components/Layout.tsx": "Root layout component that wraps all pages with Navigation header and Footer, providing consistent structure across the application.",
+  "frontend/src/components/Navigation.tsx": "Responsive navigation header with the uploaded KATTAR SANATANI YODHA logo, organization name, desktop/mobile menus, and active route highlighting using warm Sanatani color scheme.",
+  "frontend/src/components/Footer.tsx": "Footer component with the uploaded KATTAR SANATANI YODHA logo in organization info section, quick links, contact details, social media icons, and attribution with dynamic year and caffeine.ai link with UTM tracking.",
+  "frontend/src/components/Hero.tsx": "Hero section with background image overlay, organization name, Sanskrit tagline \"धर्मो रक्षति रक्षितः\", mission statement, call-to-action buttons, and scroll indicator with warm gradient styling.",
+  "frontend/src/components/Mission.tsx": "Mission statement section displaying core values (Devotion, Protection, Knowledge, Unity) in a grid layout with icons and descriptions using traditional aesthetics.",
+  "frontend/src/pages/Home.tsx": "Homepage assembling Hero, Mission, highlights of organizational work, and call-to-action sections with smooth scrolling and warm color palette.",
+  "frontend/src/pages/About.tsx": "About page featuring organization story, purpose, vision, values, community info, and core beliefs with traditional design elements and pattern backgrounds.",
+  "frontend/src/pages/Programs.tsx": "Programs page showcasing six organizational initiatives (Vedic studies, festivals, youth education, gatherings, welfare, heritage) in card grid with impact statistics.",
+  "frontend/src/components/ProgramCard.tsx": "Reusable card component for displaying individual programs with icon, title, and description, featuring hover effects and consistent styling.",
+  "frontend/src/pages/Contact.tsx": "Contact page with form (name, email, message fields with validation), contact information cards, social media links, and success/error feedback using backend integration.",
+  "frontend/src/hooks/useContactForm.ts": "Custom hook managing contact form submission to backend, handling loading states, success, and error scenarios with actor integration.",
+  "frontend/src/pages/Donate.tsx": "Support page explaining contribution options (volunteer, awareness, skills, knowledge), impact areas with percentages, transparency commitment, and call-to-action.",
+  "frontend/src/components/SupportOptions.tsx": "Grid component displaying four ways to support the organization with icons, descriptions, and links to contact page.",
+  "frontend/src/hooks/useQueries.ts": "Placeholder file for future React Query hooks; currently empty as backend only has contact form submission method handled separately."
+}

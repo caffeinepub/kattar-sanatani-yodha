@@ -1,0 +1,39 @@
+{
+  "kind": "build_request",
+  "title": "Update homepage tagline to Sanskrit phrase",
+  "projectName": "KATTAR SANATANI YODHA",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-8",
+      "text": "Replace the tagline text 'Guardians of Eternal Truth • Protectors of Sacred Heritage' with 'धर्मो रक्षति रक्षितः' in the Hero component",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "CHANGE \"Guardians of Eternal Truth • Protectors of Sacred Heritage\"  TO  \"धर्मो रक्षति रक्षितः\""
+        ]
+      },
+      "acceptanceCriteria": [
+        "The Hero component displays 'धर्मो रक्षति रक्षितः' as the tagline",
+        "The Sanskrit text is properly encoded and displays correctly in all browsers",
+        "The tagline styling and positioning remain consistent with the existing design"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify any other text content on the page",
+    "Preserve all existing styling and layout of the Hero component"
+  ],
+  "nonGoals": [
+    "Translating or modifying any other content on the website",
+    "Adding explanatory text for the Sanskrit phrase",
+    "Changing the visual theme or color scheme"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}
