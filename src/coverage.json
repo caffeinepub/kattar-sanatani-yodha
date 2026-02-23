@@ -1,7 +1,7 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-23T17:29:48.510Z",
+  "generatedAt": "2026-02-23T17:39:44.501Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
@@ -11,8 +11,8 @@
     "implemented": 1,
     "items": [
       {
-        "id": "REQ-13",
-        "summary": "In the Mission component, replace the heading text at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[2]/div[1]/div[1]/h2[1] with 'हमारा पवित्र मिशन'",
+        "id": "REQ-14",
+        "summary": "In the Mission component, replace the paragraph text at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[3]/div[1]/div[1]/p[1] with 'हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।'",
         "status": "implemented",
         "plannedFiles": [
           "frontend/src/components/Mission.tsx"

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 15,
+  "projectStateVersion": 17,
   "summary": "Website for non-profit organization named 'KATTAR SANATANI YODHA'",
   "architectural_notes": [],
   "known_issues": [],
@@ -109,6 +109,14 @@
         "REQ-13"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-in-the-mission-component-replace-the-paragraph-text-at-xpath-html-1-body-1-div-1-div-1-main-1-div-1-section-3-div-1-div-1-p-1-with",
+      "title": "In the Mission component, replace the paragraph text at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[3]/div[1]/div[1]/p[1] with 'हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।'",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -145,6 +153,12 @@
     {
       "id": "AR-6",
       "summary": "Change heading text to 'हमारा पवित्र मिशन'",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Change text to 'हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।'",
       "reqIds": [],
       "status": "pending"
     }

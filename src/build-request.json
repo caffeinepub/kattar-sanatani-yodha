@@ -1,37 +1,35 @@
 {
   "kind": "build_request",
-  "title": "Change Mission section heading to Hindi text",
-  "projectName": "KATTAR SANATANI YODHA",
+  "title": "Replace Mission section paragraph text with Hindi translation",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-13",
-      "text": "In the Mission component, replace the heading text at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[2]/div[1]/div[1]/h2[1] with 'हमारा पवित्र मिशन'",
+      "id": "REQ-14",
+      "text": "In the Mission component, replace the paragraph text at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[3]/div[1]/div[1]/p[1] with 'हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।'",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-latest"
         ],
         "quotes": [
-          "CHANGE TO हमारा पवित्र मिशन"
+          "CHANGE TO हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।"
         ]
       },
       "acceptanceCriteria": [
-        "The h2 heading element in the Mission component displays 'हमारा पवित्र मिशन'",
-        "The heading is properly rendered with UTF-8 encoding showing Hindi Devanagari script",
-        "The heading maintains its existing styling and positioning in the Mission section"
+        "The paragraph element at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[3]/div[1]/div[1]/p[1] displays the exact Hindi text: 'हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।'",
+        "The text is properly encoded and displays correctly in browsers",
+        "No other text in the Mission component is altered"
       ]
     }
   ],
   "constraints": [
-    "Only modify the specific h2 heading element at the provided XPath",
-    "Do not change any other text or elements in the Mission component",
-    "Preserve all existing styling and layout"
+    "Only modify the specific paragraph element at the provided XPath",
+    "Do not change any other text or structure in the Mission component"
   ],
   "nonGoals": [
-    "Translating any other text on the page",
-    "Modifying the Mission component structure or styling",
-    "Changing backend functionality"
+    "Modifying any other sections of the website",
+    "Changing the Mission component heading or core values grid",
+    "Altering styling or layout of the Mission section"
   ],
   "imageRequirements": {
     "required": [],

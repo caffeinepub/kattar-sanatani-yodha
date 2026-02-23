@@ -1,21 +1,21 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Change Mission section heading to Hindi text",
+  "title": "Replace Mission section paragraph text with Hindi translation",
   "requirements": [
     {
-      "id": "REQ-13",
-      "summary": "Replace the Mission component heading text with Hindi text 'हमारा पवित्र मिशन'",
+      "id": "REQ-14",
+      "summary": "Replace the Mission component paragraph text with Hindi translation",
       "acceptanceCriteria": [
-        "The h2 heading element in the Mission component displays 'हमारा पवित्र मिशन'",
-        "The heading is properly rendered with UTF-8 encoding showing Hindi Devanagari script",
-        "The heading maintains its existing styling and positioning in the Mission section"
+        "The paragraph element at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[3]/div[1]/div[1]/p[1] displays the exact Hindi text: 'हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।'",
+        "The text is properly encoded and displays correctly in browsers",
+        "No other text in the Mission component is altered"
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/Mission.tsx",
           "operation": "modify",
-          "description": "Update the h2 heading element text from its current value to 'हमारा पवित्र मिशन'. Locate the h2 element within the Mission section div structure and replace only the text content while preserving all existing className attributes and styling. Ensure the file maintains UTF-8 encoding to properly render the Hindi Devanagari script."
+          "description": "Update the paragraph text within the Mission component to display the Hindi translation 'हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।' Replace the existing paragraph content while preserving the component structure, heading, and core values grid. Ensure the text is properly UTF-8 encoded for correct display in all browsers."
         }
       ]
     }

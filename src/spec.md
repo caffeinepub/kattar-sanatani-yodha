@@ -1,9 +1,9 @@
 # Specification
 
 ## Summary
-**Goal:** Update the Mission section heading to display Hindi text.
+**Goal:** Replace the Mission section paragraph text with Hindi translation.
 
 **Planned changes:**
-- Replace the Mission component h2 heading with 'हमारा पवित्र मिशन'
+- Update the Mission component paragraph text to display in Hindi: "हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।"
 
-**User-visible outcome:** The Mission section will display a Hindi heading that reads 'हमारा पवित्र मिशन' instead of the current English text.
+**User-visible outcome:** The Mission section will display the introductory paragraph in Hindi instead of English, making the content accessible to Hindi-speaking visitors.
