@@ -1,120 +1,18 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 17,
-  "summary": "Website for non-profit organization named 'KATTAR SANATANI YODHA'",
-  "architectural_notes": [],
+  "projectStateVersion": 3,
+  "summary": "Web application with Google AdSense integration",
+  "architectural_notes": [
+    "Google AdSense integration for monetization"
+  ],
   "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-create-a-homepage-that-introduces-kattar-sanatani-yodha-as-a-non-profit-organization-with-a-hero-section-mission-statement-and-overview-of-the-organization-s-purpose",
-      "title": "Create a homepage that introduces KATTAR SANATANI YODHA as a non-profit organization with a hero section, mission statement, and overview of the organization's purpose",
+      "id": "feature-add-google-adsense-script-tag-to-the-html-head-section-with-async-loading-source-url-https-pagead2-googlesyndication-com-pagead-js-adsbygoogle-js-client-ca-pub-4905807488237044-and-crossorigin-attribute-set-to-anonymous",
+      "title": "Add Google AdSense script tag to the HTML head section with async loading, source URL 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4905807488237044', and crossorigin attribute set to 'anonymous'",
       "reqIds": [
         "REQ-1"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-create-an-about-section-that-provides-detailed-information-about-the-organization-s-background-values-and-goals",
-      "title": "Create an About section that provides detailed information about the organization's background, values, and goals",
-      "reqIds": [
-        "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-create-a-programs-activities-section-showcasing-the-organization-s-initiatives-and-community-work",
-      "title": "Create a Programs/Activities section showcasing the organization's initiatives and community work",
-      "reqIds": [
-        "REQ-3"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-create-a-contact-section-with-a-contact-form-allowing-visitors-to-reach-out-to-the-organization",
-      "title": "Create a Contact section with a contact form allowing visitors to reach out to the organization",
-      "reqIds": [
-        "REQ-4"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-create-a-donate-support-section-explaining-how-visitors-can-contribute-to-or-support-the-organization",
-      "title": "Create a Donate/Support section explaining how visitors can contribute to or support the organization",
-      "reqIds": [
-        "REQ-5"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-implement-a-cohesive-visual-theme-inspired-by-traditional-sanatani-cultural-aesthetics-incorporating-warm-earth-tones-saffron-deep-orange-terracotta-gold-accents-traditional-patterns-or-motifs-as-decorative-elements-and-elegant-serif-or-display-typography-that-conveys-dignity-and-heritage",
-      "title": "Implement a cohesive visual theme inspired by traditional Sanatani cultural aesthetics, incorporating warm earth tones (saffron, deep orange, terracotta, gold accents), traditional patterns or motifs as decorative elements, and elegant serif or display typography that conveys dignity and heritage",
-      "reqIds": [
-        "REQ-6"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-replace-the-existing-logo-placeholder-throughout-the-website-with-the-uploaded-kattar-sanatani-yodha-logo-jpg-image-ensuring-it-appears-in-the-navigation-component-header-and-footer-component",
-      "title": "Replace the existing logo placeholder throughout the website with the uploaded 'kattar sanatani yodha logo.jpg' image, ensuring it appears in the Navigation component header and Footer component",
-      "reqIds": [
-        "REQ-7"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-replace-the-tagline-text-guardians-of-eternal-truth-protectors-of-sacred-heritage-with-in-the-hero-component",
-      "title": "Replace the tagline text 'Guardians of Eternal Truth • Protectors of Sacred Heritage' with 'धर्मो रक्षति रक्षितः' in the Hero component",
-      "reqIds": [
-        "REQ-8"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-in-the-programs-page-replace-the-vedic-study-circles-program-card-title-from-vedic-study-circles-to",
-      "title": "In the Programs page, replace the 'Vedic Study Circles' program card title from 'Vedic Study Circles' to 'वैदिक स्टडी सर्कल'",
-      "reqIds": [
-        "REQ-9"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-in-the-programs-page-replace-the-vedic-study-circles-program-card-description-from-regular-sessions-for-studying-and-discussing-sacred-texts-including-vedas-upanishads-and-bhagavad-gita-learn-from-experienced-scholars-and-deepen-your-spiritual-understanding-to",
-      "title": "In the Programs page, replace the 'Vedic Study Circles' program card description from 'Regular sessions for studying and discussing sacred texts including Vedas, Upanishads, and Bhagavad Gita. Learn from experienced scholars and deepen your spiritual understanding.' to 'वेद, उपनिषद और भगवद गीता जैसे पवित्र ग्रंथों की पढ़ाई और चर्चा के लिए रेगुलर सेशन। अनुभवी विद्वानों से सीखें और अपनी आध्यात्मिक समझ को गहरा करें।'",
-      "reqIds": [
-        "REQ-10"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-in-the-hero-component-replace-the-mission-statement-text-in-the-paragraph-element-xpath-html-1-body-1-div-1-div-1-main-1-div-1-section-1-div-2-div-1-p-2-with",
-      "title": "In the Hero component, replace the mission statement text in the paragraph element (XPath: /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[1]/div[2]/div[1]/p[2]) with 'आने वाली पीढ़ियों के लिए सनातन धर्म के हमेशा रहने वाले ज्ञान और मूल्यों को बचाने, उनकी रक्षा करने और उन्हें बढ़ावा देने के लिए समर्पित।'",
-      "reqIds": [
-        "REQ-11"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-in-the-mission-component-replace-the-paragraph-text-at-xpath-html-1-body-1-div-1-div-1-main-1-div-1-section-2-div-1-div-1-p-1-with",
-      "title": "In the Mission component, replace the paragraph text at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[2]/div[1]/div[1]/p[1] with 'कट्टर सनातनी योद्धा सनातन धर्म के प्रति अटूट विश्वास और समर्पण की एक मिसाल है। हम हमेशा रहने वाले सच को बचाने, अपनी पवित्र विरासत की रक्षा करने और अपने समुदाय को नेकी और कर्तव्य के हमेशा रहने वाले सिद्धांतों के अनुसार जीने के लिए मज़बूत बनाने के लिए कमिटेड हैं।'",
-      "reqIds": [
-        "REQ-12"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-in-the-mission-component-replace-the-heading-text-at-xpath-html-1-body-1-div-1-div-1-main-1-div-1-section-2-div-1-div-1-h2-1-with",
-      "title": "In the Mission component, replace the heading text at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[2]/div[1]/div[1]/h2[1] with 'हमारा पवित्र मिशन'",
-      "reqIds": [
-        "REQ-13"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-in-the-mission-component-replace-the-paragraph-text-at-xpath-html-1-body-1-div-1-div-1-main-1-div-1-section-3-div-1-div-1-p-1-with",
-      "title": "In the Mission component, replace the paragraph text at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[3]/div[1]/div[1]/p[1] with 'हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।'",
-      "reqIds": [
-        "REQ-14"
       ],
       "version": 1
     }
@@ -122,49 +20,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Create website for non-profit organization",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-2",
-      "summary": "Change homepage tagline from 'Guardians of Eternal Truth • Protectors of Sacred Heritage' to 'धर्मो रक्षति रक्षितः'",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-3",
-      "summary": "Change 'Vedic Study Circles' program text from English to Hindi (वैदिक स्टडी सर्कल)",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-4",
-      "summary": "Change mission/about text to Hindi: 'आने वाली पीढ़ियों के लिए सनातन धर्म के हमेशा रहने वाले ज्ञान और मूल्यों को बचाने, उनकी रक्षा करने और उन्हें बढ़ावा देने के लिए समर्पित।'",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-5",
-      "summary": "Change About/Mission text to: 'कट्टर सनातनी योद्धा सनातन धर्म के प्रति अटूट विश्वास और समर्पण की एक मिसाल है। हम हमेशा रहने वाले सच को बचाने, अपनी पवित्र विरासत की रक्षा करने और अपने समुदाय को नेकी और कर्तव्य के हमेशा रहने वाले सिद्धांतों के अनुसार जीने के लिए मज़बूत बनाने के लिए कमिटेड हैं।'",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-6",
-      "summary": "Change heading text to 'हमारा पवित्र मिशन'",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-7",
-      "summary": "Change text to 'हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।'",
+      "summary": "Integrate Google AdSense script with client ID ca-pub-4905807488237044",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "gameProjectType": "none",
-  "projectName": "KATTAR SANATANI YODHA",
+  "projectName": "Kattar Sanatani Yodha",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

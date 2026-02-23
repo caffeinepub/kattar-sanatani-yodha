@@ -11,6 +11,8 @@ export default function Navigation() {
     { path: '/', label: 'Home' },
     { path: '/about', label: 'About' },
     { path: '/programs', label: 'Programs' },
+    { path: '/philosophy', label: 'Philosophy' },
+    { path: '/resources', label: 'Resources' },
     { path: '/contact', label: 'Contact' },
     { path: '/donate', label: 'Support Us' },
   ];

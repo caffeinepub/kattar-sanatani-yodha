@@ -32,7 +32,7 @@ export default function Mission() {
             हमारा पवित्र मिशन
           </h2>
           <p className="font-serif text-lg md:text-xl text-muted-foreground leading-relaxed">
-            हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।
+            CHANGE हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।
           </p>
         </div>
 

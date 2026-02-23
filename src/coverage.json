@@ -1,7 +1,7 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-23T17:39:44.501Z",
+  "generatedAt": "2026-02-23T18:28:39.635Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
@@ -11,14 +11,14 @@
     "implemented": 1,
     "items": [
       {
-        "id": "REQ-14",
-        "summary": "In the Mission component, replace the paragraph text at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[3]/div[1]/div[1]/p[1] with 'हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।'",
+        "id": "REQ-1",
+        "summary": "Add Google AdSense script tag to the HTML head section with async loading, source URL 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4905807488237044', and crossorigin attribute set to 'anonymous'",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/Mission.tsx"
+          "frontend/index.html"
         ],
         "matchedFiles": [
-          "frontend/src/components/Mission.tsx"
+          "frontend/index.html"
         ]
       }
     ]
@@ -28,7 +28,7 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/Mission.tsx",
+    "frontend/index.html",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

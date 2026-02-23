@@ -36,7 +36,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-              What We Do
+              हम क्या करते हैं
             </h2>
             <p className="font-serif text-lg text-muted-foreground max-w-2xl mx-auto">
               Our organization works tirelessly across multiple fronts to strengthen and preserve our sacred heritage.

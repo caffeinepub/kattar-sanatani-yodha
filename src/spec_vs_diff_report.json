@@ -1,14 +1,14 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-23T17:39:44.498Z",
-  "summary": "The diff demonstrates that REQ-14 has been fully implemented. The Mission component now displays the exact Hindi text as specified in the BuildRequest at the paragraph element. No missing requirements or hallucinated features were identified.",
+  "generatedAt": "2026-02-23T18:28:39.633Z",
+  "summary": "The implementation fully satisfies REQ-1. The Google AdSense script has been correctly added to frontend/index.html with all required attributes (async, exact source URL with client ID, and crossorigin='anonymous'). No requirements are missing and no hallucinated features were introduced.",
   "missing_requirements": [],
   "hallucinated_features": [],
-  "confidence": 0.95,
+  "confidence": 0.98,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/components/Mission.tsx",
+    "frontend/index.html",
     "project_state.json"
   ]
 }

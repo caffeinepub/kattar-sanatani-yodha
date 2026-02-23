@@ -1,35 +1,39 @@
 {
   "kind": "build_request",
-  "title": "Replace Mission section paragraph text with Hindi translation",
+  "title": "Integrate Google AdSense script",
+  "projectName": "Kattar Sanatani Yodha",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-14",
-      "text": "In the Mission component, replace the paragraph text at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[3]/div[1]/div[1]/p[1] with 'हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।'",
+      "id": "REQ-1",
+      "text": "Add Google AdSense script tag to the HTML head section with async loading, source URL 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4905807488237044', and crossorigin attribute set to 'anonymous'",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-latest"
+          "msg-6"
         ],
         "quotes": [
-          "CHANGE TO हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।"
+          "PLACE THE CODE OF GOOGLE ADSENSE <script async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4905807488237044\"\n     crossorigin=\"anonymous\"></script>"
         ]
       },
       "acceptanceCriteria": [
-        "The paragraph element at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[3]/div[1]/div[1]/p[1] displays the exact Hindi text: 'हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।'",
-        "The text is properly encoded and displays correctly in browsers",
-        "No other text in the Mission component is altered"
+        "The AdSense script is present in frontend/index.html within the <head> section",
+        "The script includes the async attribute",
+        "The script src URL matches exactly: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4905807488237044",
+        "The crossorigin attribute is set to 'anonymous'",
+        "The script loads without errors in browser console"
       ]
     }
   ],
   "constraints": [
-    "Only modify the specific paragraph element at the provided XPath",
-    "Do not change any other text or structure in the Mission component"
+    "Do not modify any backend files",
+    "Preserve all existing frontend functionality",
+    "Use the exact AdSense client ID provided: ca-pub-4905807488237044"
   ],
   "nonGoals": [
-    "Modifying any other sections of the website",
-    "Changing the Mission component heading or core values grid",
-    "Altering styling or layout of the Mission section"
+    "Creating ad placement units or display logic",
+    "Configuring AdSense account settings",
+    "Adding ad blocks to specific pages"
   ],
   "imageRequirements": {
     "required": [],

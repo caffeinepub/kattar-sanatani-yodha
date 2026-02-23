@@ -1,9 +1,9 @@
 # Specification
 
 ## Summary
-**Goal:** Replace the Mission section paragraph text with Hindi translation.
+**Goal:** Integrate Google AdSense script into the application for ad monetization.
 
 **Planned changes:**
-- Update the Mission component paragraph text to display in Hindi: "हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।"
+- Add Google AdSense script tag to the HTML head section with async loading and the provided client ID
 
-**User-visible outcome:** The Mission section will display the introductory paragraph in Hindi instead of English, making the content accessible to Hindi-speaking visitors.
+**User-visible outcome:** The application will have Google AdSense integrated, enabling ad monetization capabilities (though no ads will display until ad units are configured separately).

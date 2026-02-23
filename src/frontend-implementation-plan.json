@@ -1,21 +1,23 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Replace Mission section paragraph text with Hindi translation",
+  "title": "Integrate Google AdSense script",
   "requirements": [
     {
-      "id": "REQ-14",
-      "summary": "Replace the Mission component paragraph text with Hindi translation",
+      "id": "REQ-1",
+      "summary": "Add Google AdSense script tag to HTML head section with async loading and crossorigin attribute",
       "acceptanceCriteria": [
-        "The paragraph element at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[3]/div[1]/div[1]/p[1] displays the exact Hindi text: 'हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।'",
-        "The text is properly encoded and displays correctly in browsers",
-        "No other text in the Mission component is altered"
+        "The AdSense script is present in frontend/index.html within the <head> section",
+        "The script includes the async attribute",
+        "The script src URL matches exactly: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4905807488237044",
+        "The crossorigin attribute is set to 'anonymous'",
+        "The script loads without errors in browser console"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/Mission.tsx",
+          "path": "frontend/index.html",
           "operation": "modify",
-          "description": "Update the paragraph text within the Mission component to display the Hindi translation 'हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।' Replace the existing paragraph content while preserving the component structure, heading, and core values grid. Ensure the text is properly UTF-8 encoded for correct display in all browsers."
+          "description": "Insert Google AdSense script tag in the <head> section before the closing </head> tag. The script must include: async attribute for non-blocking load, exact src URL 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4905807488237044', and crossorigin='anonymous' attribute. Place the script after existing meta tags but before the module script reference to main.tsx to ensure AdSense loads early in the page lifecycle."
         }
       ]
     }

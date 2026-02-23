@@ -3,8 +3,10 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
 import Programs from './pages/Programs';
+import Philosophy from './pages/Philosophy';
 import Contact from './pages/Contact';
 import Donate from './pages/Donate';
+import Resources from './pages/Resources';
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -28,6 +30,18 @@ const programsRoute = createRoute({
   component: Programs,
 });
 
+const philosophyRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/philosophy',
+  component: Philosophy,
+});
+
+const resourcesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/resources',
+  component: Resources,
+});
+
 const contactRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/contact',
@@ -44,6 +58,8 @@ const routeTree = rootRoute.addChildren([
   indexRoute,
   aboutRoute,
   programsRoute,
+  philosophyRoute,
+  resourcesRoute,
   contactRoute,
   donateRoute,
 ]);
