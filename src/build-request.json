@@ -1,52 +1,37 @@
 {
   "kind": "build_request",
-  "title": "Update YouTube link to new channel",
-  "projectName": "Kattar Sanatani Yodha",
-  "priority": "normal",
+  "title": "Fix social media icon visibility in footer",
+  "priority": "high",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Update the YouTube social media link in the Footer component from the current URL to https://www.youtube.com/@sanatani-omkar07",
+      "text": "Ensure the WhatsApp icon SVG path element in the footer is properly visible with correct fill color and styling, located at XPath /html[1]/body[1]/div[1]/div[1]/footer[1]/div[1]/div[1]/div[4]/div[1]/a[3]/svg[1]/path[1]",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-1"
+          "msg-latest"
         ],
         "quotes": [
-          "change youtube link to https://www.youtube.com/@sanatani-omkar07"
+          "why not visible in site??"
         ]
       },
       "acceptanceCriteria": [
-        "The YouTube icon in the Footer links to https://www.youtube.com/@sanatani-omkar07",
-        "The link opens in a new tab when clicked"
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "text": "Update the YouTube social media link in the Contact page component from the current URL to https://www.youtube.com/@sanatani-omkar07",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-user-1"
-        ],
-        "quotes": [
-          "change youtube link to https://www.youtube.com/@sanatani-omkar07"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The YouTube icon in the Contact page links to https://www.youtube.com/@sanatani-omkar07",
-        "The link opens in a new tab when clicked"
+        "The WhatsApp icon SVG path in the footer social media section renders visibly on the deployed site",
+        "The icon has proper fill color matching the design system",
+        "The icon is clickable and maintains hover states",
+        "All other social media icons (Facebook, X, YouTube) remain properly visible alongside the fixed WhatsApp icon"
       ]
     }
   ],
   "constraints": [
-    "Do not modify the backend",
-    "Maintain the existing social media icon styling and layout"
+    "Only modify the Footer component (frontend/src/components/Footer.tsx)",
+    "Maintain existing social media link structure and accessibility attributes",
+    "Do not change the backend or other frontend components"
   ],
   "nonGoals": [
-    "Adding new social media platforms",
-    "Changing other social media links",
-    "Modifying the visual design of social media icons"
+    "Modifying other footer sections like quick links or contact information",
+    "Changing the overall footer layout or structure",
+    "Adding new social media icons"
   ],
   "imageRequirements": {
     "required": [],

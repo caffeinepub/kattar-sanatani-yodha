@@ -2,8 +2,8 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-youtube-social-media-link-in-the-footer-component-from-the-current-url-to-https-www-youtube-com-sanatani-omkar07",
-      "featureTitle": "Update the YouTube social media link in the Footer component from the current URL to https://www.youtube.com/@sanatani-omkar07",
+      "featureId": "feature-ensure-the-whatsapp-icon-svg-path-element-in-the-footer-is-properly-visible-with-correct-fill-color-and-styling-located-at-xpath-html-1-body-1-div-1-div-1-footer-1-div-1-div-1-div-4-div-1-a-3-svg-1-path-1",
+      "featureTitle": "Ensure the WhatsApp icon SVG path element in the footer is properly visible with correct fill color and styling, located at XPath /html[1]/body[1]/div[1]/div[1]/footer[1]/div[1]/div[1]/div[4]/div[1]/a[3]/svg[1]/path[1]",
       "files": [
         "frontend/src/components/Footer.tsx"
       ],
@@ -12,28 +12,11 @@
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
       ],
       "testIds": [
         "REQ-1"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-update-the-youtube-social-media-link-in-the-contact-page-component-from-the-current-url-to-https-www-youtube-com-sanatani-omkar07",
-      "featureTitle": "Update the YouTube social media link in the Contact page component from the current URL to https://www.youtube.com/@sanatani-omkar07",
-      "files": [
-        "frontend/src/pages/Contact.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-2"
       ],
       "confidence": "high"
     }

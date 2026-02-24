@@ -8,14 +8,94 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
+export const UserRole = IDL.Variant({
+  'admin' : IDL.Null,
+  'user' : IDL.Null,
+  'guest' : IDL.Null,
+});
+export const SortBy = IDL.Variant({
+  'timestampAsc' : IDL.Null,
+  'nameDesc' : IDL.Null,
+  'nameAsc' : IDL.Null,
+  'timestampDesc' : IDL.Null,
+});
+export const Filter = IDL.Record({
+  'sortBy' : IDL.Opt(SortBy),
+  'searchTerm' : IDL.Opt(IDL.Text),
+});
+export const Submission = IDL.Record({
+  'id' : IDL.Nat,
+  'name' : IDL.Text,
+  'email' : IDL.Text,
+  'message' : IDL.Text,
+  'timestamp' : IDL.Int,
+});
+export const UserProfile = IDL.Record({ 'name' : IDL.Text });
+
 export const idlService = IDL.Service({
+  '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
+  'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+  'getAllSubmissions' : IDL.Func(
+      [IDL.Opt(Filter)],
+      [IDL.Vec(Submission)],
+      ['query'],
+    ),
+  'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
+  'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+  'getUserProfile' : IDL.Func(
+      [IDL.Principal],
+      [IDL.Opt(UserProfile)],
+      ['query'],
+    ),
+  'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+  'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
   'submitContactForm' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [], []),
 });
 
 export const idlInitArgs = [];
 
 export const idlFactory = ({ IDL }) => {
+  const UserRole = IDL.Variant({
+    'admin' : IDL.Null,
+    'user' : IDL.Null,
+    'guest' : IDL.Null,
+  });
+  const SortBy = IDL.Variant({
+    'timestampAsc' : IDL.Null,
+    'nameDesc' : IDL.Null,
+    'nameAsc' : IDL.Null,
+    'timestampDesc' : IDL.Null,
+  });
+  const Filter = IDL.Record({
+    'sortBy' : IDL.Opt(SortBy),
+    'searchTerm' : IDL.Opt(IDL.Text),
+  });
+  const Submission = IDL.Record({
+    'id' : IDL.Nat,
+    'name' : IDL.Text,
+    'email' : IDL.Text,
+    'message' : IDL.Text,
+    'timestamp' : IDL.Int,
+  });
+  const UserProfile = IDL.Record({ 'name' : IDL.Text });
+  
   return IDL.Service({
+    '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
+    'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+    'getAllSubmissions' : IDL.Func(
+        [IDL.Opt(Filter)],
+        [IDL.Vec(Submission)],
+        ['query'],
+      ),
+    'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
+    'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+    'getUserProfile' : IDL.Func(
+        [IDL.Principal],
+        [IDL.Opt(UserProfile)],
+        ['query'],
+      ),
+    'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+    'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
     'submitContactForm' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [], []),
   });
 };

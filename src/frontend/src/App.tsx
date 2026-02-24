@@ -7,6 +7,7 @@ import Philosophy from './pages/Philosophy';
 import Contact from './pages/Contact';
 import Donate from './pages/Donate';
 import Resources from './pages/Resources';
+import Admin from './pages/Admin';
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -54,6 +55,12 @@ const donateRoute = createRoute({
   component: Donate,
 });
 
+const adminRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/admin',
+  component: Admin,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   aboutRoute,
@@ -62,6 +69,7 @@ const routeTree = rootRoute.addChildren([
   resourcesRoute,
   contactRoute,
   donateRoute,
+  adminRoute,
 ]);
 
 const router = createRouter({ routeTree });

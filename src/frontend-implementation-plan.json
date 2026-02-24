@@ -1,35 +1,22 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Update YouTube link to new channel",
+  "title": "Fix social media icon visibility in footer",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Update the YouTube social media link in the Footer component to point to the new channel URL",
+      "summary": "Fix WhatsApp icon SVG visibility in footer social media section with proper fill color and styling",
       "acceptanceCriteria": [
-        "The YouTube icon in the Footer links to https://www.youtube.com/@sanatani-omkar07",
-        "The link opens in a new tab when clicked"
+        "The WhatsApp icon SVG path in the footer social media section renders visibly on the deployed site",
+        "The icon has proper fill color matching the design system",
+        "The icon is clickable and maintains hover states",
+        "All other social media icons (Facebook, X, YouTube) remain properly visible alongside the fixed WhatsApp icon"
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/Footer.tsx",
           "operation": "modify",
-          "description": "Update the YouTube social media link href attribute from the current URL to https://www.youtube.com/@sanatani-omkar07. Ensure the link maintains the existing target='_blank' and rel='noopener noreferrer' attributes for proper new tab behavior and security. Maintain all existing styling and icon rendering."
-        }
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "summary": "Update the YouTube social media link in the Contact page component to point to the new channel URL",
-      "acceptanceCriteria": [
-        "The YouTube icon in the Contact page links to https://www.youtube.com/@sanatani-omkar07",
-        "The link opens in a new tab when clicked"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/Contact.tsx",
-          "operation": "modify",
-          "description": "Update the YouTube social media link href attribute from the current URL to https://www.youtube.com/@sanatani-omkar07. Ensure the link maintains the existing target='_blank' and rel='noopener noreferrer' attributes for proper new tab behavior and security. Maintain all existing styling and icon rendering."
+          "description": "Inspect and fix the WhatsApp icon SVG path element to ensure proper visibility. Add or correct the fill attribute on the SVG path element to use a visible color that matches the design system (likely currentColor or a specific color value). Ensure the SVG has proper viewBox, width, height, and that the path element has complete d attribute data. Verify that hover states and click functionality remain intact for all social media icons including Facebook, X, WhatsApp, and YouTube."
         }
       ]
     }

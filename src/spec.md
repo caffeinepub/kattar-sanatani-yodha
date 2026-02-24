@@ -1,10 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Update the YouTube social media link to point to the new channel URL.
+**Goal:** Fix the WhatsApp icon visibility issue in the footer's social media section.
 
 **Planned changes:**
-- Update YouTube link in Footer component to https://www.youtube.com/@sanatani-omkar07
-- Update YouTube link in Contact page to https://www.youtube.com/@sanatani-omkar07
+- Update the WhatsApp icon SVG path element in the Footer component to ensure proper fill color and visibility
+- Verify all social media icons (Facebook, X, YouTube, WhatsApp) render correctly with consistent styling
+- Maintain clickability and hover states for all icons
 
-**User-visible outcome:** Users clicking the YouTube icon in the footer or contact page will be directed to the new channel at https://www.youtube.com/@sanatani-omkar07.
+**User-visible outcome:** The WhatsApp icon in the footer will be clearly visible alongside other social media icons, matching the design system with proper styling and interactivity.

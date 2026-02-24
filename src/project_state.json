@@ -1,32 +1,24 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Project with YouTube channel link integration",
-  "architectural_notes": [
-    "YouTube channel link: https://www.youtube.com/@sanatani-omkar07"
+  "summary": "New project",
+  "architectural_notes": [],
+  "known_issues": [
+    "Deployment visibility issue: Version 22 deployed but not visible on site"
   ],
-  "known_issues": [],
-  "isFixRequest": false,
+  "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-update-the-youtube-social-media-link-in-the-footer-component-from-the-current-url-to-https-www-youtube-com-sanatani-omkar07",
-      "title": "Update the YouTube social media link in the Footer component from the current URL to https://www.youtube.com/@sanatani-omkar07",
+      "id": "feature-ensure-the-whatsapp-icon-svg-path-element-in-the-footer-is-properly-visible-with-correct-fill-color-and-styling-located-at-xpath-html-1-body-1-div-1-div-1-footer-1-div-1-div-1-div-4-div-1-a-3-svg-1-path-1",
+      "title": "Ensure the WhatsApp icon SVG path element in the footer is properly visible with correct fill color and styling, located at XPath /html[1]/body[1]/div[1]/div[1]/footer[1]/div[1]/div[1]/div[4]/div[1]/a[3]/svg[1]/path[1]",
       "reqIds": [
         "REQ-1"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-youtube-social-media-link-in-the-contact-page-component-from-the-current-url-to-https-www-youtube-com-sanatani-omkar07",
-      "title": "Update the YouTube social media link in the Contact page component from the current URL to https://www.youtube.com/@sanatani-omkar07",
-      "reqIds": [
-        "REQ-2"
       ],
       "version": 1
     }
   ],
   "new_feature_requests": [],
-  "projectName": "Kattar Sanatani Yodha",
+  "projectName": "Fix social media icon visibility in footer",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

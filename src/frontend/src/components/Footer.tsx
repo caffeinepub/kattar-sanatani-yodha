@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import { Heart, Mail, Phone, MapPin } from 'lucide-react';
-import { SiFacebook, SiX, SiInstagram, SiYoutube } from 'react-icons/si';
+import { SiFacebook, SiX, SiWhatsapp, SiYoutube } from 'react-icons/si';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -102,7 +102,7 @@ export default function Footer() {
               {[
                 { Icon: SiFacebook, label: 'Facebook', url: 'https://www.facebook.com/share/14QwdYfhLY2/' },
                 { Icon: SiX, label: 'X', url: 'https://x.com/VarshneyVi95121?t=ovt3Ut6VVD-WOJPgNLacDA&s=08' },
-                { Icon: SiInstagram, label: 'Instagram', url: '#' },
+                { Icon: SiWhatsapp, label: 'WhatsApp', url: 'https://chat.whatsapp.com/Gc6vidsxTL7J93D3tdBiDW?mode=gi_t' },
                 { Icon: SiYoutube, label: 'YouTube', url: 'https://www.youtube.com/@sanatani-omkar07' },
               ].map(({ Icon, label, url }) => (
                 <a
@@ -111,7 +111,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="p-2 rounded-md bg-muted hover:bg-primary hover:text-primary-foreground transition-all"
+                  className="p-2 rounded-md bg-muted text-foreground hover:bg-primary hover:text-primary-foreground transition-all"
                 >
                   <Icon size={20} />
                 </a>

@@ -1,11 +1,18 @@
 import { Link, useRouterState } from '@tanstack/react-router';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Shield } from 'lucide-react';
 import { useState } from 'react';
+import { useInternetIdentity } from '../hooks/useInternetIdentity';
+import { useIsCallerAdmin } from '../hooks/useQueries';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const routerState = useRouterState();
   const currentPath = routerState.location.pathname;
+  const { identity } = useInternetIdentity();
+  const { data: isAdmin } = useIsCallerAdmin();
+
+  const isAuthenticated = !!identity;
+  const showAdminLink = isAuthenticated && isAdmin;
 
   const navLinks = [
     { path: '/', label: 'Home' },
@@ -25,18 +32,14 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <img 
-              src="/assets/kattar sanatani yodha logo.jpg" 
-              alt="KATTAR SANATANI YODHA logo" 
+            <img
+              src="/assets/kattar sanatani yodha logo.jpg"
+              alt="KATTAR SANATANI YODHA logo"
               className="h-14 w-14 object-contain transition-transform group-hover:scale-105"
             />
             <div className="flex flex-col">
-              <span className="font-display text-xl font-bold text-primary">
-                KATTAR SANATANI YODHA
-              </span>
-              <span className="text-xs text-muted-foreground font-serif italic">
-                Guardians of Tradition
-              </span>
+              <span className="font-display text-xl font-bold text-primary">KATTAR SANATANI YODHA</span>
+              <span className="text-xs text-muted-foreground font-serif italic">Guardians of Tradition</span>
             </div>
           </Link>
 
@@ -55,6 +58,19 @@ export default function Navigation() {
                 {link.label}
               </Link>
             ))}
+            {showAdminLink && (
+              <Link
+                to="/admin"
+                className={`px-4 py-2 rounded-md font-medium transition-all flex items-center gap-2 ${
+                  isActive('/admin')
+                    ? 'bg-primary text-primary-foreground shadow-warm'
+                    : 'text-foreground hover:bg-muted hover:text-primary'
+                }`}
+              >
+                <Shield className="w-4 h-4" />
+                Admin
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -85,6 +101,20 @@ export default function Navigation() {
                   {link.label}
                 </Link>
               ))}
+              {showAdminLink && (
+                <Link
+                  to="/admin"
+                  onClick={() => setIsOpen(false)}
+                  className={`px-4 py-3 rounded-md font-medium transition-all flex items-center gap-2 ${
+                    isActive('/admin')
+                      ? 'bg-primary text-primary-foreground'
+                      : 'text-foreground hover:bg-muted hover:text-primary'
+                  }`}
+                >
+                  <Shield className="w-4 h-4" />
+                  Admin
+                </Link>
+              )}
             </div>
           </div>
         )}
