@@ -1,30 +1,31 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Web application with Google AdSense integration",
+  "summary": "Project with YouTube channel link integration",
   "architectural_notes": [
-    "Google AdSense integration for monetization"
+    "YouTube channel link: https://www.youtube.com/@sanatani-omkar07"
   ],
   "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-add-google-adsense-script-tag-to-the-html-head-section-with-async-loading-source-url-https-pagead2-googlesyndication-com-pagead-js-adsbygoogle-js-client-ca-pub-4905807488237044-and-crossorigin-attribute-set-to-anonymous",
-      "title": "Add Google AdSense script tag to the HTML head section with async loading, source URL 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4905807488237044', and crossorigin attribute set to 'anonymous'",
+      "id": "feature-update-the-youtube-social-media-link-in-the-footer-component-from-the-current-url-to-https-www-youtube-com-sanatani-omkar07",
+      "title": "Update the YouTube social media link in the Footer component from the current URL to https://www.youtube.com/@sanatani-omkar07",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
-    }
-  ],
-  "new_feature_requests": [
+    },
     {
-      "id": "AR-1",
-      "summary": "Integrate Google AdSense script with client ID ca-pub-4905807488237044",
-      "reqIds": [],
-      "status": "pending"
+      "id": "feature-update-the-youtube-social-media-link-in-the-contact-page-component-from-the-current-url-to-https-www-youtube-com-sanatani-omkar07",
+      "title": "Update the YouTube social media link in the Contact page component from the current URL to https://www.youtube.com/@sanatani-omkar07",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
     }
   ],
+  "new_feature_requests": [],
   "projectName": "Kattar Sanatani Yodha",
   "clarification_mode": "instant",
   "clarification_rounds": 0

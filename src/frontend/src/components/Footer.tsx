@@ -62,11 +62,29 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-2 text-sm text-muted-foreground">
                 <Mail size={16} className="mt-0.5 text-primary flex-shrink-0" />
-                <span>info@kattarsanataniyodha.org</span>
+                <a 
+                  href="mailto:adityarajsrivastav76@gmail.com"
+                  className="hover:text-primary transition-colors"
+                >
+                  adityarajsrivastav76@gmail.com
+                </a>
               </li>
               <li className="flex items-start gap-2 text-sm text-muted-foreground">
                 <Phone size={16} className="mt-0.5 text-primary flex-shrink-0" />
-                <span>+91 XXX XXX XXXX</span>
+                <div className="space-y-1">
+                  <a 
+                    href="tel:+918130608468"
+                    className="block hover:text-primary transition-colors"
+                  >
+                    +91 81306 08468
+                  </a>
+                  <a 
+                    href="tel:+919259279963"
+                    className="block hover:text-primary transition-colors"
+                  >
+                    +91 92592 79963
+                  </a>
+                </div>
               </li>
               <li className="flex items-start gap-2 text-sm text-muted-foreground">
                 <MapPin size={16} className="mt-0.5 text-primary flex-shrink-0" />
@@ -82,14 +100,16 @@ export default function Footer() {
             </h4>
             <div className="flex gap-3">
               {[
-                { Icon: SiFacebook, label: 'Facebook' },
-                { Icon: SiX, label: 'X' },
-                { Icon: SiInstagram, label: 'Instagram' },
-                { Icon: SiYoutube, label: 'YouTube' },
-              ].map(({ Icon, label }) => (
+                { Icon: SiFacebook, label: 'Facebook', url: 'https://www.facebook.com/share/14QwdYfhLY2/' },
+                { Icon: SiX, label: 'X', url: 'https://x.com/VarshneyVi95121?t=ovt3Ut6VVD-WOJPgNLacDA&s=08' },
+                { Icon: SiInstagram, label: 'Instagram', url: '#' },
+                { Icon: SiYoutube, label: 'YouTube', url: 'https://www.youtube.com/@sanatani-omkar07' },
+              ].map(({ Icon, label, url }) => (
                 <a
                   key={label}
-                  href="#"
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   className="p-2 rounded-md bg-muted hover:bg-primary hover:text-primary-foreground transition-all"
                 >

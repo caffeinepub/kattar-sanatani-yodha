@@ -1,23 +1,35 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Integrate Google AdSense script",
+  "title": "Update YouTube link to new channel",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Add Google AdSense script tag to HTML head section with async loading and crossorigin attribute",
+      "summary": "Update the YouTube social media link in the Footer component to point to the new channel URL",
       "acceptanceCriteria": [
-        "The AdSense script is present in frontend/index.html within the <head> section",
-        "The script includes the async attribute",
-        "The script src URL matches exactly: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4905807488237044",
-        "The crossorigin attribute is set to 'anonymous'",
-        "The script loads without errors in browser console"
+        "The YouTube icon in the Footer links to https://www.youtube.com/@sanatani-omkar07",
+        "The link opens in a new tab when clicked"
       ],
       "file_operations": [
         {
-          "path": "frontend/index.html",
+          "path": "frontend/src/components/Footer.tsx",
           "operation": "modify",
-          "description": "Insert Google AdSense script tag in the <head> section before the closing </head> tag. The script must include: async attribute for non-blocking load, exact src URL 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4905807488237044', and crossorigin='anonymous' attribute. Place the script after existing meta tags but before the module script reference to main.tsx to ensure AdSense loads early in the page lifecycle."
+          "description": "Update the YouTube social media link href attribute from the current URL to https://www.youtube.com/@sanatani-omkar07. Ensure the link maintains the existing target='_blank' and rel='noopener noreferrer' attributes for proper new tab behavior and security. Maintain all existing styling and icon rendering."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Update the YouTube social media link in the Contact page component to point to the new channel URL",
+      "acceptanceCriteria": [
+        "The YouTube icon in the Contact page links to https://www.youtube.com/@sanatani-omkar07",
+        "The link opens in a new tab when clicked"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/Contact.tsx",
+          "operation": "modify",
+          "description": "Update the YouTube social media link href attribute from the current URL to https://www.youtube.com/@sanatani-omkar07. Ensure the link maintains the existing target='_blank' and rel='noopener noreferrer' attributes for proper new tab behavior and security. Maintain all existing styling and icon rendering."
         }
       ]
     }

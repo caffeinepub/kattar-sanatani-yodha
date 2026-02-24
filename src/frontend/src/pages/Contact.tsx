@@ -148,7 +148,12 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-display font-semibold text-foreground mb-1">Email</h3>
-                    <p className="text-muted-foreground">info@kattarsanataniyodha.org</p>
+                    <a 
+                      href="mailto:adityarajsrivastav76@gmail.com"
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      adityarajsrivastav76@gmail.com
+                    </a>
                   </div>
                 </div>
 
@@ -158,7 +163,20 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-display font-semibold text-foreground mb-1">Phone</h3>
-                    <p className="text-muted-foreground">+91 XXX XXX XXXX</p>
+                    <div className="space-y-1">
+                      <a 
+                        href="tel:+918130608468"
+                        className="block text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        +91 81306 08468
+                      </a>
+                      <a 
+                        href="tel:+919259279963"
+                        className="block text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        +91 92592 79963
+                      </a>
+                    </div>
                   </div>
                 </div>
 
@@ -180,14 +198,16 @@ export default function Contact() {
                 </h3>
                 <div className="flex gap-3">
                   {[
-                    { Icon: SiFacebook, label: 'Facebook' },
-                    { Icon: SiX, label: 'X' },
-                    { Icon: SiInstagram, label: 'Instagram' },
-                    { Icon: SiYoutube, label: 'YouTube' },
-                  ].map(({ Icon, label }) => (
+                    { Icon: SiFacebook, label: 'Facebook', url: 'https://www.facebook.com/share/14QwdYfhLY2/' },
+                    { Icon: SiX, label: 'X', url: 'https://x.com/VarshneyVi95121?t=ovt3Ut6VVD-WOJPgNLacDA&s=08' },
+                    { Icon: SiInstagram, label: 'Instagram', url: '#' },
+                    { Icon: SiYoutube, label: 'YouTube', url: 'https://www.youtube.com/@sanatani-omkar07' },
+                  ].map(({ Icon, label, url }) => (
                     <a
                       key={label}
-                      href="#"
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       aria-label={label}
                       className="p-3 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground transition-all"
                     >

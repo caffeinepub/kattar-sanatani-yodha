@@ -1,39 +1,52 @@
 {
   "kind": "build_request",
-  "title": "Integrate Google AdSense script",
+  "title": "Update YouTube link to new channel",
   "projectName": "Kattar Sanatani Yodha",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Add Google AdSense script tag to the HTML head section with async loading, source URL 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4905807488237044', and crossorigin attribute set to 'anonymous'",
+      "text": "Update the YouTube social media link in the Footer component from the current URL to https://www.youtube.com/@sanatani-omkar07",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-6"
+          "msg-user-1"
         ],
         "quotes": [
-          "PLACE THE CODE OF GOOGLE ADSENSE <script async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4905807488237044\"\n     crossorigin=\"anonymous\"></script>"
+          "change youtube link to https://www.youtube.com/@sanatani-omkar07"
         ]
       },
       "acceptanceCriteria": [
-        "The AdSense script is present in frontend/index.html within the <head> section",
-        "The script includes the async attribute",
-        "The script src URL matches exactly: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4905807488237044",
-        "The crossorigin attribute is set to 'anonymous'",
-        "The script loads without errors in browser console"
+        "The YouTube icon in the Footer links to https://www.youtube.com/@sanatani-omkar07",
+        "The link opens in a new tab when clicked"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Update the YouTube social media link in the Contact page component from the current URL to https://www.youtube.com/@sanatani-omkar07",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ],
+        "quotes": [
+          "change youtube link to https://www.youtube.com/@sanatani-omkar07"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The YouTube icon in the Contact page links to https://www.youtube.com/@sanatani-omkar07",
+        "The link opens in a new tab when clicked"
       ]
     }
   ],
   "constraints": [
-    "Do not modify any backend files",
-    "Preserve all existing frontend functionality",
-    "Use the exact AdSense client ID provided: ca-pub-4905807488237044"
+    "Do not modify the backend",
+    "Maintain the existing social media icon styling and layout"
   ],
   "nonGoals": [
-    "Creating ad placement units or display logic",
-    "Configuring AdSense account settings",
-    "Adding ad blocks to specific pages"
+    "Adding new social media platforms",
+    "Changing other social media links",
+    "Modifying the visual design of social media icons"
   ],
   "imageRequirements": {
     "required": [],

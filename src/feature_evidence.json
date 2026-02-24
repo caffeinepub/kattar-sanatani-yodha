@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-google-adsense-script-tag-to-the-html-head-section-with-async-loading-source-url-https-pagead2-googlesyndication-com-pagead-js-adsbygoogle-js-client-ca-pub-4905807488237044-and-crossorigin-attribute-set-to-anonymous",
-      "featureTitle": "Add Google AdSense script tag to the HTML head section with async loading, source URL 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4905807488237044', and crossorigin attribute set to 'anonymous'",
+      "featureId": "feature-update-the-youtube-social-media-link-in-the-footer-component-from-the-current-url-to-https-www-youtube-com-sanatani-omkar07",
+      "featureTitle": "Update the YouTube social media link in the Footer component from the current URL to https://www.youtube.com/@sanatani-omkar07",
       "files": [
-        "frontend/index.html"
+        "frontend/src/components/Footer.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -16,6 +16,24 @@
       ],
       "testIds": [
         "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-youtube-social-media-link-in-the-contact-page-component-from-the-current-url-to-https-www-youtube-com-sanatani-omkar07",
+      "featureTitle": "Update the YouTube social media link in the Contact page component from the current URL to https://www.youtube.com/@sanatani-omkar07",
+      "files": [
+        "frontend/src/pages/Contact.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
       ],
       "confidence": "high"
     }
