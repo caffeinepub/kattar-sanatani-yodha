@@ -1,0 +1,242 @@
+{
+  "kind": "build_request",
+  "title": "Translate entire app UI from English to Hindi",
+  "projectName": "Kattar Sanatani Yodha",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Translate all user-facing text in the Navigation component (nav links, mobile menu labels, admin link text) from English to Hindi.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "translate whole page from english into hindi"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All navigation link labels are displayed in Hindi.",
+        "Mobile menu toggle and close labels are in Hindi.",
+        "Admin link label is in Hindi when visible."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Translate all user-facing text in the Hero component (organization tagline, mission statement, call-to-action button labels, scroll indicator text) from English to Hindi.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "translate whole page from english into hindi"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Hero tagline and mission statement are in Hindi.",
+        "CTA button labels (support, learn more) are in Hindi.",
+        "Scroll indicator label is in Hindi if present."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Translate all user-facing text in the Mission component (section heading, paragraph text, and all four core value titles and descriptions) from English to Hindi.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "translate whole page from english into hindi"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Section heading and introductory paragraph are in Hindi.",
+        "All four core value card titles (Devotion, Protection, Knowledge, Unity) and their descriptions are in Hindi."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Translate all user-facing text in the SupportOptions component (section heading, all four support option titles, descriptions, and CTA link labels) from English to Hindi.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "translate whole page from english into hindi"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All support option titles and descriptions are in Hindi.",
+        "CTA link labels are in Hindi."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Translate all user-facing text on the Home page (section headings, highlight card titles and descriptions, CTA section text and button labels) from English to Hindi.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "translate whole page from english into hindi"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All Home page section headings, highlight titles, descriptions, and button labels are in Hindi."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Translate all user-facing text on the About page (hero section text, organization story text, and all four principle card titles and descriptions) from English to Hindi.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "translate whole page from english into hindi"
+        ]
+      },
+      "acceptanceCriteria": [
+        "About page hero text, story content, and all principle cards are fully in Hindi."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Translate all user-facing text on the Programs page (section headings, all six program card titles and descriptions, and impact statistics labels) from English to Hindi.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "translate whole page from english into hindi"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All program card titles, descriptions, and impact statistic labels are in Hindi."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Translate all user-facing text on the Philosophy page (section headings, principle titles, body text, and all devotion examples) from English to Hindi.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "translate whole page from english into hindi"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All Philosophy page headings, principle titles, and descriptive body text are in Hindi."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Translate all user-facing text on the Resources page (hero section text, all resource category headings and descriptions, item titles, and any button or link labels) from English to Hindi.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "translate whole page from english into hindi"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Resources page hero, category headings, item titles, and all labels are in Hindi."
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Translate all user-facing text on the Contact page (form field labels, placeholder text, submit button label, contact information labels, and social media section labels) from English to Hindi.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "translate whole page from english into hindi"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All form labels, placeholders, button text, and contact section labels are in Hindi.",
+        "Success and error messages shown after form submission are in Hindi."
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Translate all user-facing text on the Donate page (section headings, support option descriptions, impact area labels with percentage breakdowns, and transparency commitment text) from English to Hindi.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "translate whole page from english into hindi"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All Donate page headings, impact labels, and commitment statements are in Hindi."
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Translate all user-facing text on the Admin page (dashboard headings, search field placeholder, filter labels, table column headers, action button labels, authorization error messages, and CSV export button label) from English to Hindi.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "translate whole page from english into hindi"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Admin dashboard headings, table headers, filter/search labels, and action buttons are all in Hindi.",
+        "Authorization and error messages on the Admin page are in Hindi."
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Translate all user-facing text in the Footer component (quick links section heading, navigation link labels, contact section heading, social media section heading, and attribution text) from English to Hindi.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "translate whole page from english into hindi"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All Footer section headings, link labels, and attribution text are in Hindi.",
+        "Dynamic year display and caffeine.ai attribution remain functional."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not alter any existing Sanatani theme, colors, fonts, or layout.",
+    "Do not modify backend logic or data models.",
+    "Do not edit files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui.",
+    "Sanskrit terms already present in the UI (e.g., शाश्वत प्रकृति, भक्ति योग) should be preserved as-is.",
+    "Organization name 'KATTAR SANATANI YODHA' in the HTML title and logo should remain unchanged."
+  ],
+  "nonGoals": [
+    "Adding multi-language toggle or i18n infrastructure — all text should be directly replaced with Hindi.",
+    "Translating backend error messages or Motoko code.",
+    "Changing any visual design, layout, or component structure.",
+    "Modifying the ads.txt or any public asset files."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

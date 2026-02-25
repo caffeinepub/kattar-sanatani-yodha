@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Project to translate the entire page/app from English into Hindi.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Translate the entire page/app UI from English into Hindi",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Translate all user-facing text in the Navigation component (nav links, mobile menu labels, admin link text) from English to Hindi.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Translate all user-facing text in the Hero component (organization tagline, mission statement, call-to-action button labels, scroll indicator text) from English to Hindi.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Translate all user-facing text in the Mission component (section heading, paragraph text, and all four core value titles and descriptions) from English to Hindi.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Translate all user-facing text in the SupportOptions component (section heading, all four support option titles, descriptions, and CTA link labels) from English to Hindi.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Translate all user-facing text on the Home page (section headings, highlight card titles and descriptions, CTA section text and button labels) from English to Hindi.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Translate all user-facing text on the About page (hero section text, organization story text, and all four principle card titles and descriptions) from English to Hindi.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Translate all user-facing text on the Programs page (section headings, all six program card titles and descriptions, and impact statistics labels) from English to Hindi.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Translate all user-facing text on the Philosophy page (section headings, principle titles, body text, and all devotion examples) from English to Hindi.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Translate all user-facing text on the Resources page (hero section text, all resource category headings and descriptions, item titles, and any button or link labels) from English to Hindi.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Translate all user-facing text on the Contact page (form field labels, placeholder text, submit button label, contact information labels, and social media section labels) from English to Hindi.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Translate all user-facing text on the Donate page (section headings, support option descriptions, impact area labels with percentage breakdowns, and transparency commitment text) from English to Hindi.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Translate all user-facing text on the Admin page (dashboard headings, search field placeholder, filter labels, table column headers, action button labels, authorization error messages, and CSV export button label) from English to Hindi.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Translate all user-facing text in the Footer component (quick links section heading, navigation link labels, contact section heading, social media section heading, and attribution text) from English to Hindi.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Kattar Sanatani Yodha",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

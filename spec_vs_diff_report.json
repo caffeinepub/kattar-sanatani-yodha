@@ -1,0 +1,117 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-25T05:37:11.361Z",
+  "summary": "The diff only modifies project_state.json, which is a planning/tracking file that records all requirements as 'pending'. No actual frontend source files were changed. None of the 13 translation requirements have been implemented.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Translate all user-facing text in the Navigation component from English to Hindi.",
+      "reason": "No frontend component files were modified. project_state.json shows AR-2 (REQ-1) as 'pending'.",
+      "evidence": [
+        "project_state.json"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "requirement": "Translate all user-facing text in the Hero component from English to Hindi.",
+      "reason": "No frontend component files were modified. project_state.json shows AR-3 (REQ-2) as 'pending'.",
+      "evidence": [
+        "project_state.json"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Translate all user-facing text in the Mission component from English to Hindi.",
+      "reason": "No frontend component files were modified. project_state.json shows AR-4 (REQ-3) as 'pending'.",
+      "evidence": [
+        "project_state.json"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Translate all user-facing text in the SupportOptions component from English to Hindi.",
+      "reason": "No frontend component files were modified. project_state.json shows AR-5 (REQ-4) as 'pending'.",
+      "evidence": [
+        "project_state.json"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "requirement": "Translate all user-facing text on the Home page from English to Hindi.",
+      "reason": "No frontend page files were modified. project_state.json shows AR-6 (REQ-5) as 'pending'.",
+      "evidence": [
+        "project_state.json"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "requirement": "Translate all user-facing text on the About page from English to Hindi.",
+      "reason": "No frontend page files were modified. project_state.json shows AR-7 (REQ-6) as 'pending'.",
+      "evidence": [
+        "project_state.json"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "requirement": "Translate all user-facing text on the Programs page from English to Hindi.",
+      "reason": "No frontend page files were modified. project_state.json shows AR-8 (REQ-7) as 'pending'.",
+      "evidence": [
+        "project_state.json"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "requirement": "Translate all user-facing text on the Philosophy page from English to Hindi.",
+      "reason": "No frontend page files were modified. project_state.json shows AR-9 (REQ-8) as 'pending'.",
+      "evidence": [
+        "project_state.json"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "requirement": "Translate all user-facing text on the Resources page from English to Hindi.",
+      "reason": "No frontend page files were modified. project_state.json shows AR-10 (REQ-9) as 'pending'.",
+      "evidence": [
+        "project_state.json"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "requirement": "Translate all user-facing text on the Contact page from English to Hindi.",
+      "reason": "No frontend page files were modified. project_state.json shows AR-11 (REQ-10) as 'pending'.",
+      "evidence": [
+        "project_state.json"
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "requirement": "Translate all user-facing text on the Donate page from English to Hindi.",
+      "reason": "No frontend page files were modified. project_state.json shows AR-12 (REQ-11) as 'pending'.",
+      "evidence": [
+        "project_state.json"
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "requirement": "Translate all user-facing text on the Admin page from English to Hindi.",
+      "reason": "No frontend page files were modified. project_state.json shows AR-13 (REQ-12) as 'pending'.",
+      "evidence": [
+        "project_state.json"
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "requirement": "Translate all user-facing text in the Footer component from English to Hindi.",
+      "reason": "No frontend component files were modified. project_state.json shows AR-14 (REQ-13) as 'pending'.",
+      "evidence": [
+        "project_state.json"
+      ]
+    }
+  ],
+  "hallucinated_features": [],
+  "confidence": 0.98,
+  "changed_files": [
+    "project_state.json"
+  ]
+}
