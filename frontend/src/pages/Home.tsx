@@ -6,23 +6,23 @@ export default function Home() {
   const highlights = [
     {
       icon: Flame,
-      title: 'Cultural Preservation',
-      description: 'Protecting and promoting our ancient traditions, rituals, and sacred practices.',
+      title: 'सांस्कृतिक संरक्षण',
+      description: 'हमारी प्राचीन परंपराओं, अनुष्ठानों और पवित्र प्रथाओं की रक्षा और प्रचार।',
     },
     {
       icon: BookOpen,
-      title: 'Spiritual Education',
-      description: 'Teaching the profound wisdom of Vedas, Upanishads, and other sacred texts.',
+      title: 'आध्यात्मिक शिक्षा',
+      description: 'वेद, उपनिषद और अन्य पवित्र ग्रंथों की गहन बुद्धि की शिक्षा।',
     },
     {
       icon: Users,
-      title: 'Community Building',
-      description: 'Creating a strong network of devoted individuals committed to Dharma.',
+      title: 'समुदाय निर्माण',
+      description: 'धर्म के प्रति समर्पित व्यक्तियों का एक मजबूत नेटवर्क बनाना।',
     },
     {
       icon: Heart,
-      title: 'Social Service',
-      description: 'Serving society through charitable activities rooted in dharmic values.',
+      title: 'सामाजिक सेवा',
+      description: 'धार्मिक मूल्यों में निहित धर्मार्थ गतिविधियों के माध्यम से समाज की सेवा।',
     },
   ];
 
@@ -39,7 +39,7 @@ export default function Home() {
               हम क्या करते हैं
             </h2>
             <p className="font-serif text-lg text-muted-foreground max-w-2xl mx-auto">
-              Our organization works tirelessly across multiple fronts to strengthen and preserve our sacred heritage.
+              हमारा संगठन हमारी पवित्र विरासत को मजबूत करने और संरक्षित करने के लिए कई मोर्चों पर अथक परिश्रम करता है।
             </p>
           </div>
 
@@ -73,24 +73,24 @@ export default function Home() {
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Join Our Sacred Mission
+              हमारे पवित्र मिशन से जुड़ें
             </h2>
             <p className="font-serif text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
-              Be part of a movement dedicated to preserving and promoting the eternal values of Sanatana Dharma. 
-              Together, we can make a lasting impact.
+              सनातन धर्म के शाश्वत मूल्यों को संरक्षित और प्रचारित करने के लिए समर्पित एक आंदोलन का हिस्सा बनें।
+              मिलकर हम एक स्थायी प्रभाव डाल सकते हैं।
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/donate"
                 className="px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-all shadow-warm hover:shadow-warm-lg hover:scale-105"
               >
-                Support Us
+                हमारा समर्थन करें
               </a>
               <a
                 href="/contact"
                 className="px-8 py-4 bg-card text-foreground font-semibold rounded-lg hover:bg-muted transition-all border-2 border-border"
               >
-                Get Involved
+                जुड़ें
               </a>
             </div>
           </div>

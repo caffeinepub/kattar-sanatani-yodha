@@ -6,32 +6,32 @@ export default function Programs() {
     {
       icon: BookOpen,
       title: 'वैदिक स्टडी सर्कल',
-      description: 'वेद, उपनिषद और भगवद गीता जैसे पवित्र ग्रंथों की पढ़ाई और चर्चा के लिए रेगुलर सेशन। अनुभवी विद्वानों से सीखें और अपनी आध्यात्मिक समझ को गहरा करें।',
+      description: 'वेद, उपनिषद और भगवद गीता जैसे पवित्र ग्रंथों की पढ़ाई और चर्चा के लिए नियमित सत्र। अनुभवी विद्वानों से सीखें और अपनी आध्यात्मिक समझ को गहरा करें।',
     },
     {
       icon: Sparkles,
-      title: 'Cultural Festivals',
-      description: 'Organizing and celebrating traditional Hindu festivals with proper rituals, maintaining authenticity while creating community bonding and cultural awareness.',
+      title: 'सांस्कृतिक उत्सव',
+      description: 'उचित अनुष्ठानों के साथ पारंपरिक हिंदू त्योहारों का आयोजन और उत्सव, प्रामाणिकता बनाए रखते हुए सामुदायिक बंधन और सांस्कृतिक जागरूकता पैदा करना।',
     },
     {
       icon: GraduationCap,
-      title: 'Youth Education Programs',
-      description: 'Special initiatives to educate young minds about dharmic values, Sanskrit language, traditional arts, and the rich heritage of Sanatana Dharma.',
+      title: 'युवा शिक्षा कार्यक्रम',
+      description: 'युवा मन को धार्मिक मूल्यों, संस्कृत भाषा, पारंपरिक कलाओं और सनातन धर्म की समृद्ध विरासत के बारे में शिक्षित करने की विशेष पहल।',
     },
     {
       icon: Users,
-      title: 'Community Gatherings',
-      description: 'Regular satsangs, bhajan sessions, and spiritual discourses that bring the community together for collective worship and learning.',
+      title: 'सामुदायिक सभाएं',
+      description: 'नियमित सत्संग, भजन सत्र और आध्यात्मिक प्रवचन जो सामूहिक पूजा और सीखने के लिए समुदाय को एक साथ लाते हैं।',
     },
     {
       icon: Heart,
-      title: 'Social Welfare Activities',
-      description: 'Charitable initiatives including food distribution, educational support, and assistance to those in need, embodying the principle of seva.',
+      title: 'सामाजिक कल्याण गतिविधियां',
+      description: 'सेवा के सिद्धांत को मूर्त रूप देते हुए खाद्य वितरण, शैक्षिक सहायता और जरूरतमंदों की सहायता सहित धर्मार्थ पहल।',
     },
     {
       icon: HandHeart,
-      title: 'Heritage Preservation',
-      description: 'Documenting and preserving traditional practices, rituals, folk arts, and cultural knowledge for future generations.',
+      title: 'विरासत संरक्षण',
+      description: 'भविष्य की पीढ़ियों के लिए पारंपरिक प्रथाओं, अनुष्ठानों, लोक कलाओं और सांस्कृतिक ज्ञान का दस्तावेजीकरण और संरक्षण।',
     },
   ];
 
@@ -41,10 +41,10 @@ export default function Programs() {
       <section className="py-24 bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 pattern-overlay">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-display text-5xl md:text-6xl font-bold text-foreground mb-6">
-            Our Programs
+            हमारे कार्यक्रम
           </h1>
           <p className="font-serif text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Diverse initiatives dedicated to preserving tradition, spreading knowledge, and serving the community
+            परंपरा को संरक्षित करने, ज्ञान फैलाने और समुदाय की सेवा करने के लिए समर्पित विविध पहल
           </p>
         </div>
       </section>
@@ -70,17 +70,17 @@ export default function Programs() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="font-display text-4xl font-bold text-foreground mb-8">
-              Making a Difference
+              बदलाव लाना
             </h2>
             <p className="font-serif text-lg text-muted-foreground leading-relaxed mb-12">
-              Through our various programs and initiatives, we touch countless lives, strengthen community bonds, 
-              and ensure that the eternal wisdom of Sanatana Dharma continues to guide and inspire.
+              हमारे विभिन्न कार्यक्रमों और पहलों के माध्यम से, हम अनगिनत जीवनों को छूते हैं, सामुदायिक बंधनों को मजबूत करते हैं,
+              और यह सुनिश्चित करते हैं कि सनातन धर्म की शाश्वत बुद्धि मार्गदर्शन और प्रेरणा देती रहे।
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
-                { number: '500+', label: 'Community Members' },
-                { number: '50+', label: 'Events Organized' },
-                { number: '1000+', label: 'Lives Touched' },
+                { number: '500+', label: 'समुदाय के सदस्य' },
+                { number: '50+', label: 'आयोजित कार्यक्रम' },
+                { number: '1000+', label: 'प्रभावित जीवन' },
               ].map((stat, index) => (
                 <div key={index} className="bg-card rounded-xl p-6 shadow-sm border border-border">
                   <div className="font-display text-4xl font-bold text-primary mb-2">
@@ -101,24 +101,23 @@ export default function Programs() {
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="font-display text-4xl font-bold text-foreground mb-6">
-              Get Involved
+              जुड़ें
             </h2>
             <p className="font-serif text-lg text-muted-foreground mb-8 leading-relaxed">
-              Join us in our mission to preserve and promote Sanatana Dharma. Whether through participation, 
-              volunteering, or support, every contribution makes a difference.
+              सनातन धर्म को संरक्षित और प्रचारित करने के हमारे मिशन में हमारे साथ जुड़ें। भागीदारी, स्वयंसेवा या समर्थन के माध्यम से, हर योगदान फर्क डालता है।
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/contact"
                 className="px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-all shadow-warm hover:shadow-warm-lg hover:scale-105"
               >
-                Contact Us
+                संपर्क करें
               </a>
               <a
                 href="/donate"
                 className="px-8 py-4 bg-card text-foreground font-semibold rounded-lg hover:bg-muted transition-all border-2 border-border"
               >
-                Support Our Work
+                हमारे काम का समर्थन करें
               </a>
             </div>
           </div>

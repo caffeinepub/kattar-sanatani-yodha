@@ -1,11 +1,126 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 3,
+  "projectStateVersion": 9,
   "summary": "Project to translate the entire page/app from English into Hindi.",
   "architectural_notes": [],
-  "known_issues": [],
-  "isFixRequest": false,
-  "existing_features": [],
+  "known_issues": [
+    "Hindi translation deployment has repeatedly failed or not taken effect; user is experiencing the site still in English despite multiple translation attempts."
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-add-the-google-search-console-verification-meta-tag-meta-name-google-site-verification-content-krubb6rd-mcytm2tt5s-pjdxiwt5u4vug5vdetk-cse-inside-the-head-element-of-frontend-index-html",
+      "title": "Add the Google Search Console verification meta tag `<meta name=\"google-site-verification\" content=\"KrubB6rD-McYTM2TT5S_pJdxiwT5U4vUg5vdeTk-cSE\" />` inside the `<head>` element of `frontend/index.html`.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-translate-all-user-facing-text-in-the-navigation-component-into-hindi-including-all-nav-link-labels-home-about-programs-philosophy-resources-contact-donate-mobile-menu-labels-and-the-admin-link-text",
+      "title": "Translate all user-facing text in the Navigation component into Hindi, including all nav link labels (Home, About, Programs, Philosophy, Resources, Contact, Donate), mobile menu labels, and the admin link text.",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-translate-all-user-facing-text-in-the-hero-component-into-hindi-including-the-organization-tagline-mission-statement-call-to-action-button-labels-and-the-scroll-indicator-text",
+      "title": "Translate all user-facing text in the Hero component into Hindi, including the organization tagline, mission statement, call-to-action button labels, and the scroll indicator text.",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-translate-all-user-facing-text-in-the-mission-component-into-hindi-including-the-section-heading-descriptive-paragraph-and-all-four-core-value-card-titles-and-descriptions-devotion-protection-knowledge-unity",
+      "title": "Translate all user-facing text in the Mission component into Hindi, including the section heading, descriptive paragraph, and all four core value card titles and descriptions (Devotion, Protection, Knowledge, Unity).",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-translate-all-user-facing-text-in-the-supportoptions-component-into-hindi-including-the-section-heading-all-four-support-option-card-titles-volunteer-awareness-skills-knowledge-descriptions-and-cta-link-labels",
+      "title": "Translate all user-facing text in the SupportOptions component into Hindi, including the section heading, all four support option card titles (volunteer, awareness, skills, knowledge), descriptions, and CTA link labels.",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-translate-all-user-facing-text-on-the-home-page-into-hindi-including-the-highlights-grid-section-headings-all-four-activity-area-card-titles-and-descriptions-and-the-cta-section-text-and-button-labels-linking-to-donate-and-contact-pages",
+      "title": "Translate all user-facing text on the Home page into Hindi, including the highlights grid section headings, all four activity area card titles and descriptions, and the CTA section text and button labels linking to donate and contact pages.",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-translate-all-user-facing-text-on-the-about-page-into-hindi-including-the-hero-section-text-organization-story-text-and-all-four-principle-card-titles-and-descriptions-purpose-vision-values-community",
+      "title": "Translate all user-facing text on the About page into Hindi, including the hero section text, organization story text, and all four principle card titles and descriptions (Purpose, Vision, Values, Community).",
+      "reqIds": [
+        "REQ-33"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-translate-all-user-facing-text-on-the-programs-page-into-hindi-including-all-section-headings-all-six-programcard-titles-and-descriptions-vedic-study-festivals-youth-education-community-gatherings-social-welfare-heritage-preservation-and-impact-statistics-labels",
+      "title": "Translate all user-facing text on the Programs page into Hindi, including all section headings, all six ProgramCard titles and descriptions (Vedic study, festivals, youth education, community gatherings, social welfare, heritage preservation), and impact statistics labels.",
+      "reqIds": [
+        "REQ-34"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-translate-all-user-facing-text-on-the-philosophy-page-into-hindi-including-section-headings-principle-titles-body-text-covering-sanatana-dharma-teachings-and-all-devotion-example-content-covering-ram-hanuman-and-yudhishthira",
+      "title": "Translate all user-facing text on the Philosophy page into Hindi, including section headings, principle titles, body text covering Sanatana Dharma teachings, and all devotion example content covering Ram, Hanuman, and Yudhishthira.",
+      "reqIds": [
+        "REQ-35"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-translate-all-user-facing-text-on-the-resources-page-into-hindi-including-the-hero-section-text-all-four-resource-category-card-headings-and-descriptions-sacred-texts-video-lectures-articles-essays-downloadable-materials-all-listed-item-titles-and-any-button-or-link-labels",
+      "title": "Translate all user-facing text on the Resources page into Hindi, including the hero section text, all four resource category card headings and descriptions (Sacred Texts, Video Lectures, Articles & Essays, Downloadable Materials), all listed item titles, and any button or link labels.",
+      "reqIds": [
+        "REQ-36"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-translate-all-user-facing-text-on-the-contact-page-into-hindi-including-form-field-labels-name-email-message-placeholder-text-submit-button-label-contact-information-labels-and-social-media-section-labels",
+      "title": "Translate all user-facing text on the Contact page into Hindi, including form field labels (name, email, message), placeholder text, submit button label, contact information labels, and social media section labels.",
+      "reqIds": [
+        "REQ-37"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-translate-all-user-facing-text-on-the-donate-page-into-hindi-including-all-section-headings-support-option-descriptions-impact-area-labels-with-percentage-breakdowns-and-the-transparency-commitment-text",
+      "title": "Translate all user-facing text on the Donate page into Hindi, including all section headings, support option descriptions, impact area labels with percentage breakdowns, and the transparency commitment text.",
+      "reqIds": [
+        "REQ-38"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-translate-all-user-facing-text-on-the-admin-page-into-hindi-including-the-dashboard-headings-search-field-placeholder-filter-labels-table-column-headers-action-button-labels-authorization-error-messages-and-the-csv-export-button-label",
+      "title": "Translate all user-facing text on the Admin page into Hindi, including the dashboard headings, search field placeholder, filter labels, table column headers, action button labels, authorization error messages, and the CSV export button label.",
+      "reqIds": [
+        "REQ-39"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-translate-all-user-facing-text-in-the-footer-component-into-hindi-including-the-quick-links-section-heading-all-navigation-link-labels-contact-section-heading-social-media-section-heading-and-attribution-copyright-text",
+      "title": "Translate all user-facing text in the Footer component into Hindi, including the quick links section heading, all navigation link labels, contact section heading, social media section heading, and attribution/copyright text.",
+      "reqIds": [
+        "REQ-40"
+      ],
+      "version": 1
+    }
+  ],
   "new_feature_requests": [
     {
       "id": "AR-1",
@@ -114,6 +229,110 @@
       "summary": "Translate all user-facing text in the Footer component (quick links section heading, navigation link labels, contact section heading, social media section heading, and attribution text) from English to Hindi.",
       "reqIds": [
         "REQ-13"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Translate all user-facing text in the Navigation component (nav links, mobile menu labels, admin link text) from English to Hindi.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Translate all user-facing text in the Hero component (organization tagline, mission statement, call-to-action button labels, scroll indicator text) from English to Hindi.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Translate all user-facing text in the Mission component (section heading, paragraph text, and all four core value titles and descriptions) from English to Hindi.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Translate all user-facing text in the SupportOptions component (section heading, all four support option titles, descriptions, and CTA link labels) from English to Hindi.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Translate all user-facing text on the Home page (section headings, highlight card titles and descriptions, CTA section text and button labels) from English to Hindi.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Translate all user-facing text on the About page (hero section text, organization story text, and all four principle card titles and descriptions) from English to Hindi.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-21",
+      "summary": "Translate all user-facing text on the Programs page (section headings, all six program card titles and descriptions, and impact statistics labels) from English to Hindi.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-22",
+      "summary": "Translate all user-facing text on the Philosophy page (section headings, principle titles, body text, and all devotion examples covering Ram, Hanuman, and Yudhishthira) from English to Hindi.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-23",
+      "summary": "Translate all user-facing text on the Resources page (hero section text, all resource category headings and descriptions, item titles, and any button or link labels) from English to Hindi.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-24",
+      "summary": "Translate all user-facing text on the Contact page (form field labels, placeholder text, submit button label, contact information labels, and social media section labels) from English to Hindi.",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-25",
+      "summary": "Translate all user-facing text on the Donate page (section headings, support option descriptions, impact area labels with percentage breakdowns, and transparency commitment text) from English to Hindi.",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-26",
+      "summary": "Translate all user-facing text on the Admin page (dashboard headings, search field placeholder, filter labels, table column headers, action button labels, authorization error messages, and CSV export button label) from English to Hindi.",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-27",
+      "summary": "Translate all user-facing text in the Footer component (quick links section heading, navigation link labels, contact section heading, social media section heading, and attribution/copyright text) from English to Hindi.",
+      "reqIds": [
+        "REQ-27"
       ],
       "status": "pending"
     }

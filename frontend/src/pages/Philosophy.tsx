@@ -29,10 +29,10 @@ export default function Philosophy() {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background/95 to-background/95" />
         <div className="relative container mx-auto px-4 text-center">
           <h1 className="font-display text-5xl md:text-6xl font-bold text-foreground mb-6">
-            Philosophy & Teachings
+            दर्शन और शिक्षाएं
           </h1>
           <p className="font-serif text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            The eternal principles and unwavering devotion of Sanatana Dharma
+            सनातन धर्म के शाश्वत सिद्धांत और अटूट भक्ति
           </p>
         </div>
       </section>
@@ -51,8 +51,7 @@ export default function Philosophy() {
             </div>
             <div className="bg-card rounded-xl p-8 shadow-sm border border-border">
               <p className="font-serif text-lg text-muted-foreground leading-relaxed">
-                सनातन धर्म, या "शाश्वत धर्म", उन यूनिवर्सल सिद्धांतों को बताता है जो समय और संस्कृति से परे हैं, 
-                जैसे सत्य (सत्य), अहिंसा (अहिंसा), और धार्मिकता।
+                सनातन धर्म, या "शाश्वत धर्म", उन सार्वभौमिक सिद्धांतों को बताता है जो समय और संस्कृति से परे हैं। यह किसी एक व्यक्ति या समय द्वारा स्थापित धर्म नहीं है, बल्कि ब्रह्मांड की मूलभूत प्रकृति की खोज है। इसकी शिक्षाएं सत्य, धार्मिकता, करुणा और आत्म-साक्षात्कार के इर्द-गिर्द घूमती हैं — ऐसे सिद्धांत जो हर युग में प्रासंगिक रहते हैं।
               </p>
             </div>
           </div>
@@ -60,21 +59,23 @@ export default function Philosophy() {
       </section>
 
       {/* अटूट कमिटमेंट Section */}
-      <section className="py-20 bg-gradient-to-br from-accent/5 via-secondary/5 to-primary/5 pattern-overlay">
+      <section className="py-20 bg-muted/30 pattern-overlay">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
-                <Flame size={32} className="text-accent" />
+              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <Flame size={32} className="text-primary" />
               </div>
               <h2 className="font-serif text-4xl font-bold text-foreground">
-                अटूट कमिटमेंट (भक्ति योग)
+                अटूट कमिटमेंट
               </h2>
             </div>
             <div className="bg-card rounded-xl p-8 shadow-sm border border-border">
+              <p className="font-serif text-lg text-muted-foreground leading-relaxed mb-6">
+                भक्ति योग, या भक्ति का मार्ग, सनातन धर्म के सबसे शक्तिशाली पहलुओं में से एक है। यह परमात्मा के प्रति पूर्ण समर्पण और प्रेम के बारे में है — एक ऐसा संबंध जो भक्त को उच्चतम आध्यात्मिक अनुभव की ओर ले जाता है। यह कमिटमेंट केवल अनुष्ठानों तक सीमित नहीं है; यह जीवन के हर पहलू में व्याप्त है।
+              </p>
               <p className="font-serif text-lg text-muted-foreground leading-relaxed">
-                इसमें सेवा के लिए एक पक्का, अक्सर इमोशनल, कमिटमेंट शामिल है, जहाँ भक्त भगवान पर ध्यान केंद्रित करता है, 
-                जिससे एक ऐसी स्थिति बनती है जहाँ उन्हें भक्ति से गिरने का कभी डर नहीं होता।
+                सच्ची भक्ति बाधाओं से नहीं डरती। यह कठिनाइयों में और भी मजबूत होती है, क्योंकि भक्त जानता है कि परमात्मा हमेशा उसके साथ है। यह अटूट विश्वास ही सनातन धर्म की नींव है।
               </p>
             </div>
           </div>
@@ -86,76 +87,49 @@ export default function Philosophy() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                <HandHeart size={32} className="text-secondary" />
+              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <HandHeart size={32} className="text-primary" />
               </div>
               <h2 className="font-serif text-4xl font-bold text-foreground">
                 कर्म का मार्ग
               </h2>
             </div>
             <div className="bg-card rounded-xl p-8 shadow-sm border border-border">
+              <p className="font-serif text-lg text-muted-foreground leading-relaxed mb-6">
+                कर्म योग, या निःस्वार्थ कर्म का मार्ग, सिखाता है कि हमें फल की चिंता किए बिना अपने कर्तव्यों का पालन करना चाहिए। भगवद गीता में श्री कृष्ण ने अर्जुन को यही उपदेश दिया था — "कर्म करो, फल की चिंता मत करो।"
+              </p>
               <p className="font-serif text-lg text-muted-foreground leading-relaxed">
-                भक्ति सिर्फ़ रस्मों-रिवाज़ों तक ही सीमित नहीं है, बल्कि निष्काम कर्म (निस्वार्थ कर्म) के ज़रिए भी दिखाई जाती है, 
-                जहाँ कर्म बिना किसी नतीजे की इच्छा के भगवान को समर्पित होते हैं।
+                यह सिद्धांत हमें सिखाता है कि सच्ची सेवा वह है जो बिना किसी अपेक्षा के की जाती है। जब हम समाज की सेवा करते हैं, तो हम वास्तव में परमात्मा की सेवा करते हैं। यही कट्टर सनातनी योद्धा का मार्ग है।
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* भक्ति के उदाहरण Section */}
+      {/* Devotion Examples Section */}
       <section className="py-20 bg-muted/30 pattern-overlay">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             <h2 className="font-serif text-4xl font-bold text-foreground mb-12 text-center">
-              भक्ति के उदाहरण
+              भक्ति के आदर्श उदाहरण
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {devotionExamples.map((example, index) => (
                 <div
                   key={index}
-                  className="bg-card rounded-xl p-8 shadow-sm hover:shadow-warm transition-all border border-border group"
+                  className="bg-card rounded-xl p-6 shadow-sm hover:shadow-warm transition-all border border-border text-center"
                 >
-                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform">
-                    <example.icon size={40} className="text-primary" />
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                    <example.icon size={32} className="text-primary" />
                   </div>
-                  <h3 className="font-serif text-2xl font-semibold text-foreground mb-4 text-center">
+                  <h3 className="font-serif text-2xl font-bold text-foreground mb-4">
                     {example.name}
                   </h3>
-                  <p className="font-serif text-muted-foreground leading-relaxed text-center">
+                  <p className="text-muted-foreground leading-relaxed font-serif">
                     {example.description}
                   </p>
                 </div>
               ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="font-display text-4xl font-bold text-foreground mb-6">
-              Deepen Your Understanding
-            </h2>
-            <p className="font-serif text-lg text-muted-foreground mb-8 leading-relaxed">
-              Explore our programs and resources to learn more about the profound teachings of Sanatana Dharma 
-              and how to apply them in daily life.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/programs"
-                className="px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-all shadow-warm hover:shadow-warm-lg hover:scale-105"
-              >
-                View Programs
-              </a>
-              <a
-                href="/resources"
-                className="px-8 py-4 bg-card text-foreground font-semibold rounded-lg hover:bg-muted transition-all border-2 border-border"
-              >
-                Explore Resources
-              </a>
             </div>
           </div>
         </div>

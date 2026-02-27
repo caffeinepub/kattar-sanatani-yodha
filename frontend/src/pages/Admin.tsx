@@ -36,8 +36,8 @@ export default function Admin() {
 
   // Format timestamp
   const formatDate = (timestamp: bigint) => {
-    const date = new Date(Number(timestamp) / 1_000_000); // Convert nanoseconds to milliseconds
-    return date.toLocaleString('en-US', {
+    const date = new Date(Number(timestamp) / 1_000_000);
+    return date.toLocaleString('hi-IN', {
       year: 'numeric',
       month: 'short',
       day: 'numeric',
@@ -50,12 +50,12 @@ export default function Admin() {
   const exportToCSV = () => {
     if (!filteredSubmissions.length) return;
 
-    const headers = ['Timestamp', 'Name', 'Email', 'Message'];
+    const headers = ['समय', 'नाम', 'ईमेल', 'संदेश'];
     const rows = filteredSubmissions.map((sub) => [
       formatDate(sub.timestamp),
       sub.name,
       sub.email,
-      sub.message.replace(/"/g, '""'), // Escape quotes
+      sub.message.replace(/"/g, '""'),
     ]);
 
     const csvContent = [
@@ -82,8 +82,8 @@ export default function Admin() {
             <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
               <Shield className="w-8 h-8 text-primary" />
             </div>
-            <CardTitle className="text-2xl font-display">Admin Access Required</CardTitle>
-            <CardDescription>Please log in to access the admin panel</CardDescription>
+            <CardTitle className="text-2xl font-display">प्रशासन पहुंच आवश्यक</CardTitle>
+            <CardDescription>प्रशासन पैनल तक पहुंचने के लिए कृपया लॉगिन करें</CardDescription>
           </CardHeader>
           <CardContent>
             <Button
@@ -93,7 +93,7 @@ export default function Admin() {
               size="lg"
             >
               <LogIn className="w-4 h-4 mr-2" />
-              {isLoggingIn ? 'Logging in...' : 'Login with Internet Identity'}
+              {isLoggingIn ? 'लॉगिन हो रहा है...' : 'इंटरनेट आइडेंटिटी से लॉगिन करें'}
             </Button>
           </CardContent>
         </Card>
@@ -122,10 +122,9 @@ export default function Admin() {
             <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-destructive/10 flex items-center justify-center">
               <Shield className="w-8 h-8 text-destructive" />
             </div>
-            <CardTitle className="text-2xl font-display text-destructive">Access Denied</CardTitle>
+            <CardTitle className="text-2xl font-display text-destructive">पहुंच अस्वीकृत</CardTitle>
             <CardDescription>
-              You do not have permission to access the admin panel. Please contact the administrator if you believe
-              this is an error.
+              आपके पास प्रशासन पैनल तक पहुंचने की अनुमति नहीं है। यदि आपको लगता है कि यह एक त्रुटि है तो कृपया प्रशासक से संपर्क करें।
             </CardDescription>
           </CardHeader>
         </Card>
@@ -139,8 +138,8 @@ export default function Admin() {
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-display font-bold text-primary mb-2">Admin Panel</h1>
-          <p className="text-muted-foreground">Manage contact form submissions</p>
+          <h1 className="text-4xl font-display font-bold text-primary mb-2">प्रशासन पैनल</h1>
+          <p className="text-muted-foreground">संपर्क फ़ॉर्म सबमिशन प्रबंधित करें</p>
         </div>
 
         {/* Controls */}
@@ -152,7 +151,7 @@ export default function Admin() {
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <Input
                   type="text"
-                  placeholder="Search by name, email, or message..."
+                  placeholder="नाम, ईमेल या संदेश से खोजें..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10 pr-10"
@@ -161,7 +160,7 @@ export default function Admin() {
                   <button
                     onClick={() => setSearchTerm('')}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-                    aria-label="Clear search"
+                    aria-label="खोज साफ़ करें"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -176,7 +175,7 @@ export default function Admin() {
                 className="w-full md:w-auto shadow-sm"
               >
                 <Download className="w-4 h-4 mr-2" />
-                Export CSV
+                CSV निर्यात करें
               </Button>
             </div>
 
@@ -184,9 +183,9 @@ export default function Admin() {
             {searchTerm && (
               <div className="mt-4 flex items-center gap-2">
                 <Badge variant="secondary" className="text-sm">
-                  {filteredSubmissions.length} of {submissions?.length || 0} submissions
+                  {submissions?.length || 0} में से {filteredSubmissions.length} सबमिशन
                 </Badge>
-                <span className="text-sm text-muted-foreground">matching your search</span>
+                <span className="text-sm text-muted-foreground">आपकी खोज से मेल खाते हैं</span>
               </div>
             )}
           </CardContent>
@@ -195,7 +194,7 @@ export default function Admin() {
         {/* Error state */}
         {error && (
           <Alert variant="destructive" className="mb-6">
-            <AlertDescription>Failed to load submissions. Please try again later.</AlertDescription>
+            <AlertDescription>सबमिशन लोड करने में विफल। कृपया बाद में पुनः प्रयास करें।</AlertDescription>
           </Alert>
         )}
 
@@ -217,27 +216,27 @@ export default function Admin() {
         {!submissionsLoading && submissions && (
           <Card className="shadow-warm overflow-hidden">
             <CardHeader>
-              <CardTitle className="font-display">Form Submissions</CardTitle>
+              <CardTitle className="font-display">फ़ॉर्म सबमिशन</CardTitle>
               <CardDescription>
                 {submissions.length === 0
-                  ? 'No submissions yet'
-                  : `Total: ${submissions.length} submission${submissions.length === 1 ? '' : 's'}`}
+                  ? 'अभी तक कोई सबमिशन नहीं'
+                  : `कुल: ${submissions.length} सबमिशन`}
               </CardDescription>
             </CardHeader>
             <CardContent className="p-0">
               {filteredSubmissions.length === 0 ? (
                 <div className="p-8 text-center text-muted-foreground">
-                  {searchTerm ? 'No submissions match your search' : 'No submissions yet'}
+                  {searchTerm ? 'आपकी खोज से कोई सबमिशन मेल नहीं खाता' : 'अभी तक कोई सबमिशन नहीं'}
                 </div>
               ) : (
                 <div className="overflow-x-auto">
                   <Table>
                     <TableHeader>
                       <TableRow className="bg-muted/50">
-                        <TableHead className="font-semibold">Timestamp</TableHead>
-                        <TableHead className="font-semibold">Name</TableHead>
-                        <TableHead className="font-semibold">Email</TableHead>
-                        <TableHead className="font-semibold">Message</TableHead>
+                        <TableHead className="font-semibold">समय</TableHead>
+                        <TableHead className="font-semibold">नाम</TableHead>
+                        <TableHead className="font-semibold">ईमेल</TableHead>
+                        <TableHead className="font-semibold">संदेश</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>

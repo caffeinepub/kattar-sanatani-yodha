@@ -15,13 +15,13 @@ export default function Navigation() {
   const showAdminLink = isAuthenticated && isAdmin;
 
   const navLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/about', label: 'About' },
-    { path: '/programs', label: 'Programs' },
-    { path: '/philosophy', label: 'Philosophy' },
-    { path: '/resources', label: 'Resources' },
-    { path: '/contact', label: 'Contact' },
-    { path: '/donate', label: 'Support Us' },
+    { path: '/', label: 'होम' },
+    { path: '/about', label: 'हमारे बारे में' },
+    { path: '/programs', label: 'कार्यक्रम' },
+    { path: '/philosophy', label: 'दर्शन' },
+    { path: '/resources', label: 'संसाधन' },
+    { path: '/contact', label: 'संपर्क करें' },
+    { path: '/donate', label: 'हमारा समर्थन करें' },
   ];
 
   const isActive = (path: string) => currentPath === path;
@@ -39,7 +39,7 @@ export default function Navigation() {
             />
             <div className="flex flex-col">
               <span className="font-display text-xl font-bold text-primary">KATTAR SANATANI YODHA</span>
-              <span className="text-xs text-muted-foreground font-serif italic">Guardians of Tradition</span>
+              <span className="text-xs text-muted-foreground font-serif italic">परंपरा के रक्षक</span>
             </div>
           </Link>
 
@@ -68,7 +68,7 @@ export default function Navigation() {
                 }`}
               >
                 <Shield className="w-4 h-4" />
-                Admin
+                प्रबंधन
               </Link>
             )}
           </div>
@@ -77,7 +77,7 @@ export default function Navigation() {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden p-2 rounded-md hover:bg-muted transition-colors"
-            aria-label="Toggle menu"
+            aria-label="मेनू खोलें"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -112,7 +112,7 @@ export default function Navigation() {
                   }`}
                 >
                   <Shield className="w-4 h-4" />
-                  Admin
+                  प्रबंधन
                 </Link>
               )}
             </div>

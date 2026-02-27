@@ -1,117 +1,35 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-25T05:37:11.361Z",
-  "summary": "The diff only modifies project_state.json, which is a planning/tracking file that records all requirements as 'pending'. No actual frontend source files were changed. None of the 13 translation requirements have been implemented.",
+  "generatedAt": "2026-02-27T04:47:28.976Z",
+  "summary": "The diff implements Hindi translations across all major components and pages of the application. All 13 requirements (REQ-28 through REQ-40) appear to have corresponding changes in the diff. The Navigation, Hero, Mission, SupportOptions, Footer, Home, About, Programs, Philosophy, Resources, Contact, Donate, and Admin files all show Hindi text. The scroll indicator in Hero lacks explicit text but uses only an icon (ArrowDown), which may be acceptable. Some files are truncated so full verification is limited, but overall coverage appears comprehensive.",
   "missing_requirements": [
     {
-      "id": "REQ-1",
-      "requirement": "Translate all user-facing text in the Navigation component from English to Hindi.",
-      "reason": "No frontend component files were modified. project_state.json shows AR-2 (REQ-1) as 'pending'.",
+      "id": "REQ-29",
+      "requirement": "Scroll indicator text in Hero component should be in Hindi",
+      "reason": "The Hero component scroll indicator only renders an ArrowDown icon with no visible text label. If the original had English scroll indicator text, it was not translated but removed. The diff shows only an icon element with no accompanying Hindi text.",
       "evidence": [
-        "project_state.json"
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "requirement": "Translate all user-facing text in the Hero component from English to Hindi.",
-      "reason": "No frontend component files were modified. project_state.json shows AR-3 (REQ-2) as 'pending'.",
-      "evidence": [
-        "project_state.json"
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "requirement": "Translate all user-facing text in the Mission component from English to Hindi.",
-      "reason": "No frontend component files were modified. project_state.json shows AR-4 (REQ-3) as 'pending'.",
-      "evidence": [
-        "project_state.json"
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "requirement": "Translate all user-facing text in the SupportOptions component from English to Hindi.",
-      "reason": "No frontend component files were modified. project_state.json shows AR-5 (REQ-4) as 'pending'.",
-      "evidence": [
-        "project_state.json"
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "requirement": "Translate all user-facing text on the Home page from English to Hindi.",
-      "reason": "No frontend page files were modified. project_state.json shows AR-6 (REQ-5) as 'pending'.",
-      "evidence": [
-        "project_state.json"
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "requirement": "Translate all user-facing text on the About page from English to Hindi.",
-      "reason": "No frontend page files were modified. project_state.json shows AR-7 (REQ-6) as 'pending'.",
-      "evidence": [
-        "project_state.json"
-      ]
-    },
-    {
-      "id": "REQ-7",
-      "requirement": "Translate all user-facing text on the Programs page from English to Hindi.",
-      "reason": "No frontend page files were modified. project_state.json shows AR-8 (REQ-7) as 'pending'.",
-      "evidence": [
-        "project_state.json"
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "requirement": "Translate all user-facing text on the Philosophy page from English to Hindi.",
-      "reason": "No frontend page files were modified. project_state.json shows AR-9 (REQ-8) as 'pending'.",
-      "evidence": [
-        "project_state.json"
-      ]
-    },
-    {
-      "id": "REQ-9",
-      "requirement": "Translate all user-facing text on the Resources page from English to Hindi.",
-      "reason": "No frontend page files were modified. project_state.json shows AR-10 (REQ-9) as 'pending'.",
-      "evidence": [
-        "project_state.json"
-      ]
-    },
-    {
-      "id": "REQ-10",
-      "requirement": "Translate all user-facing text on the Contact page from English to Hindi.",
-      "reason": "No frontend page files were modified. project_state.json shows AR-11 (REQ-10) as 'pending'.",
-      "evidence": [
-        "project_state.json"
-      ]
-    },
-    {
-      "id": "REQ-11",
-      "requirement": "Translate all user-facing text on the Donate page from English to Hindi.",
-      "reason": "No frontend page files were modified. project_state.json shows AR-12 (REQ-11) as 'pending'.",
-      "evidence": [
-        "project_state.json"
-      ]
-    },
-    {
-      "id": "REQ-12",
-      "requirement": "Translate all user-facing text on the Admin page from English to Hindi.",
-      "reason": "No frontend page files were modified. project_state.json shows AR-13 (REQ-12) as 'pending'.",
-      "evidence": [
-        "project_state.json"
-      ]
-    },
-    {
-      "id": "REQ-13",
-      "requirement": "Translate all user-facing text in the Footer component from English to Hindi.",
-      "reason": "No frontend component files were modified. project_state.json shows AR-14 (REQ-13) as 'pending'.",
-      "evidence": [
-        "project_state.json"
+        "frontend/src/components/Hero.tsx"
       ]
     }
   ],
   "hallucinated_features": [],
-  "confidence": 0.98,
+  "confidence": 0.78,
   "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/src/components/Footer.tsx",
+    "frontend/src/components/Hero.tsx",
+    "frontend/src/components/Mission.tsx",
+    "frontend/src/components/Navigation.tsx",
+    "frontend/src/components/SupportOptions.tsx",
+    "frontend/src/pages/About.tsx",
+    "frontend/src/pages/Admin.tsx",
+    "frontend/src/pages/Contact.tsx",
+    "frontend/src/pages/Donate.tsx",
+    "frontend/src/pages/Home.tsx",
+    "frontend/src/pages/Philosophy.tsx",
+    "frontend/src/pages/Programs.tsx",
+    "frontend/src/pages/Resources.tsx",
     "project_state.json"
   ]
 }

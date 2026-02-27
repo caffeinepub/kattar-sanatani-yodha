@@ -33,10 +33,10 @@ export default function Contact() {
       <section className="py-24 bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 pattern-overlay">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-display text-5xl md:text-6xl font-bold text-foreground mb-6">
-            Contact Us
+            संपर्क करें
           </h1>
           <p className="font-serif text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            We'd love to hear from you. Reach out with questions, suggestions, or to learn more about our mission.
+            हम आपसे सुनना चाहते हैं। प्रश्नों, सुझावों के साथ या हमारे मिशन के बारे में अधिक जानने के लिए संपर्क करें।
           </p>
         </div>
       </section>
@@ -48,12 +48,12 @@ export default function Contact() {
             {/* Contact Form */}
             <div className="bg-card rounded-xl p-8 shadow-sm border border-border">
               <h2 className="font-display text-3xl font-bold text-foreground mb-6">
-                Send Us a Message
+                हमें संदेश भेजें
               </h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                    Your Name *
+                    आपका नाम *
                   </label>
                   <input
                     type="text"
@@ -63,13 +63,13 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-all"
-                    placeholder="Enter your name"
+                    placeholder="अपना नाम दर्ज करें"
                   />
                 </div>
 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                    Email Address *
+                    ईमेल पता *
                   </label>
                   <input
                     type="email"
@@ -85,7 +85,7 @@ export default function Contact() {
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                    Your Message *
+                    आपका संदेश *
                   </label>
                   <textarea
                     id="message"
@@ -95,19 +95,19 @@ export default function Contact() {
                     required
                     rows={6}
                     className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none"
-                    placeholder="Tell us how we can help..."
+                    placeholder="हमें बताएं कि हम कैसे मदद कर सकते हैं..."
                   />
                 </div>
 
                 {isSuccess && (
                   <div className="p-4 bg-primary/10 border border-primary/20 rounded-lg text-foreground">
-                    Thank you for your message! We'll get back to you soon.
+                    आपके संदेश के लिए धन्यवाद! हम जल्द ही आपसे संपर्क करेंगे।
                   </div>
                 )}
 
                 {isError && (
                   <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg text-destructive">
-                    There was an error sending your message. Please try again.
+                    आपका संदेश भेजने में त्रुटि हुई। कृपया पुनः प्रयास करें।
                   </div>
                 )}
 
@@ -117,11 +117,11 @@ export default function Contact() {
                   className="w-full px-6 py-4 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-all shadow-warm hover:shadow-warm-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? (
-                    'Sending...'
+                    'भेजा जा रहा है...'
                   ) : (
                     <>
                       <Send size={20} />
-                      Send Message
+                      संदेश भेजें
                     </>
                   )}
                 </button>
@@ -132,11 +132,10 @@ export default function Contact() {
             <div className="space-y-8">
               <div>
                 <h2 className="font-display text-3xl font-bold text-foreground mb-6">
-                  Get in Touch
+                  संपर्क में रहें
                 </h2>
                 <p className="font-serif text-lg text-muted-foreground leading-relaxed mb-8">
-                  Whether you want to learn more about our programs, volunteer with us, or simply connect 
-                  with like-minded individuals, we're here to help.
+                  चाहे आप हमारे कार्यक्रमों के बारे में अधिक जानना चाहते हों, हमारे साथ स्वयंसेवा करना चाहते हों, या समान विचारधारा वाले व्यक्तियों से जुड़ना चाहते हों, हम यहाँ मदद के लिए हैं।
                 </p>
               </div>
 
@@ -147,7 +146,7 @@ export default function Contact() {
                     <Mail size={24} className="text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold text-foreground mb-1">Email</h3>
+                    <h3 className="font-display font-semibold text-foreground mb-1">ईमेल</h3>
                     <a 
                       href="mailto:adityarajsrivastav76@gmail.com"
                       className="text-muted-foreground hover:text-primary transition-colors"
@@ -162,7 +161,7 @@ export default function Contact() {
                     <Phone size={24} className="text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold text-foreground mb-1">Phone</h3>
+                    <h3 className="font-display font-semibold text-foreground mb-1">फ़ोन</h3>
                     <div className="space-y-1">
                       <a 
                         href="tel:+918130608468"
@@ -185,8 +184,8 @@ export default function Contact() {
                     <MapPin size={24} className="text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold text-foreground mb-1">Location</h3>
-                    <p className="text-muted-foreground">India</p>
+                    <h3 className="font-display font-semibold text-foreground mb-1">स्थान</h3>
+                    <p className="text-muted-foreground">भारत</p>
                   </div>
                 </div>
               </div>
@@ -194,7 +193,7 @@ export default function Contact() {
               {/* Social Media */}
               <div>
                 <h3 className="font-display text-xl font-semibold text-foreground mb-4">
-                  Follow Us
+                  हमें फॉलो करें
                 </h3>
                 <div className="flex gap-3">
                   {[

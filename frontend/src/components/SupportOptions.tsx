@@ -4,27 +4,27 @@ export default function SupportOptions() {
   const options = [
     {
       icon: Users,
-      title: 'Volunteer Your Time',
-      description: 'Join our team of dedicated volunteers in organizing events, teaching programs, or community service activities.',
-      action: 'Learn More',
+      title: 'अपना समय दें',
+      description: 'कार्यक्रमों के आयोजन, शिक्षण कार्यक्रमों या सामुदायिक सेवा गतिविधियों में हमारे समर्पित स्वयंसेवकों की टीम से जुड़ें।',
+      action: 'और जानें',
     },
     {
       icon: Megaphone,
-      title: 'Spread Awareness',
-      description: 'Help us reach more people by sharing our mission on social media and within your community.',
-      action: 'Share Now',
+      title: 'जागरूकता फैलाएं',
+      description: 'सोशल मीडिया पर और अपने समुदाय में हमारे मिशन को साझा करके हमें अधिक लोगों तक पहुंचने में मदद करें।',
+      action: 'अभी साझा करें',
     },
     {
       icon: HandHeart,
-      title: 'Contribute Skills',
-      description: 'Offer your professional expertise in areas like education, technology, design, or event management.',
-      action: 'Get Involved',
+      title: 'कौशल का योगदान दें',
+      description: 'शिक्षा, प्रौद्योगिकी, डिज़ाइन या कार्यक्रम प्रबंधन जैसे क्षेत्रों में अपनी पेशेवर विशेषज्ञता प्रदान करें।',
+      action: 'जुड़ें',
     },
     {
       icon: BookOpen,
-      title: 'Share Knowledge',
-      description: 'Conduct workshops, give talks, or teach classes on dharmic topics, Sanskrit, or traditional arts.',
-      action: 'Contact Us',
+      title: 'ज्ञान साझा करें',
+      description: 'धार्मिक विषयों, संस्कृत या पारंपरिक कलाओं पर कार्यशालाएं आयोजित करें, वार्ता दें या कक्षाएं पढ़ाएं।',
+      action: 'संपर्क करें',
     },
   ];
 

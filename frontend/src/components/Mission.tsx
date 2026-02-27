@@ -4,23 +4,23 @@ export default function Mission() {
   const values = [
     {
       icon: Heart,
-      title: 'Devotion',
-      description: 'Unwavering commitment to the eternal principles of Dharma',
+      title: 'भक्ति',
+      description: 'धर्म के शाश्वत सिद्धांतों के प्रति अटूट समर्पण',
     },
     {
       icon: Shield,
-      title: 'Protection',
-      description: 'Safeguarding our sacred traditions and cultural heritage',
+      title: 'रक्षा',
+      description: 'हमारी पवित्र परंपराओं और सांस्कृतिक विरासत की सुरक्षा',
     },
     {
       icon: BookOpen,
-      title: 'Knowledge',
-      description: 'Spreading the timeless wisdom of our ancient scriptures',
+      title: 'ज्ञान',
+      description: 'हमारे प्राचीन शास्त्रों की शाश्वत बुद्धि का प्रसार',
     },
     {
       icon: Users,
-      title: 'Unity',
-      description: 'Building a strong community rooted in shared values',
+      title: 'एकता',
+      description: 'साझा मूल्यों में निहित एक मजबूत समुदाय का निर्माण',
     },
   ];
 
@@ -32,7 +32,7 @@ export default function Mission() {
             हमारा पवित्र मिशन
           </h2>
           <p className="font-serif text-lg md:text-xl text-muted-foreground leading-relaxed">
-            CHANGE हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।
+            हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।
           </p>
         </div>
 

@@ -35,13 +35,13 @@ export default function Hero() {
               onClick={scrollToDonate}
               className="px-8 py-4 bg-white text-primary font-semibold rounded-lg hover:bg-white/90 transition-all shadow-warm-lg hover:shadow-warm hover:scale-105"
             >
-              Support Our Mission
+              हमारे मिशन का समर्थन करें
             </button>
             <a
               href="/about"
               className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-lg hover:bg-white/20 transition-all border-2 border-white/30"
             >
-              Learn More
+              और जानें
             </a>
           </div>
         </div>

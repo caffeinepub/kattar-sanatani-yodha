@@ -25,22 +25,22 @@ export default function Footer() {
               </h3>
             </div>
             <p className="text-sm text-muted-foreground font-serif leading-relaxed">
-              Dedicated to preserving and promoting the timeless values and traditions of Sanatana Dharma.
+              सनातन धर्म के शाश्वत मूल्यों और परंपराओं को संरक्षित और प्रचारित करने के लिए समर्पित।
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
             <h4 className="font-display text-base font-semibold mb-4 text-foreground">
-              Quick Links
+              त्वरित लिंक
             </h4>
             <ul className="space-y-2">
               {[
-                { path: '/', label: 'Home' },
-                { path: '/about', label: 'About Us' },
-                { path: '/programs', label: 'Programs' },
-                { path: '/contact', label: 'Contact' },
-                { path: '/donate', label: 'Support Us' },
+                { path: '/', label: 'होम' },
+                { path: '/about', label: 'हमारे बारे में' },
+                { path: '/programs', label: 'कार्यक्रम' },
+                { path: '/contact', label: 'संपर्क करें' },
+                { path: '/donate', label: 'हमारा समर्थन करें' },
               ].map((link) => (
                 <li key={link.path}>
                   <Link
@@ -57,7 +57,7 @@ export default function Footer() {
           {/* Contact Info */}
           <div>
             <h4 className="font-display text-base font-semibold mb-4 text-foreground">
-              Contact Us
+              संपर्क करें
             </h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -88,7 +88,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2 text-sm text-muted-foreground">
                 <MapPin size={16} className="mt-0.5 text-primary flex-shrink-0" />
-                <span>India</span>
+                <span>भारत</span>
               </li>
             </ul>
           </div>
@@ -96,7 +96,7 @@ export default function Footer() {
           {/* Social Media */}
           <div>
             <h4 className="font-display text-base font-semibold mb-4 text-foreground">
-              Follow Us
+              हमें फॉलो करें
             </h4>
             <div className="flex gap-3">
               {[
@@ -124,10 +124,10 @@ export default function Footer() {
         <div className="pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
             <p>
-              © {currentYear} KATTAR SANATANI YODHA. All rights reserved.
+              © {currentYear} KATTAR SANATANI YODHA. सर्वाधिकार सुरक्षित।
             </p>
             <p className="flex items-center gap-1">
-              Built with <Heart size={14} className="text-primary fill-primary" /> using{' '}
+              प्यार <Heart size={14} className="text-primary fill-primary" /> से बनाया गया{' '}
               <a
                 href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${appIdentifier}`}
                 target="_blank"
@@ -135,7 +135,8 @@ export default function Footer() {
                 className="text-primary hover:underline font-medium"
               >
                 caffeine.ai
-              </a>
+              </a>{' '}
+              का उपयोग करके
             </p>
           </div>
         </div>

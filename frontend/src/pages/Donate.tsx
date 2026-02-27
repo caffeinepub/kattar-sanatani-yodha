@@ -1,26 +1,26 @@
 import SupportOptions from '../components/SupportOptions';
-import { Heart, Users, Megaphone, HandHeart } from 'lucide-react';
+import { Heart } from 'lucide-react';
 
 export default function Donate() {
   const impactAreas = [
     {
-      title: 'Cultural Programs',
-      description: 'Support festivals, rituals, and traditional celebrations that keep our heritage alive.',
+      title: 'सांस्कृतिक कार्यक्रम',
+      description: 'त्योहारों, अनुष्ठानों और पारंपरिक उत्सवों का समर्थन करें जो हमारी विरासत को जीवित रखते हैं।',
       percentage: 35,
     },
     {
-      title: 'Educational Initiatives',
-      description: 'Fund Vedic study programs, Sanskrit classes, and youth education activities.',
+      title: 'शैक्षिक पहल',
+      description: 'वैदिक अध्ययन कार्यक्रमों, संस्कृत कक्षाओं और युवा शिक्षा गतिविधियों को वित्त पोषित करें।',
       percentage: 30,
     },
     {
-      title: 'Community Service',
-      description: 'Enable charitable activities, food distribution, and support for those in need.',
+      title: 'सामुदायिक सेवा',
+      description: 'धर्मार्थ गतिविधियों, खाद्य वितरण और जरूरतमंदों के लिए सहायता को सक्षम करें।',
       percentage: 25,
     },
     {
-      title: 'Heritage Preservation',
-      description: 'Document and preserve traditional knowledge, practices, and cultural artifacts.',
+      title: 'विरासत संरक्षण',
+      description: 'पारंपरिक ज्ञान, प्रथाओं और सांस्कृतिक कलाकृतियों का दस्तावेजीकरण और संरक्षण करें।',
       percentage: 10,
     },
   ];
@@ -31,10 +31,10 @@ export default function Donate() {
       <section className="py-24 bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 pattern-overlay">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-display text-5xl md:text-6xl font-bold text-foreground mb-6">
-            Support Our Mission
+            हमारे मिशन का समर्थन करें
           </h1>
           <p className="font-serif text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Your support helps us preserve and promote the eternal values of Sanatana Dharma
+            आपका समर्थन हमें सनातन धर्म के शाश्वत मूल्यों को संरक्षित और प्रचारित करने में मदद करता है
           </p>
         </div>
       </section>
@@ -44,11 +44,10 @@ export default function Donate() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-16">
             <h2 className="font-display text-4xl font-bold text-foreground mb-6">
-              Ways to Support
+              समर्थन के तरीके
             </h2>
             <p className="font-serif text-lg text-muted-foreground leading-relaxed">
-              There are many ways you can contribute to our mission. Every form of support, 
-              whether through time, skills, or spreading awareness, makes a meaningful difference.
+              हमारे मिशन में योगदान करने के कई तरीके हैं। समय, कौशल या जागरूकता फैलाने के माध्यम से हर प्रकार का समर्थन सार्थक अंतर लाता है।
             </p>
           </div>
           <SupportOptions />
@@ -60,7 +59,7 @@ export default function Donate() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-display text-4xl font-bold text-foreground mb-12 text-center">
-              How Your Support Helps
+              आपका समर्थन कैसे मदद करता है
             </h2>
             <div className="space-y-6">
               {impactAreas.map((area, index) => (
@@ -93,21 +92,17 @@ export default function Donate() {
           <div className="max-w-4xl mx-auto">
             <div className="bg-card rounded-xl p-8 shadow-sm border border-border">
               <h2 className="font-display text-3xl font-bold text-foreground mb-6 text-center">
-                Our Commitment to Transparency
+                पारदर्शिता के प्रति हमारी प्रतिबद्धता
               </h2>
               <div className="space-y-4 font-serif text-lg text-muted-foreground leading-relaxed">
                 <p>
-                  We believe in complete transparency regarding how contributions are utilized. Every resource 
-                  is carefully allocated to maximize impact and serve our mission effectively.
+                  हम योगदान के उपयोग के बारे में पूर्ण पारदर्शिता में विश्वास करते हैं। प्रत्येक संसाधन को प्रभाव को अधिकतम करने और हमारे मिशन को प्रभावी ढंग से पूरा करने के लिए सावधानीपूर्वक आवंटित किया जाता है।
                 </p>
                 <p>
-                  Our organization operates with integrity and accountability, ensuring that all support directly 
-                  benefits our programs and the communities we serve. We maintain detailed records and are committed 
-                  to responsible stewardship of all resources.
+                  हमारा संगठन ईमानदारी और जवाबदेही के साथ काम करता है, यह सुनिश्चित करते हुए कि सभी समर्थन सीधे हमारे कार्यक्रमों और जिन समुदायों की हम सेवा करते हैं उन्हें लाभान्वित करे। हम विस्तृत रिकॉर्ड बनाए रखते हैं और सभी संसाधनों के जिम्मेदार प्रबंधन के लिए प्रतिबद्ध हैं।
                 </p>
                 <p>
-                  Regular updates about our activities, programs, and impact are shared with our community, 
-                  demonstrating how collective efforts create meaningful change.
+                  हमारी गतिविधियों, कार्यक्रमों और प्रभाव के बारे में नियमित अपडेट हमारे समुदाय के साथ साझा किए जाते हैं, यह दर्शाते हुए कि सामूहिक प्रयास कैसे सार्थक बदलाव लाते हैं।
                 </p>
               </div>
             </div>
@@ -120,18 +115,18 @@ export default function Donate() {
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="font-display text-4xl font-bold text-foreground mb-6">
-              Join Us Today
+              आज ही जुड़ें
             </h2>
             <p className="font-serif text-lg text-muted-foreground mb-8 leading-relaxed">
-              Be part of a movement dedicated to preserving our sacred heritage and serving the community. 
-              Together, we can make a lasting impact for generations to come.
+              हमारी पवित्र विरासत को संरक्षित करने और समुदाय की सेवा करने के लिए समर्पित एक आंदोलन का हिस्सा बनें।
+              मिलकर हम आने वाली पीढ़ियों के लिए एक स्थायी प्रभाव डाल सकते हैं।
             </p>
             <a
               href="/contact"
               className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-all shadow-warm hover:shadow-warm-lg hover:scale-105"
             >
               <Heart size={20} />
-              Get in Touch
+              संपर्क करें
             </a>
           </div>
         </div>
