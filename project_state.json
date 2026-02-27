@@ -1,8 +1,10 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 9,
+  "projectStateVersion": 13,
   "summary": "Project to translate the entire page/app from English into Hindi.",
-  "architectural_notes": [],
+  "architectural_notes": [
+    "Admin principal ID set to: txzwk-b2k4v-63dny-xpzzb-qz4ij-fivmw-kuzqk-o6ngk-kib7t-63zon-lae"
+  ],
   "known_issues": [
     "Hindi translation deployment has repeatedly failed or not taken effect; user is experiencing the site still in English despite multiple translation attempts."
   ],
@@ -117,6 +119,14 @@
       "title": "Translate all user-facing text in the Footer component into Hindi, including the quick links section heading, all navigation link labels, contact section heading, social media section heading, and attribution/copyright text.",
       "reqIds": [
         "REQ-40"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-admin-page-frontend-src-pages-admin-tsx-display-the-currently-logged-in-user-s-internet-identity-principal-id-in-a-clearly-visible-section-the-principal-id-should-be-shown-as-copyable-text-e-g-with-a-copy-to-clipboard-button-so-the-admin-can-easily-read-and-copy-it-this-section-should-be-visible-to-all-authenticated-users-on-the-admin-page-including-those-who-are-not-yet-authorized-as-admin-so-they-can-obtain-their-principal-id-and-share-it-for-authorization-purposes",
+      "title": "On the Admin page (`frontend/src/pages/Admin.tsx`), display the currently logged-in user's Internet Identity Principal ID in a clearly visible section. The Principal ID should be shown as copyable text (e.g., with a copy-to-clipboard button) so the admin can easily read and copy it. This section should be visible to all authenticated users on the Admin page — including those who are not yet authorized as admin — so they can obtain their Principal ID and share it for authorization purposes.",
+      "reqIds": [
+        "REQ-41"
       ],
       "version": 1
     }
@@ -333,6 +343,20 @@
       "summary": "Translate all user-facing text in the Footer component (quick links section heading, navigation link labels, contact section heading, social media section heading, and attribution/copyright text) from English to Hindi.",
       "reqIds": [
         "REQ-27"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-28",
+      "summary": "Display the logged-in user's Principal ID on the Admin page so the admin can easily copy it.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-29",
+      "summary": "In the backend Motoko actor (`backend/main.mo`), add the Principal ID `txzwk-b2k4v-63dny-xpzzb-qz4ij-fivmw-kuzqk-o6ngk-kib7t-63zon-lae` to the authorized admin list so that this user is granted admin access upon login.",
+      "reqIds": [
+        "REQ-42"
       ],
       "status": "pending"
     }

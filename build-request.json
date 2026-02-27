@@ -1,266 +1,38 @@
 {
   "kind": "build_request",
-  "title": "Translate entire app UI from English to Hindi",
+  "title": "Grant admin access to Principal ID txzwk-b2k4v-63dny-xpzzb-qz4ij-fivmw-kuzqk-o6ngk-kib7t-63zon-lae",
   "projectName": "Kattar Sanatani Yodha",
   "priority": "high",
   "requirements": [
     {
-      "id": "REQ-28",
-      "text": "Translate all user-facing text in the Navigation component into Hindi, including all nav link labels (Home, About, Programs, Philosophy, Resources, Contact, Donate), mobile menu labels, and the admin link text.",
-      "target": "frontend",
+      "id": "REQ-42",
+      "text": "In the backend Motoko actor (`backend/main.mo`), add the Principal ID `txzwk-b2k4v-63dny-xpzzb-qz4ij-fivmw-kuzqk-o6ngk-kib7t-63zon-lae` to the authorized admin list so that this user is granted admin access upon login.",
+      "target": "backend",
       "source": {
         "messageIds": [
-          "msg-last"
+          "msg-8"
         ],
         "quotes": [
-          "change language of whole page into hindi"
+          "txzwk-b2k4v-63dny-xpzzb-qz4ij-fivmw-kuzqk-o6ngk-kib7t-63zon-lae",
+          "can you give me admin access via principal id?"
         ]
       },
       "acceptanceCriteria": [
-        "All desktop nav link labels are displayed in Hindi",
-        "All mobile menu labels are displayed in Hindi",
-        "Admin link text is displayed in Hindi",
-        "No English text remains visible in the Navigation component"
-      ]
-    },
-    {
-      "id": "REQ-29",
-      "text": "Translate all user-facing text in the Hero component into Hindi, including the organization tagline, mission statement, call-to-action button labels, and the scroll indicator text.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "change language of whole page into hindi"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Tagline, mission statement, and all button labels are in Hindi",
-        "Scroll indicator text is in Hindi",
-        "No English text remains visible in the Hero component"
-      ]
-    },
-    {
-      "id": "REQ-30",
-      "text": "Translate all user-facing text in the Mission component into Hindi, including the section heading, descriptive paragraph, and all four core value card titles and descriptions (Devotion, Protection, Knowledge, Unity).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "change language of whole page into hindi"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Section heading and paragraph are in Hindi",
-        "All four core value titles and descriptions are in Hindi",
-        "No English text remains visible in the Mission component"
-      ]
-    },
-    {
-      "id": "REQ-31",
-      "text": "Translate all user-facing text in the SupportOptions component into Hindi, including the section heading, all four support option card titles (volunteer, awareness, skills, knowledge), descriptions, and CTA link labels.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "change language of whole page into hindi"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Section heading is in Hindi",
-        "All four card titles, descriptions, and link labels are in Hindi",
-        "No English text remains visible in the SupportOptions component"
-      ]
-    },
-    {
-      "id": "REQ-32",
-      "text": "Translate all user-facing text on the Home page into Hindi, including the highlights grid section headings, all four activity area card titles and descriptions, and the CTA section text and button labels linking to donate and contact pages.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "change language of whole page into hindi"
-        ]
-      },
-      "acceptanceCriteria": [
-        "All Home page section headings are in Hindi",
-        "All highlight card titles and descriptions are in Hindi",
-        "CTA section text and button labels are in Hindi",
-        "No English text remains visible on the Home page"
-      ]
-    },
-    {
-      "id": "REQ-33",
-      "text": "Translate all user-facing text on the About page into Hindi, including the hero section text, organization story text, and all four principle card titles and descriptions (Purpose, Vision, Values, Community).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "change language of whole page into hindi"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Hero section text and story text are in Hindi",
-        "All four principle card titles and descriptions are in Hindi",
-        "No English text remains visible on the About page"
-      ]
-    },
-    {
-      "id": "REQ-34",
-      "text": "Translate all user-facing text on the Programs page into Hindi, including all section headings, all six ProgramCard titles and descriptions (Vedic study, festivals, youth education, community gatherings, social welfare, heritage preservation), and impact statistics labels.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "change language of whole page into hindi"
-        ]
-      },
-      "acceptanceCriteria": [
-        "All section headings are in Hindi",
-        "All six program card titles and descriptions are in Hindi",
-        "Impact statistics labels are in Hindi",
-        "No English text remains visible on the Programs page"
-      ]
-    },
-    {
-      "id": "REQ-35",
-      "text": "Translate all user-facing text on the Philosophy page into Hindi, including section headings, principle titles, body text covering Sanatana Dharma teachings, and all devotion example content covering Ram, Hanuman, and Yudhishthira.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "change language of whole page into hindi"
-        ]
-      },
-      "acceptanceCriteria": [
-        "All section headings and principle titles are in Hindi",
-        "All body text and devotion examples are in Hindi",
-        "No English text remains visible on the Philosophy page"
-      ]
-    },
-    {
-      "id": "REQ-36",
-      "text": "Translate all user-facing text on the Resources page into Hindi, including the hero section text, all four resource category card headings and descriptions (Sacred Texts, Video Lectures, Articles & Essays, Downloadable Materials), all listed item titles, and any button or link labels.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "change language of whole page into hindi"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Hero section text is in Hindi",
-        "All resource category headings, descriptions, and item titles are in Hindi",
-        "All button and link labels are in Hindi",
-        "No English text remains visible on the Resources page"
-      ]
-    },
-    {
-      "id": "REQ-37",
-      "text": "Translate all user-facing text on the Contact page into Hindi, including form field labels (name, email, message), placeholder text, submit button label, contact information labels, and social media section labels.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "change language of whole page into hindi"
-        ]
-      },
-      "acceptanceCriteria": [
-        "All form field labels and placeholders are in Hindi",
-        "Submit button label is in Hindi",
-        "Contact info and social media section labels are in Hindi",
-        "No English text remains visible on the Contact page"
-      ]
-    },
-    {
-      "id": "REQ-38",
-      "text": "Translate all user-facing text on the Donate page into Hindi, including all section headings, support option descriptions, impact area labels with percentage breakdowns, and the transparency commitment text.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "change language of whole page into hindi"
-        ]
-      },
-      "acceptanceCriteria": [
-        "All section headings are in Hindi",
-        "All support option descriptions are in Hindi",
-        "Impact area labels with percentages are in Hindi",
-        "Transparency section text is in Hindi",
-        "No English text remains visible on the Donate page"
-      ]
-    },
-    {
-      "id": "REQ-39",
-      "text": "Translate all user-facing text on the Admin page into Hindi, including the dashboard headings, search field placeholder, filter labels, table column headers, action button labels, authorization error messages, and the CSV export button label.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "change language of whole page into hindi"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Dashboard headings and search placeholder are in Hindi",
-        "All filter labels and table column headers are in Hindi",
-        "Action buttons and CSV export button are in Hindi",
-        "Authorization error messages are in Hindi",
-        "No English text remains visible on the Admin page"
-      ]
-    },
-    {
-      "id": "REQ-40",
-      "text": "Translate all user-facing text in the Footer component into Hindi, including the quick links section heading, all navigation link labels, contact section heading, social media section heading, and attribution/copyright text.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "change language of whole page into hindi"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Quick links section heading and all link labels are in Hindi",
-        "Contact and social media section headings are in Hindi",
-        "Attribution and copyright text is in Hindi",
-        "No English text remains visible in the Footer component"
+        "The Principal ID `txzwk-b2k4v-63dny-xpzzb-qz4ij-fivmw-kuzqk-o6ngk-kib7t-63zon-lae` is included in the hardcoded or initial admin set within the backend actor.",
+        "Calling `isAdmin()` from the backend while authenticated as this Principal returns `true`.",
+        "The Admin page in the frontend renders the full dashboard (submissions table, search, filter, CSV export) when logged in with this Principal ID.",
+        "No other existing admin principals are removed or affected."
       ]
     }
   ],
   "constraints": [
-    "Do not alter any visual styling, layout, colors, or component structure — only text content should change",
-    "Do not modify immutable files: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui",
-    "Do not modify the Google Search Console meta tag in frontend/index.html",
-    "Do not change the backend Motoko code",
-    "Preserve any text that is already in Hindi (e.g., Sanskrit or Hindi phrases in Hero and Mission)"
+    "Do not remove or modify any existing authorized admin principals.",
+    "Do not change any frontend authorization logic — the admin check must flow from the backend."
   ],
   "nonGoals": [
-    "Adding a language toggle or i18n framework — all text should be statically set to Hindi",
-    "Translating backend error messages or Motoko code",
-    "Changing any routing paths or URL slugs",
-    "Modifying any UI component styles or layouts"
+    "Adding a UI flow for dynamically managing admin principals.",
+    "Any changes to the Hindi translation or other page content.",
+    "Modifying the Principal ID display feature on the Admin page."
   ],
   "imageRequirements": {
     "required": [],

@@ -1,178 +1,33 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-27T04:47:28.979Z",
+  "generatedAt": "2026-02-27T21:18:48.946Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 13,
-    "implemented": 13,
+    "total": 1,
+    "implemented": 0,
     "items": [
       {
-        "id": "REQ-28",
-        "summary": "Translate all user-facing text in the Navigation component into Hindi, including all nav link labels (Home, About, Programs, Philosophy, Resources, Contact, Donate), mobile menu labels, and the admin link text.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/Navigation.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/Navigation.tsx"
-        ]
-      },
-      {
-        "id": "REQ-29",
-        "summary": "Translate all user-facing text in the Hero component into Hindi, including the organization tagline, mission statement, call-to-action button labels, and the scroll indicator text.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/Hero.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/Hero.tsx"
-        ]
-      },
-      {
-        "id": "REQ-30",
-        "summary": "Translate all user-facing text in the Mission component into Hindi, including the section heading, descriptive paragraph, and all four core value card titles and descriptions (Devotion, Protection, Knowledge, Unity).",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/Mission.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/Mission.tsx"
-        ]
-      },
-      {
-        "id": "REQ-31",
-        "summary": "Translate all user-facing text in the SupportOptions component into Hindi, including the section heading, all four support option card titles (volunteer, awareness, skills, knowledge), descriptions, and CTA link labels.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/SupportOptions.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/SupportOptions.tsx"
-        ]
-      },
-      {
-        "id": "REQ-32",
-        "summary": "Translate all user-facing text on the Home page into Hindi, including the highlights grid section headings, all four activity area card titles and descriptions, and the CTA section text and button labels linking to donate and contact pages.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/Home.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/Home.tsx"
-        ]
-      },
-      {
-        "id": "REQ-33",
-        "summary": "Translate all user-facing text on the About page into Hindi, including the hero section text, organization story text, and all four principle card titles and descriptions (Purpose, Vision, Values, Community).",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/About.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/About.tsx"
-        ]
-      },
-      {
-        "id": "REQ-34",
-        "summary": "Translate all user-facing text on the Programs page into Hindi, including all section headings, all six ProgramCard titles and descriptions (Vedic study, festivals, youth education, community gatherings, social welfare, heritage preservation), and impact statistics labels.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/Programs.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/Programs.tsx"
-        ]
-      },
-      {
-        "id": "REQ-35",
-        "summary": "Translate all user-facing text on the Philosophy page into Hindi, including section headings, principle titles, body text covering Sanatana Dharma teachings, and all devotion example content covering Ram, Hanuman, and Yudhishthira.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/Philosophy.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/Philosophy.tsx"
-        ]
-      },
-      {
-        "id": "REQ-36",
-        "summary": "Translate all user-facing text on the Resources page into Hindi, including the hero section text, all four resource category card headings and descriptions (Sacred Texts, Video Lectures, Articles & Essays, Downloadable Materials), all listed item titles, and any button or link labels.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/Resources.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/Resources.tsx"
-        ]
-      },
-      {
-        "id": "REQ-37",
-        "summary": "Translate all user-facing text on the Contact page into Hindi, including form field labels (name, email, message), placeholder text, submit button label, contact information labels, and social media section labels.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/Contact.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/Contact.tsx"
-        ]
-      },
-      {
-        "id": "REQ-38",
-        "summary": "Translate all user-facing text on the Donate page into Hindi, including all section headings, support option descriptions, impact area labels with percentage breakdowns, and the transparency commitment text.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/Donate.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/Donate.tsx"
-        ]
-      },
-      {
-        "id": "REQ-39",
-        "summary": "Translate all user-facing text on the Admin page into Hindi, including the dashboard headings, search field placeholder, filter labels, table column headers, action button labels, authorization error messages, and the CSV export button label.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/Admin.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/Admin.tsx"
-        ]
-      },
-      {
-        "id": "REQ-40",
-        "summary": "Translate all user-facing text in the Footer component into Hindi, including the quick links section heading, all navigation link labels, contact section heading, social media section heading, and attribution/copyright text.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/Footer.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/Footer.tsx"
-        ]
+        "id": "REQ-42",
+        "summary": "In the backend Motoko actor (`backend/main.mo`), add the Principal ID `txzwk-b2k4v-63dny-xpzzb-qz4ij-fivmw-kuzqk-o6ngk-kib7t-63zon-lae` to the authorized admin list so that this user is granted admin access upon login.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
       }
     ]
   },
   "changedFiles": [
+    "backend/main.mo",
     "build-request.json",
     "feature_evidence.json",
-    "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/Footer.tsx",
-    "frontend/src/components/Hero.tsx",
-    "frontend/src/components/Mission.tsx",
-    "frontend/src/components/Navigation.tsx",
-    "frontend/src/components/SupportOptions.tsx",
-    "frontend/src/pages/About.tsx",
-    "frontend/src/pages/Admin.tsx",
-    "frontend/src/pages/Contact.tsx",
-    "frontend/src/pages/Donate.tsx",
-    "frontend/src/pages/Home.tsx",
-    "frontend/src/pages/Philosophy.tsx",
-    "frontend/src/pages/Programs.tsx",
-    "frontend/src/pages/Resources.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

@@ -8,17 +8,29 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Search, Download, X, Shield, LogIn } from 'lucide-react';
-import type { Submission } from '../backend';
+import { Search, Download, X, Shield, LogIn, Copy, Check } from 'lucide-react';
 
 export default function Admin() {
   const { identity, login, loginStatus } = useInternetIdentity();
   const { data: isAdmin, isLoading: isAdminLoading } = useIsCallerAdmin();
   const { data: submissions, isLoading: submissionsLoading, error } = useGetAllSubmissions();
   const [searchTerm, setSearchTerm] = useState('');
+  const [copied, setCopied] = useState(false);
 
   const isAuthenticated = !!identity;
   const isLoggingIn = loginStatus === 'logging-in';
+  const principalId = identity?.getPrincipal().toString() ?? '';
+
+  const handleCopyPrincipal = async () => {
+    if (!principalId) return;
+    try {
+      await navigator.clipboard.writeText(principalId);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // fallback: do nothing
+    }
+  };
 
   // Filter submissions based on search term
   const filteredSubmissions = useMemo(() => {
@@ -73,6 +85,40 @@ export default function Admin() {
     URL.revokeObjectURL(url);
   };
 
+  // Principal ID display card (reusable block)
+  const PrincipalIdCard = () => (
+    <Card className="mb-6 border-primary/20 bg-primary/5 shadow-warm">
+      <CardContent className="pt-5 pb-5">
+        <div className="flex flex-col gap-1">
+          <span className="text-xs font-semibold uppercase tracking-widest text-primary/70">
+            Your Principal ID
+          </span>
+          <div className="flex items-center gap-2 mt-1">
+            <code className="flex-1 text-sm font-mono bg-background/70 border border-border rounded px-3 py-2 break-all text-foreground select-all">
+              {principalId}
+            </code>
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={handleCopyPrincipal}
+              className="shrink-0 border-primary/30 hover:bg-primary/10"
+              title="Copy Principal ID"
+            >
+              {copied ? (
+                <Check className="w-4 h-4 text-green-600" />
+              ) : (
+                <Copy className="w-4 h-4 text-primary" />
+              )}
+            </Button>
+          </div>
+          <p className="text-xs text-muted-foreground mt-1">
+            Share this ID with the admin to get access.
+          </p>
+        </div>
+      </CardContent>
+    </Card>
+  );
+
   // Show login prompt for unauthenticated users
   if (!isAuthenticated) {
     return (
@@ -113,21 +159,24 @@ export default function Admin() {
     );
   }
 
-  // Show access denied for non-admin users
+  // Show access denied for non-admin users (with Principal ID visible)
   if (!isAdmin) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background flex items-center justify-center p-4">
-        <Card className="max-w-md w-full shadow-warm border-destructive/50">
-          <CardHeader className="text-center">
-            <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-destructive/10 flex items-center justify-center">
-              <Shield className="w-8 h-8 text-destructive" />
-            </div>
-            <CardTitle className="text-2xl font-display text-destructive">पहुंच अस्वीकृत</CardTitle>
-            <CardDescription>
-              आपके पास प्रशासन पैनल तक पहुंचने की अनुमति नहीं है। यदि आपको लगता है कि यह एक त्रुटि है तो कृपया प्रशासक से संपर्क करें।
-            </CardDescription>
-          </CardHeader>
-        </Card>
+        <div className="max-w-md w-full space-y-4">
+          <Card className="shadow-warm border-destructive/50">
+            <CardHeader className="text-center">
+              <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-destructive/10 flex items-center justify-center">
+                <Shield className="w-8 h-8 text-destructive" />
+              </div>
+              <CardTitle className="text-2xl font-display text-destructive">पहुंच अस्वीकृत</CardTitle>
+              <CardDescription>
+                आपके पास प्रशासन पैनल तक पहुंचने की अनुमति नहीं है। यदि आपको लगता है कि यह एक त्रुटि है तो कृपया प्रशासक से संपर्क करें।
+              </CardDescription>
+            </CardHeader>
+          </Card>
+          <PrincipalIdCard />
+        </div>
       </div>
     );
   }
@@ -137,10 +186,13 @@ export default function Admin() {
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background p-4 md:p-8">
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6">
           <h1 className="text-4xl font-display font-bold text-primary mb-2">प्रशासन पैनल</h1>
           <p className="text-muted-foreground">संपर्क फ़ॉर्म सबमिशन प्रबंधित करें</p>
         </div>
+
+        {/* Principal ID */}
+        <PrincipalIdCard />
 
         {/* Controls */}
         <Card className="mb-6 shadow-warm">

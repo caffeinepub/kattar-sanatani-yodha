@@ -19,6 +19,6 @@
   "frontend/src/pages/Resources.tsx": "Resources page with hero section, all four resource category titles/descriptions/items, featured resources, and CTA section fully translated to Hindi.",
   "frontend/src/pages/Philosophy.tsx": "Philosophy page with hero section, all four section headings and body text, and devotion examples fully in Hindi (existing Hindi content preserved).",
   "frontend/index.html": "HTML entry point with charset, viewport, and Google Search Console verification meta tags, plus the root div and main script entry point.",
-  "frontend/src/pages/Admin.tsx": "Admin panel with all UI text translated to Hindi including login prompt, access denied message, dashboard heading, search placeholder, table column headers, export button, and error messages.",
+  "frontend/src/pages/Admin.tsx": "Admin panel page that displays a \"Your Principal ID\" card with a copy-to-clipboard button visible to all authenticated users (both authorized admins and access-denied users), along with the full submissions management dashboard for admins.",
   "frontend/public/ads.txt": "Google AdSense publisher verification file containing the authorized digital sellers declaration for publisher ID pub-4905807488237044 with the exact configuration provided by the user."
 }
