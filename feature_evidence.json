@@ -1,4 +1,24 @@
 {
   "kind": "feature_evidence_report",
-  "features": []
+  "features": [
+    {
+      "featureId": "feature-in-the-resources-page-frontend-src-pages-resources-tsx-connect-the-following-four-downloadable-external-resource-items-to-their-respective-urls-opening-each-link-in-a-new-tab-the-items-and-their-urls-are-1-https-share-google-offqsrz1ftsdjb8op-2-https-adipurgroup-wordpress-com-wp-content-uploads-2016-12-e0a4b8e0a4ade0a4be-pdf-3-https-calendarhindu-com-wp-content-uploads-2025-12-hindu-calendar-2026-with-tithi-in-hindi-pdf-download-pdf-4-https-www-rupanugabhajanashram-com-wp-content-uploads-2022-11-bhagavad-gita-hindi-pdf-each-link-must-use-target-blank-and-rel-noopener-noreferrer",
+      "featureTitle": "In the Resources page (`frontend/src/pages/Resources.tsx`), connect the following four downloadable/external resource items to their respective URLs, opening each link in a new tab. The items and their URLs are: (1) वैदिक दर्शन का परिचय → https://share.google/ofFQSRZ1FTsdJB8Op; (2) दैनिक प्रार्थना संग्रह → https://adipurgroup.wordpress.com/wp-content/uploads/2016/12/e0a4b8e0a4ade0a4be.pdf; (3) त्योहार कैलेंडर और अनुष्ठान → https://calendarhindu.com/wp-content/uploads/2025/12/Hindu-Calendar-2026-With-Tithi-in-Hindi-PDF-Download.pdf; (4) भगवद गीता अध्ययन मार्गदर्शिका → https://www.rupanugabhajanashram.com/wp-content/uploads/2022/11/Bhagavad-Gita-Hindi.pdf. Each link must use `target=\"_blank\"` and `rel=\"noopener noreferrer\"`.",
+      "files": [
+        "frontend/src/pages/Resources.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-43"
+      ],
+      "confidence": "high"
+    }
+  ]
 }

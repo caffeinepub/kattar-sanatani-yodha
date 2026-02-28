@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 13,
+  "projectStateVersion": 15,
   "summary": "Project to translate the entire page/app from English into Hindi.",
   "architectural_notes": [
     "Admin principal ID set to: txzwk-b2k4v-63dny-xpzzb-qz4ij-fivmw-kuzqk-o6ngk-kib7t-63zon-lae"
@@ -8,7 +8,7 @@
   "known_issues": [
     "Hindi translation deployment has repeatedly failed or not taken effect; user is experiencing the site still in English despite multiple translation attempts."
   ],
-  "isFixRequest": true,
+  "isFixRequest": false,
   "existing_features": [
     {
       "id": "feature-add-the-google-search-console-verification-meta-tag-meta-name-google-site-verification-content-krubb6rd-mcytm2tt5s-pjdxiwt5u4vug5vdetk-cse-inside-the-head-element-of-frontend-index-html",
@@ -127,6 +127,14 @@
       "title": "On the Admin page (`frontend/src/pages/Admin.tsx`), display the currently logged-in user's Internet Identity Principal ID in a clearly visible section. The Principal ID should be shown as copyable text (e.g., with a copy-to-clipboard button) so the admin can easily read and copy it. This section should be visible to all authenticated users on the Admin page — including those who are not yet authorized as admin — so they can obtain their Principal ID and share it for authorization purposes.",
       "reqIds": [
         "REQ-41"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-in-the-resources-page-frontend-src-pages-resources-tsx-connect-the-following-four-downloadable-external-resource-items-to-their-respective-urls-opening-each-link-in-a-new-tab-the-items-and-their-urls-are-1-https-share-google-offqsrz1ftsdjb8op-2-https-adipurgroup-wordpress-com-wp-content-uploads-2016-12-e0a4b8e0a4ade0a4be-pdf-3-https-calendarhindu-com-wp-content-uploads-2025-12-hindu-calendar-2026-with-tithi-in-hindi-pdf-download-pdf-4-https-www-rupanugabhajanashram-com-wp-content-uploads-2022-11-bhagavad-gita-hindi-pdf-each-link-must-use-target-blank-and-rel-noopener-noreferrer",
+      "title": "In the Resources page (`frontend/src/pages/Resources.tsx`), connect the following four downloadable/external resource items to their respective URLs, opening each link in a new tab. The items and their URLs are: (1) वैदिक दर्शन का परिचय → https://share.google/ofFQSRZ1FTsdJB8Op; (2) दैनिक प्रार्थना संग्रह → https://adipurgroup.wordpress.com/wp-content/uploads/2016/12/e0a4b8e0a4ade0a4be.pdf; (3) त्योहार कैलेंडर और अनुष्ठान → https://calendarhindu.com/wp-content/uploads/2025/12/Hindu-Calendar-2026-With-Tithi-in-Hindi-PDF-Download.pdf; (4) भगवद गीता अध्ययन मार्गदर्शिका → https://www.rupanugabhajanashram.com/wp-content/uploads/2022/11/Bhagavad-Gita-Hindi.pdf. Each link must use `target=\"_blank\"` and `rel=\"noopener noreferrer\"`.",
+      "reqIds": [
+        "REQ-43"
       ],
       "version": 1
     }
@@ -358,6 +366,12 @@
       "reqIds": [
         "REQ-42"
       ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-30",
+      "summary": "On the विशेष संसाधन (Resources) page, connect the following links: वैदिक दर्शन का परिचय → https://share.google/ofFQSRZ1FTsdJB8Op, दैनिक प्रार्थना संग्रह → https://adipurgroup.wordpress.com/wp-content/uploads/2016/12/e0a4b8e0a4ade0a4be.pdf, त्योहार कैलेंडर और अनुष्ठान → https://calendarhindu.com/wp-content/uploads/2025/12/Hindu-Calendar-2026-With-Tithi-in-Hindi-PDF-Download.pdf, भगवद गीता अध्ययन मार्गदर्शिका → https://www.rupanugabhajanashram.com/wp-content/uploads/2022/11/Bhagavad-Gita-Hindi.pdf",
+      "reqIds": [],
       "status": "pending"
     }
   ],

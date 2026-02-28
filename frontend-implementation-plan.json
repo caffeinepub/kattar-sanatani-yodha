@@ -1,6 +1,25 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Grant admin access to Principal ID txzwk-b2k4v-63dny-xpzzb-qz4ij-fivmw-kuzqk-o6ngk-kib7t-63zon-lae",
-  "requirements": []
+  "title": "Connect resource links on the Resources page",
+  "requirements": [
+    {
+      "id": "REQ-43",
+      "summary": "Connect four downloadable/external resource items in the Resources page to their respective URLs, opening each in a new tab with proper security attributes",
+      "acceptanceCriteria": [
+        "Clicking the वैदिक दर्शन का परिचय item/button on the Resources page navigates to https://share.google/ofFQSRZ1FTsdJB8Op in a new tab.",
+        "Clicking the दैनिक प्रार्थना संग्रह item/button on the Resources page navigates to https://adipurgroup.wordpress.com/wp-content/uploads/2016/12/e0a4b8e0a4ade0a4be.pdf in a new tab.",
+        "Clicking the त्योहार कैलेंडर और अनुष्ठान item/button on the Resources page navigates to https://calendarhindu.com/wp-content/uploads/2025/12/Hindu-Calendar-2026-With-Tithi-in-Hindi-PDF-Download.pdf in a new tab.",
+        "Clicking the भगवद गीता अध्ययन मार्गदर्शिका item/button on the Resources page navigates to https://www.rupanugabhajanashram.com/wp-content/uploads/2022/11/Bhagavad-Gita-Hindi.pdf in a new tab.",
+        "All four links include target=\"_blank\" and rel=\"noopener noreferrer\" attributes."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/Resources.tsx",
+          "operation": "modify",
+          "description": "Add href attributes to the four resource items in the downloadable materials section: (1) वैदिक दर्शन का परिचय linking to https://share.google/ofFQSRZ1FTsdJB8Op; (2) दैनिक प्रार्थना संग्रह linking to https://adipurgroup.wordpress.com/wp-content/uploads/2016/12/e0a4b8e0a4ade0a4be.pdf; (3) त्योहार कैलेंडर और अनुष्ठान linking to https://calendarhindu.com/wp-content/uploads/2025/12/Hindu-Calendar-2026-With-Tithi-in-Hindi-PDF-Download.pdf; (4) भगवद गीता अध्ययन मार्गदर्शिका linking to https://www.rupanugabhajanashram.com/wp-content/uploads/2022/11/Bhagavad-Gita-Hindi.pdf. Each link must include target=\"_blank\" and rel=\"noopener noreferrer\" attributes. Do not modify any other content, layout, or styling on the page."
+        }
+      ]
+    }
+  ]
 }

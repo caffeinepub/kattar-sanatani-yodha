@@ -1,33 +1,34 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-27T21:18:48.946Z",
+  "generatedAt": "2026-02-27T21:30:37.250Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
     "total": 1,
-    "implemented": 0,
+    "implemented": 1,
     "items": [
       {
-        "id": "REQ-42",
-        "summary": "In the backend Motoko actor (`backend/main.mo`), add the Principal ID `txzwk-b2k4v-63dny-xpzzb-qz4ij-fivmw-kuzqk-o6ngk-kib7t-63zon-lae` to the authorized admin list so that this user is granted admin access upon login.",
-        "status": "unknown",
-        "plannedFiles": [],
-        "matchedFiles": []
+        "id": "REQ-43",
+        "summary": "In the Resources page (`frontend/src/pages/Resources.tsx`), connect the following four downloadable/external resource items to their respective URLs, opening each link in a new tab. The items and their URLs are: (1) वैदिक दर्शन का परिचय → https://share.google/ofFQSRZ1FTsdJB8Op; (2) दैनिक प्रार्थना संग्रह → https://adipurgroup.wordpress.com/wp-content/uploads/2016/12/e0a4b8e0a4ade0a4be.pdf; (3) त्योहार कैलेंडर और अनुष्ठान → https://calendarhindu.com/wp-content/uploads/2025/12/Hindu-Calendar-2026-With-Tithi-in-Hindi-PDF-Download.pdf; (4) भगवद गीता अध्ययन मार्गदर्शिका → https://www.rupanugabhajanashram.com/wp-content/uploads/2022/11/Bhagavad-Gita-Hindi.pdf. Each link must use `target=\"_blank\"` and `rel=\"noopener noreferrer\"`.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/Resources.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/Resources.tsx"
+        ]
       }
     ]
   },
   "changedFiles": [
-    "backend/main.mo",
     "build-request.json",
     "feature_evidence.json",
+    "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/backend.d.ts",
-    "frontend/src/backend.ts",
-    "frontend/src/declarations/backend.did.d.ts",
-    "frontend/src/declarations/backend.did.js",
+    "frontend/src/pages/Resources.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

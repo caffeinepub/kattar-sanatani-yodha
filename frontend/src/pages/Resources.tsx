@@ -28,6 +28,33 @@ export default function Resources() {
     },
   ];
 
+  const featuredResources = [
+    {
+      title: 'दैनिक प्रार्थना संग्रह',
+      description: 'आध्यात्मिक विकास के लिए दैनिक प्रार्थनाओं, मंत्रों और ध्यान प्रथाओं की एक व्यापक मार्गदर्शिका।',
+      type: 'पीडीएफ गाइड',
+      url: 'https://adipurgroup.wordpress.com/wp-content/uploads/2016/12/e0a4b8e0a4ade0a4be.pdf',
+    },
+    {
+      title: 'वैदिक दर्शन का परिचय',
+      description: 'वैदिक दर्शन की मूलभूत अवधारणाओं और शिक्षाओं का एक सुलभ परिचय।',
+      type: 'वीडियो श्रृंखला',
+      url: 'https://share.google/ofFQSRZ1FTsdJB8Op',
+    },
+    {
+      title: 'त्योहार कैलेंडर और अनुष्ठान',
+      description: 'हिंदू त्योहारों, उनके महत्व और पारंपरिक पालन विधियों की पूर्ण मार्गदर्शिका।',
+      type: 'डिजिटल पुस्तक',
+      url: 'https://calendarhindu.com/wp-content/uploads/2025/12/Hindu-Calendar-2026-With-Tithi-in-Hindi-PDF-Download.pdf',
+    },
+    {
+      title: 'भगवद गीता अध्ययन मार्गदर्शिका',
+      description: 'भगवद गीता की शाश्वत बुद्धि पर अध्याय-दर-अध्याय विश्लेषण और टिप्पणी।',
+      type: 'अध्ययन सामग्री',
+      url: 'https://www.rupanugabhajanashram.com/wp-content/uploads/2022/11/Bhagavad-Gita-Hindi.pdf',
+    },
+  ];
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -101,28 +128,7 @@ export default function Resources() {
               विशेष संसाधन
             </h2>
             <div className="space-y-6">
-              {[
-                {
-                  title: 'दैनिक प्रार्थना संग्रह',
-                  description: 'आध्यात्मिक विकास के लिए दैनिक प्रार्थनाओं, मंत्रों और ध्यान प्रथाओं की एक व्यापक मार्गदर्शिका।',
-                  type: 'पीडीएफ गाइड',
-                },
-                {
-                  title: 'वैदिक दर्शन का परिचय',
-                  description: 'वैदिक दर्शन की मूलभूत अवधारणाओं और शिक्षाओं का एक सुलभ परिचय।',
-                  type: 'वीडियो श्रृंखला',
-                },
-                {
-                  title: 'त्योहार कैलेंडर और अनुष्ठान',
-                  description: 'हिंदू त्योहारों, उनके महत्व और पारंपरिक पालन विधियों की पूर्ण मार्गदर्शिका।',
-                  type: 'डिजिटल पुस्तक',
-                },
-                {
-                  title: 'भगवद गीता अध्ययन मार्गदर्शिका',
-                  description: 'भगवद गीता की शाश्वत बुद्धि पर अध्याय-दर-अध्याय विश्लेषण और टिप्पणी।',
-                  type: 'अध्ययन सामग्री',
-                },
-              ].map((resource, index) => (
+              {featuredResources.map((resource, index) => (
                 <div
                   key={index}
                   className="p-6 bg-card rounded-lg border border-border hover:border-primary/50 transition-all hover:shadow-sm"
@@ -139,9 +145,14 @@ export default function Resources() {
                         {resource.type}
                       </span>
                     </div>
-                    <button className="flex-shrink-0 p-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all">
+                    <a
+                      href={resource.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-shrink-0 p-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all"
+                    >
                       <Download size={20} />
-                    </button>
+                    </a>
                   </div>
                 </div>
               ))}

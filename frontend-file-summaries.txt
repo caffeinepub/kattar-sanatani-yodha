@@ -16,7 +16,7 @@
   "frontend/src/pages/Donate.tsx": "Donate page with all section headings, impact area titles/descriptions, transparency section text, and CTA button translated to Hindi.",
   "frontend/src/components/SupportOptions.tsx": "Support options grid with all four card titles, descriptions, and action link labels fully translated to Hindi.",
   "frontend/src/hooks/useQueries.ts": "React Query hooks for admin functionality (getAllSubmissions, isCallerAdmin) and user profile management (getCallerUserProfile) with proper error handling and loading states.",
-  "frontend/src/pages/Resources.tsx": "Resources page with hero section, all four resource category titles/descriptions/items, featured resources, and CTA section fully translated to Hindi.",
+  "frontend/src/pages/Resources.tsx": "Resources page with hero section, resource categories grid, and विशेष संसाधन section where all four featured resource items now have their download buttons linked to external URLs (opening in new tabs with rel=\"noopener noreferrer\").",
   "frontend/src/pages/Philosophy.tsx": "Philosophy page with hero section, all four section headings and body text, and devotion examples fully in Hindi (existing Hindi content preserved).",
   "frontend/index.html": "HTML entry point with charset, viewport, and Google Search Console verification meta tags, plus the root div and main script entry point.",
   "frontend/src/pages/Admin.tsx": "Admin panel page that displays a \"Your Principal ID\" card with a copy-to-clipboard button visible to all authenticated users (both authorized admins and access-denied users), along with the full submissions management dashboard for admins.",

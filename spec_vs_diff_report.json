@@ -1,22 +1,14 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-27T21:18:48.943Z",
-  "summary": "The diff shows modifications to `backend/main.mo` and `project_state.json`. The backend file uses `AccessControl` module functions (`isAdmin`, `hasPermission`) and an `initState()` pattern, but the diff is truncated and does not show the actual admin principals list or any explicit addition of the Principal ID `txzwk-b2k4v-63dny-xpzzb-qz4ij-fivmw-kuzqk-o6ngk-kib7t-63zon-lae`. The authorization logic delegates to `AccessControl` and `MixinAuthorization` modules whose contents are not shown in the diff, making it impossible to confirm REQ-42's acceptance criteria from the available evidence.",
-  "missing_requirements": [
-    {
-      "id": "REQ-42",
-      "requirement": "Add Principal ID `txzwk-b2k4v-63dny-xpzzb-qz4ij-fivmw-kuzqk-o6ngk-kib7t-63zon-lae` to the authorized admin list in `backend/main.mo` so that `isAdmin()` returns `true` for this principal.",
-      "reason": "The diff of `backend/main.mo` is truncated and does not show the admin principals list or the `AccessControl.initState()` / `MixinAuthorization` definitions. There is no visible evidence that the specified Principal ID has been added to any hardcoded or initial admin set. The authorization modules are not included in the diff, so it cannot be confirmed the principal was added.",
-      "evidence": [
-        "backend/main.mo"
-      ]
-    }
-  ],
+  "generatedAt": "2026-02-27T21:30:37.247Z",
+  "summary": "The diff shows that Resources.tsx was modified to add URLs to all four featured resource items with target='_blank' and rel='noopener noreferrer', fully satisfying REQ-43. The file summary confirms all four download buttons are linked to their respective external URLs opening in new tabs.",
+  "missing_requirements": [],
   "hallucinated_features": [],
-  "confidence": 0.45,
+  "confidence": 0.95,
   "changed_files": [
-    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/src/pages/Resources.tsx",
     "project_state.json"
   ]
 }
