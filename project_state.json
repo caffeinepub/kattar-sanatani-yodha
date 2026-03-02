@@ -1,140 +1,61 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 15,
-  "summary": "Project to translate the entire page/app from English into Hindi.",
+  "projectStateVersion": 3,
+  "summary": "Political party membership web app with Hindi UI. Features include a 'सदस्य बनें' header button, a detailed membership registration form, member login, an ID card request page, and an admin panel to manage all submitted data.",
   "architectural_notes": [
-    "Admin principal ID set to: txzwk-b2k4v-63dny-xpzzb-qz4ij-fivmw-kuzqk-o6ngk-kib7t-63zon-lae"
+    "Hindi (Devanagari) UI throughout; all form labels and page content in Hindi",
+    "Cascading dropdowns: देश → राज्य → ज़िला with full country/state/district data",
+    "File upload limits: स्वयं की फोटो max 10MB (all formats), आधार कार्ड की फोटो max 15MB (all formats)",
+    "Admin panel stores all member registrations, login credentials, and ID card requests"
   ],
-  "known_issues": [
-    "Hindi translation deployment has repeatedly failed or not taken effect; user is experiencing the site still in English despite multiple translation attempts."
-  ],
+  "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-add-the-google-search-console-verification-meta-tag-meta-name-google-site-verification-content-krubb6rd-mcytm2tt5s-pjdxiwt5u4vug5vdetk-cse-inside-the-head-element-of-frontend-index-html",
-      "title": "Add the Google Search Console verification meta tag `<meta name=\"google-site-verification\" content=\"KrubB6rD-McYTM2TT5S_pJdxiwT5U4vUg5vdeTk-cSE\" />` inside the `<head>` element of `frontend/index.html`.",
+      "id": "feature-add-a-become-a-member-button-in-the-navigation-header-that-navigates-to-the-membership-route-the-button-should-be-visually-distinct-e-g-filled-accent-style-and-appear-alongside-the-existing-nav-links",
+      "title": "Add a 'सदस्य बनें' (Become a Member) button in the Navigation header that navigates to the /membership route. The button should be visually distinct (e.g., filled/accent style) and appear alongside the existing nav links.",
       "reqIds": [
-        "REQ-14"
+        "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-translate-all-user-facing-text-in-the-navigation-component-into-hindi-including-all-nav-link-labels-home-about-programs-philosophy-resources-contact-donate-mobile-menu-labels-and-the-admin-link-text",
-      "title": "Translate all user-facing text in the Navigation component into Hindi, including all nav link labels (Home, About, Programs, Philosophy, Resources, Contact, Donate), mobile menu labels, and the admin link text.",
+      "id": "feature-create-a-membership-page-with-a-registration-form-containing-text-inputs-for-first-name-last-name-occupation-full-address-contact-number-whatsapp-number-email-tehsil-police-station-gram-panchayat-village-dropdown-selects-for-country-all-countries-state-states-of-selected-country-district-districts-of-selected-state-gender-male-female-other-file-upload-for-own-photo-max-10-mb-all-formats-and-aadhaar-card-photo-max-15-mb-all-formats-and-a-submit-button-on-submission-store-all-member-data-including-file-references-in-the-backend",
+      "title": "Create a /membership page with a registration form containing: text inputs for पहला नाम (First Name), उपनाम (Last Name), पेशा (Occupation), पूरा पता (Full Address), संपर्क सूत्र (Contact Number), व्हाट्सएप नंबर (WhatsApp Number), ईमेल (Email), तहसील (Tehsil), थाना (Police Station), ग्राम पंचायत (Gram Panchayat), गांव (Village); dropdown selects for देश (Country — all countries), राज्य (State — states of selected country), ज़िला (District — districts of selected state), लिंग (Gender: Male/Female/Other); file upload for स्वयं की फोटो (own photo, max 10 MB, all formats) and आधार कार्ड की फोटो (Aadhaar card photo, max 15 MB, all formats); and a Submit button. On submission, store all member data (including file references) in the backend.",
       "reqIds": [
-        "REQ-28"
+        "REQ-2"
       ],
       "version": 1
     },
     {
-      "id": "feature-translate-all-user-facing-text-in-the-hero-component-into-hindi-including-the-organization-tagline-mission-statement-call-to-action-button-labels-and-the-scroll-indicator-text",
-      "title": "Translate all user-facing text in the Hero component into Hindi, including the organization tagline, mission statement, call-to-action button labels, and the scroll indicator text.",
+      "id": "feature-create-a-login-page-with-a-form-labeled-mobile-number-or-email-and-password-on-successful-login-authenticate-the-member-session-and-redirect-to-their-member-dashboard-dashboard-store-member-credentials-hashed-password-mobile-email-in-the-backend-during-registration-and-validate-on-login",
+      "title": "Create a /login page with a form labeled 'नंबर/ईमेल' (mobile number or email) and 'पासवर्ड' (password). On successful login, authenticate the member session and redirect to their member dashboard (/dashboard). Store member credentials (hashed password, mobile/email) in the backend during registration and validate on login.",
       "reqIds": [
-        "REQ-29"
+        "REQ-3"
       ],
       "version": 1
     },
     {
-      "id": "feature-translate-all-user-facing-text-in-the-mission-component-into-hindi-including-the-section-heading-descriptive-paragraph-and-all-four-core-value-card-titles-and-descriptions-devotion-protection-knowledge-unity",
-      "title": "Translate all user-facing text in the Mission component into Hindi, including the section heading, descriptive paragraph, and all four core value card titles and descriptions (Devotion, Protection, Knowledge, Unity).",
+      "id": "feature-create-a-dashboard-page-accessible-only-after-login-showing-the-logged-in-member-s-basic-info-and-an-id-card-request-section-the-id-card-request-section-must-display-the-following-message-verbatim-101-7008981360-include-a-id-card-request-button-when-clicked-send-the-member-s-registration-information-as-an-id-card-request-to-the-admin-panel-in-the-backend",
+      "title": "Create a /dashboard page (accessible only after login) showing the logged-in member's basic info and an ID card request section. The ID card request section must display the following message verbatim: 'कार्ड के लिए 101 राशी अनुदान करे जो अपनी पार्टी का फंड जमा होगा। भुगतान करने के लिए संपर्क सूत्र जो है उसे कॉल करें या संदेश भेजें या फिर नंबर 7008981360 पर व्हाट्सएप पर संदेश भेजें'. Include a 'ID Card Request' button; when clicked, send the member's registration information as an ID card request to the admin panel in the backend.",
       "reqIds": [
-        "REQ-30"
+        "REQ-4"
       ],
       "version": 1
     },
     {
-      "id": "feature-translate-all-user-facing-text-in-the-supportoptions-component-into-hindi-including-the-section-heading-all-four-support-option-card-titles-volunteer-awareness-skills-knowledge-descriptions-and-cta-link-labels",
-      "title": "Translate all user-facing text in the SupportOptions component into Hindi, including the section heading, all four support option card titles (volunteer, awareness, skills, knowledge), descriptions, and CTA link labels.",
+      "id": "feature-extend-the-existing-admin-page-admin-to-display-three-additional-data-sections-1-all-membership-registrations-with-all-form-fields-including-file-attachment-indicators-2-member-login-activity-records-and-3-all-id-card-requests-with-member-details-each-section-should-be-searchable-and-sortable-admin-access-must-remain-restricted-to-authorized-admin-users-only",
+      "title": "Extend the existing Admin page (/admin) to display three additional data sections: (1) All membership registrations with all form fields (including file attachment indicators), (2) Member login activity records, and (3) All ID card requests with member details. Each section should be searchable and sortable. Admin access must remain restricted to authorized admin users only.",
       "reqIds": [
-        "REQ-31"
+        "REQ-5"
       ],
       "version": 1
     },
     {
-      "id": "feature-translate-all-user-facing-text-on-the-home-page-into-hindi-including-the-highlights-grid-section-headings-all-four-activity-area-card-titles-and-descriptions-and-the-cta-section-text-and-button-labels-linking-to-donate-and-contact-pages",
-      "title": "Translate all user-facing text on the Home page into Hindi, including the highlights grid section headings, all four activity area card titles and descriptions, and the CTA section text and button labels linking to donate and contact pages.",
+      "id": "feature-add-the-membership-login-and-dashboard-routes-to-the-react-router-configuration-in-app-tsx",
+      "title": "Add the /membership, /login, and /dashboard routes to the React Router configuration in App.tsx.",
       "reqIds": [
-        "REQ-32"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-translate-all-user-facing-text-on-the-about-page-into-hindi-including-the-hero-section-text-organization-story-text-and-all-four-principle-card-titles-and-descriptions-purpose-vision-values-community",
-      "title": "Translate all user-facing text on the About page into Hindi, including the hero section text, organization story text, and all four principle card titles and descriptions (Purpose, Vision, Values, Community).",
-      "reqIds": [
-        "REQ-33"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-translate-all-user-facing-text-on-the-programs-page-into-hindi-including-all-section-headings-all-six-programcard-titles-and-descriptions-vedic-study-festivals-youth-education-community-gatherings-social-welfare-heritage-preservation-and-impact-statistics-labels",
-      "title": "Translate all user-facing text on the Programs page into Hindi, including all section headings, all six ProgramCard titles and descriptions (Vedic study, festivals, youth education, community gatherings, social welfare, heritage preservation), and impact statistics labels.",
-      "reqIds": [
-        "REQ-34"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-translate-all-user-facing-text-on-the-philosophy-page-into-hindi-including-section-headings-principle-titles-body-text-covering-sanatana-dharma-teachings-and-all-devotion-example-content-covering-ram-hanuman-and-yudhishthira",
-      "title": "Translate all user-facing text on the Philosophy page into Hindi, including section headings, principle titles, body text covering Sanatana Dharma teachings, and all devotion example content covering Ram, Hanuman, and Yudhishthira.",
-      "reqIds": [
-        "REQ-35"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-translate-all-user-facing-text-on-the-resources-page-into-hindi-including-the-hero-section-text-all-four-resource-category-card-headings-and-descriptions-sacred-texts-video-lectures-articles-essays-downloadable-materials-all-listed-item-titles-and-any-button-or-link-labels",
-      "title": "Translate all user-facing text on the Resources page into Hindi, including the hero section text, all four resource category card headings and descriptions (Sacred Texts, Video Lectures, Articles & Essays, Downloadable Materials), all listed item titles, and any button or link labels.",
-      "reqIds": [
-        "REQ-36"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-translate-all-user-facing-text-on-the-contact-page-into-hindi-including-form-field-labels-name-email-message-placeholder-text-submit-button-label-contact-information-labels-and-social-media-section-labels",
-      "title": "Translate all user-facing text on the Contact page into Hindi, including form field labels (name, email, message), placeholder text, submit button label, contact information labels, and social media section labels.",
-      "reqIds": [
-        "REQ-37"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-translate-all-user-facing-text-on-the-donate-page-into-hindi-including-all-section-headings-support-option-descriptions-impact-area-labels-with-percentage-breakdowns-and-the-transparency-commitment-text",
-      "title": "Translate all user-facing text on the Donate page into Hindi, including all section headings, support option descriptions, impact area labels with percentage breakdowns, and the transparency commitment text.",
-      "reqIds": [
-        "REQ-38"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-translate-all-user-facing-text-on-the-admin-page-into-hindi-including-the-dashboard-headings-search-field-placeholder-filter-labels-table-column-headers-action-button-labels-authorization-error-messages-and-the-csv-export-button-label",
-      "title": "Translate all user-facing text on the Admin page into Hindi, including the dashboard headings, search field placeholder, filter labels, table column headers, action button labels, authorization error messages, and the CSV export button label.",
-      "reqIds": [
-        "REQ-39"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-translate-all-user-facing-text-in-the-footer-component-into-hindi-including-the-quick-links-section-heading-all-navigation-link-labels-contact-section-heading-social-media-section-heading-and-attribution-copyright-text",
-      "title": "Translate all user-facing text in the Footer component into Hindi, including the quick links section heading, all navigation link labels, contact section heading, social media section heading, and attribution/copyright text.",
-      "reqIds": [
-        "REQ-40"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-on-the-admin-page-frontend-src-pages-admin-tsx-display-the-currently-logged-in-user-s-internet-identity-principal-id-in-a-clearly-visible-section-the-principal-id-should-be-shown-as-copyable-text-e-g-with-a-copy-to-clipboard-button-so-the-admin-can-easily-read-and-copy-it-this-section-should-be-visible-to-all-authenticated-users-on-the-admin-page-including-those-who-are-not-yet-authorized-as-admin-so-they-can-obtain-their-principal-id-and-share-it-for-authorization-purposes",
-      "title": "On the Admin page (`frontend/src/pages/Admin.tsx`), display the currently logged-in user's Internet Identity Principal ID in a clearly visible section. The Principal ID should be shown as copyable text (e.g., with a copy-to-clipboard button) so the admin can easily read and copy it. This section should be visible to all authenticated users on the Admin page — including those who are not yet authorized as admin — so they can obtain their Principal ID and share it for authorization purposes.",
-      "reqIds": [
-        "REQ-41"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-in-the-resources-page-frontend-src-pages-resources-tsx-connect-the-following-four-downloadable-external-resource-items-to-their-respective-urls-opening-each-link-in-a-new-tab-the-items-and-their-urls-are-1-https-share-google-offqsrz1ftsdjb8op-2-https-adipurgroup-wordpress-com-wp-content-uploads-2016-12-e0a4b8e0a4ade0a4be-pdf-3-https-calendarhindu-com-wp-content-uploads-2025-12-hindu-calendar-2026-with-tithi-in-hindi-pdf-download-pdf-4-https-www-rupanugabhajanashram-com-wp-content-uploads-2022-11-bhagavad-gita-hindi-pdf-each-link-must-use-target-blank-and-rel-noopener-noreferrer",
-      "title": "In the Resources page (`frontend/src/pages/Resources.tsx`), connect the following four downloadable/external resource items to their respective URLs, opening each link in a new tab. The items and their URLs are: (1) वैदिक दर्शन का परिचय → https://share.google/ofFQSRZ1FTsdJB8Op; (2) दैनिक प्रार्थना संग्रह → https://adipurgroup.wordpress.com/wp-content/uploads/2016/12/e0a4b8e0a4ade0a4be.pdf; (3) त्योहार कैलेंडर और अनुष्ठान → https://calendarhindu.com/wp-content/uploads/2025/12/Hindu-Calendar-2026-With-Tithi-in-Hindi-PDF-Download.pdf; (4) भगवद गीता अध्ययन मार्गदर्शिका → https://www.rupanugabhajanashram.com/wp-content/uploads/2022/11/Bhagavad-Gita-Hindi.pdf. Each link must use `target=\"_blank\"` and `rel=\"noopener noreferrer\"`.",
-      "reqIds": [
-        "REQ-43"
+        "REQ-6"
       ],
       "version": 1
     }
@@ -142,236 +63,40 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Translate the entire page/app UI from English into Hindi",
+      "summary": "Add 'सदस्य बनें' button in header linking to membership registration page",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-2",
-      "summary": "Translate all user-facing text in the Navigation component (nav links, mobile menu labels, admin link text) from English to Hindi.",
-      "reqIds": [
-        "REQ-1"
-      ],
+      "summary": "Membership registration form with fields: पहला नाम, उपनाम, पेशा, पूरा पता, संपर्क सूत्र, व्हाट्सएप नंबर, ईमेल, तहसील, थाना, ग्राम पंचायत, गांव, dropdowns for देश/राज्य/ज़िला/लिंग, file uploads for स्वयं की फोटो (max 10MB) and आधार कार्ड की फोटो (max 15MB), and a Submit button",
+      "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-3",
-      "summary": "Translate all user-facing text in the Hero component (organization tagline, mission statement, call-to-action button labels, scroll indicator text) from English to Hindi.",
-      "reqIds": [
-        "REQ-2"
-      ],
+      "summary": "Member login page with नंबर/ईमेल and पासवर्ड fields; all member data saved to admin panel",
+      "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-4",
-      "summary": "Translate all user-facing text in the Mission component (section heading, paragraph text, and all four core value titles and descriptions) from English to Hindi.",
-      "reqIds": [
-        "REQ-3"
-      ],
+      "summary": "Post-login ID card request page displaying payment instructions ('कार्ड के लिए 101 राशी अनुदान करे...') with contact number 7008981360; request info sent to admin",
+      "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-5",
-      "summary": "Translate all user-facing text in the SupportOptions component (section heading, all four support option titles, descriptions, and CTA link labels) from English to Hindi.",
-      "reqIds": [
-        "REQ-4"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-6",
-      "summary": "Translate all user-facing text on the Home page (section headings, highlight card titles and descriptions, CTA section text and button labels) from English to Hindi.",
-      "reqIds": [
-        "REQ-5"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-7",
-      "summary": "Translate all user-facing text on the About page (hero section text, organization story text, and all four principle card titles and descriptions) from English to Hindi.",
-      "reqIds": [
-        "REQ-6"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-8",
-      "summary": "Translate all user-facing text on the Programs page (section headings, all six program card titles and descriptions, and impact statistics labels) from English to Hindi.",
-      "reqIds": [
-        "REQ-7"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-9",
-      "summary": "Translate all user-facing text on the Philosophy page (section headings, principle titles, body text, and all devotion examples) from English to Hindi.",
-      "reqIds": [
-        "REQ-8"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-10",
-      "summary": "Translate all user-facing text on the Resources page (hero section text, all resource category headings and descriptions, item titles, and any button or link labels) from English to Hindi.",
-      "reqIds": [
-        "REQ-9"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-11",
-      "summary": "Translate all user-facing text on the Contact page (form field labels, placeholder text, submit button label, contact information labels, and social media section labels) from English to Hindi.",
-      "reqIds": [
-        "REQ-10"
-      ],
+      "summary": "Admin panel to view and manage all membership registrations, login records, and ID card requests",
+      "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-12",
-      "summary": "Translate all user-facing text on the Donate page (section headings, support option descriptions, impact area labels with percentage breakdowns, and transparency commitment text) from English to Hindi.",
+      "summary": "Extend the Motoko backend actor to support: storing member registration records (all form fields including base64-encoded file data with size validation metadata), member authentication (store hashed password + mobile/email, validate on login, return a session token or principal), storing ID card requests linked to member records, and query functions for the admin to retrieve all members and all ID card requests.",
       "reqIds": [
-        "REQ-11"
+        "REQ-7"
       ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-13",
-      "summary": "Translate all user-facing text on the Admin page (dashboard headings, search field placeholder, filter labels, table column headers, action button labels, authorization error messages, and CSV export button label) from English to Hindi.",
-      "reqIds": [
-        "REQ-12"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-14",
-      "summary": "Translate all user-facing text in the Footer component (quick links section heading, navigation link labels, contact section heading, social media section heading, and attribution text) from English to Hindi.",
-      "reqIds": [
-        "REQ-13"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-15",
-      "summary": "Translate all user-facing text in the Navigation component (nav links, mobile menu labels, admin link text) from English to Hindi.",
-      "reqIds": [
-        "REQ-15"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-16",
-      "summary": "Translate all user-facing text in the Hero component (organization tagline, mission statement, call-to-action button labels, scroll indicator text) from English to Hindi.",
-      "reqIds": [
-        "REQ-16"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-17",
-      "summary": "Translate all user-facing text in the Mission component (section heading, paragraph text, and all four core value titles and descriptions) from English to Hindi.",
-      "reqIds": [
-        "REQ-17"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-18",
-      "summary": "Translate all user-facing text in the SupportOptions component (section heading, all four support option titles, descriptions, and CTA link labels) from English to Hindi.",
-      "reqIds": [
-        "REQ-18"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-19",
-      "summary": "Translate all user-facing text on the Home page (section headings, highlight card titles and descriptions, CTA section text and button labels) from English to Hindi.",
-      "reqIds": [
-        "REQ-19"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-20",
-      "summary": "Translate all user-facing text on the About page (hero section text, organization story text, and all four principle card titles and descriptions) from English to Hindi.",
-      "reqIds": [
-        "REQ-20"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-21",
-      "summary": "Translate all user-facing text on the Programs page (section headings, all six program card titles and descriptions, and impact statistics labels) from English to Hindi.",
-      "reqIds": [
-        "REQ-21"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-22",
-      "summary": "Translate all user-facing text on the Philosophy page (section headings, principle titles, body text, and all devotion examples covering Ram, Hanuman, and Yudhishthira) from English to Hindi.",
-      "reqIds": [
-        "REQ-22"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-23",
-      "summary": "Translate all user-facing text on the Resources page (hero section text, all resource category headings and descriptions, item titles, and any button or link labels) from English to Hindi.",
-      "reqIds": [
-        "REQ-23"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-24",
-      "summary": "Translate all user-facing text on the Contact page (form field labels, placeholder text, submit button label, contact information labels, and social media section labels) from English to Hindi.",
-      "reqIds": [
-        "REQ-24"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-25",
-      "summary": "Translate all user-facing text on the Donate page (section headings, support option descriptions, impact area labels with percentage breakdowns, and transparency commitment text) from English to Hindi.",
-      "reqIds": [
-        "REQ-25"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-26",
-      "summary": "Translate all user-facing text on the Admin page (dashboard headings, search field placeholder, filter labels, table column headers, action button labels, authorization error messages, and CSV export button label) from English to Hindi.",
-      "reqIds": [
-        "REQ-26"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-27",
-      "summary": "Translate all user-facing text in the Footer component (quick links section heading, navigation link labels, contact section heading, social media section heading, and attribution/copyright text) from English to Hindi.",
-      "reqIds": [
-        "REQ-27"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-28",
-      "summary": "Display the logged-in user's Principal ID on the Admin page so the admin can easily copy it.",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-29",
-      "summary": "In the backend Motoko actor (`backend/main.mo`), add the Principal ID `txzwk-b2k4v-63dny-xpzzb-qz4ij-fivmw-kuzqk-o6ngk-kib7t-63zon-lae` to the authorized admin list so that this user is granted admin access upon login.",
-      "reqIds": [
-        "REQ-42"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-30",
-      "summary": "On the विशेष संसाधन (Resources) page, connect the following links: वैदिक दर्शन का परिचय → https://share.google/ofFQSRZ1FTsdJB8Op, दैनिक प्रार्थना संग्रह → https://adipurgroup.wordpress.com/wp-content/uploads/2016/12/e0a4b8e0a4ade0a4be.pdf, त्योहार कैलेंडर और अनुष्ठान → https://calendarhindu.com/wp-content/uploads/2025/12/Hindu-Calendar-2026-With-Tithi-in-Hindi-PDF-Download.pdf, भगवद गीता अध्ययन मार्गदर्शिका → https://www.rupanugabhajanashram.com/wp-content/uploads/2022/11/Bhagavad-Gita-Hindi.pdf",
-      "reqIds": [],
       "status": "pending"
     }
   ],

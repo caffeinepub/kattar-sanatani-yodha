@@ -7,24 +7,47 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phoneNumber: '',
+    whatsappNumber: '',
     message: '',
   });
 
+  const [validationErrors, setValidationErrors] = useState<{ phoneNumber?: string; whatsappNumber?: string }>({});
+
   const { submitForm, isSubmitting, isSuccess, isError } = useContactForm();
+
+  const validate = () => {
+    const errors: { phoneNumber?: string; whatsappNumber?: string } = {};
+    if (!formData.phoneNumber.trim()) {
+      errors.phoneNumber = 'फ़ोन नंबर आवश्यक है (Phone Number is required)';
+    }
+    if (!formData.whatsappNumber.trim()) {
+      errors.whatsappNumber = 'व्हाट्सएप नंबर आवश्यक है (WhatsApp Number is required)';
+    }
+    return errors;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await submitForm(formData.name, formData.email, formData.message);
+    const errors = validate();
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors(errors);
+      return;
+    }
+    setValidationErrors({});
+    await submitForm(formData.name, formData.email, formData.message, formData.phoneNumber, formData.whatsappNumber);
     if (!isError) {
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: '', email: '', phoneNumber: '', whatsappNumber: '', message: '' });
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    // Clear validation error on change
+    if (name === 'phoneNumber' || name === 'whatsappNumber') {
+      setValidationErrors(prev => ({ ...prev, [name]: undefined }));
+    }
   };
 
   return (
@@ -51,6 +74,7 @@ export default function Contact() {
                 हमें संदेश भेजें
               </h2>
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Name */}
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                     आपका नाम *
@@ -67,6 +91,7 @@ export default function Contact() {
                   />
                 </div>
 
+                {/* Email */}
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
                     ईमेल पता *
@@ -83,6 +108,51 @@ export default function Contact() {
                   />
                 </div>
 
+                {/* Phone Number */}
+                <div>
+                  <label htmlFor="phoneNumber" className="block text-sm font-medium text-foreground mb-2">
+                    फ़ोन नंबर (Phone Number) *
+                  </label>
+                  <input
+                    type="tel"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    value={formData.phoneNumber}
+                    onChange={handleChange}
+                    required
+                    className={`w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-all ${
+                      validationErrors.phoneNumber ? 'border-destructive focus:ring-destructive' : 'border-input'
+                    }`}
+                    placeholder="अपना फ़ोन नंबर दर्ज करें (e.g. +91 98765 43210)"
+                  />
+                  {validationErrors.phoneNumber && (
+                    <p className="mt-1 text-sm text-destructive">{validationErrors.phoneNumber}</p>
+                  )}
+                </div>
+
+                {/* WhatsApp Number */}
+                <div>
+                  <label htmlFor="whatsappNumber" className="block text-sm font-medium text-foreground mb-2">
+                    व्हाट्सएप नंबर (WhatsApp Number) *
+                  </label>
+                  <input
+                    type="tel"
+                    id="whatsappNumber"
+                    name="whatsappNumber"
+                    value={formData.whatsappNumber}
+                    onChange={handleChange}
+                    required
+                    className={`w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-all ${
+                      validationErrors.whatsappNumber ? 'border-destructive focus:ring-destructive' : 'border-input'
+                    }`}
+                    placeholder="अपना व्हाट्सएप नंबर दर्ज करें (e.g. +91 98765 43210)"
+                  />
+                  {validationErrors.whatsappNumber && (
+                    <p className="mt-1 text-sm text-destructive">{validationErrors.whatsappNumber}</p>
+                  )}
+                </div>
+
+                {/* Message */}
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
                     आपका संदेश *
@@ -147,7 +217,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-display font-semibold text-foreground mb-1">ईमेल</h3>
-                    <a 
+                    <a
                       href="mailto:adityarajsrivastav76@gmail.com"
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
@@ -163,13 +233,13 @@ export default function Contact() {
                   <div>
                     <h3 className="font-display font-semibold text-foreground mb-1">फ़ोन</h3>
                     <div className="space-y-1">
-                      <a 
+                      <a
                         href="tel:+918130608468"
                         className="block text-muted-foreground hover:text-primary transition-colors"
                       >
                         +91 81306 08468
                       </a>
-                      <a 
+                      <a
                         href="tel:+919259279963"
                         className="block text-muted-foreground hover:text-primary transition-colors"
                       >
