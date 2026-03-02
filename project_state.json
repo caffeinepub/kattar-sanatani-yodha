@@ -1,107 +1,25 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Political party membership web app with Hindi UI. Features include a 'सदस्य बनें' header button, a detailed membership registration form, member login, an ID card request page, and an admin panel to manage all submitted data.",
+  "summary": "Web app with membership form, login, and admin page. Uses React with MemberAuthProvider context for authentication.",
   "architectural_notes": [
-    "Hindi (Devanagari) UI throughout; all form labels and page content in Hindi",
-    "Cascading dropdowns: देश → राज्य → ज़िला with full country/state/district data",
-    "File upload limits: स्वयं की फोटो max 10MB (all formats), आधार कार्ड की फोटो max 15MB (all formats)",
-    "Admin panel stores all member registrations, login credentials, and ID card requests"
+    "React app using MemberAuthProvider context (MemberAuthContext) for member authentication state management"
   ],
   "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-add-a-become-a-member-button-in-the-navigation-header-that-navigates-to-the-membership-route-the-button-should-be-visually-distinct-e-g-filled-accent-style-and-appear-alongside-the-existing-nav-links",
-      "title": "Add a 'सदस्य बनें' (Become a Member) button in the Navigation header that navigates to the /membership route. The button should be visually distinct (e.g., filled/accent style) and appear alongside the existing nav links.",
+      "id": "feature-wrap-the-root-application-component-tree-with-memberauthprovider-from-frontend-src-hooks-usememberauth-tsx-so-that-member-authentication-context-is-available-to-all-pages-and-components-since-frontend-src-main-tsx-is-immutable-apply-the-memberauthprovider-wrapper-inside-frontend-src-app-tsx-wrap-the-routerprovider-or-the-top-level-jsx-returned-by-app-with-memberauthprovider",
+      "title": "Wrap the root application component tree with MemberAuthProvider from 'frontend/src/hooks/useMemberAuth.tsx' so that member authentication context is available to all pages and components. Since 'frontend/src/main.tsx' is immutable, apply the MemberAuthProvider wrapper inside 'frontend/src/App.tsx' — wrap the RouterProvider (or the top-level JSX returned by App) with <MemberAuthProvider>.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
-    },
-    {
-      "id": "feature-create-a-membership-page-with-a-registration-form-containing-text-inputs-for-first-name-last-name-occupation-full-address-contact-number-whatsapp-number-email-tehsil-police-station-gram-panchayat-village-dropdown-selects-for-country-all-countries-state-states-of-selected-country-district-districts-of-selected-state-gender-male-female-other-file-upload-for-own-photo-max-10-mb-all-formats-and-aadhaar-card-photo-max-15-mb-all-formats-and-a-submit-button-on-submission-store-all-member-data-including-file-references-in-the-backend",
-      "title": "Create a /membership page with a registration form containing: text inputs for पहला नाम (First Name), उपनाम (Last Name), पेशा (Occupation), पूरा पता (Full Address), संपर्क सूत्र (Contact Number), व्हाट्सएप नंबर (WhatsApp Number), ईमेल (Email), तहसील (Tehsil), थाना (Police Station), ग्राम पंचायत (Gram Panchayat), गांव (Village); dropdown selects for देश (Country — all countries), राज्य (State — states of selected country), ज़िला (District — districts of selected state), लिंग (Gender: Male/Female/Other); file upload for स्वयं की फोटो (own photo, max 10 MB, all formats) and आधार कार्ड की फोटो (Aadhaar card photo, max 15 MB, all formats); and a Submit button. On submission, store all member data (including file references) in the backend.",
-      "reqIds": [
-        "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-create-a-login-page-with-a-form-labeled-mobile-number-or-email-and-password-on-successful-login-authenticate-the-member-session-and-redirect-to-their-member-dashboard-dashboard-store-member-credentials-hashed-password-mobile-email-in-the-backend-during-registration-and-validate-on-login",
-      "title": "Create a /login page with a form labeled 'नंबर/ईमेल' (mobile number or email) and 'पासवर्ड' (password). On successful login, authenticate the member session and redirect to their member dashboard (/dashboard). Store member credentials (hashed password, mobile/email) in the backend during registration and validate on login.",
-      "reqIds": [
-        "REQ-3"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-create-a-dashboard-page-accessible-only-after-login-showing-the-logged-in-member-s-basic-info-and-an-id-card-request-section-the-id-card-request-section-must-display-the-following-message-verbatim-101-7008981360-include-a-id-card-request-button-when-clicked-send-the-member-s-registration-information-as-an-id-card-request-to-the-admin-panel-in-the-backend",
-      "title": "Create a /dashboard page (accessible only after login) showing the logged-in member's basic info and an ID card request section. The ID card request section must display the following message verbatim: 'कार्ड के लिए 101 राशी अनुदान करे जो अपनी पार्टी का फंड जमा होगा। भुगतान करने के लिए संपर्क सूत्र जो है उसे कॉल करें या संदेश भेजें या फिर नंबर 7008981360 पर व्हाट्सएप पर संदेश भेजें'. Include a 'ID Card Request' button; when clicked, send the member's registration information as an ID card request to the admin panel in the backend.",
-      "reqIds": [
-        "REQ-4"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-extend-the-existing-admin-page-admin-to-display-three-additional-data-sections-1-all-membership-registrations-with-all-form-fields-including-file-attachment-indicators-2-member-login-activity-records-and-3-all-id-card-requests-with-member-details-each-section-should-be-searchable-and-sortable-admin-access-must-remain-restricted-to-authorized-admin-users-only",
-      "title": "Extend the existing Admin page (/admin) to display three additional data sections: (1) All membership registrations with all form fields (including file attachment indicators), (2) Member login activity records, and (3) All ID card requests with member details. Each section should be searchable and sortable. Admin access must remain restricted to authorized admin users only.",
-      "reqIds": [
-        "REQ-5"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-the-membership-login-and-dashboard-routes-to-the-react-router-configuration-in-app-tsx",
-      "title": "Add the /membership, /login, and /dashboard routes to the React Router configuration in App.tsx.",
-      "reqIds": [
-        "REQ-6"
-      ],
-      "version": 1
     }
   ],
-  "new_feature_requests": [
-    {
-      "id": "AR-1",
-      "summary": "Add 'सदस्य बनें' button in header linking to membership registration page",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-2",
-      "summary": "Membership registration form with fields: पहला नाम, उपनाम, पेशा, पूरा पता, संपर्क सूत्र, व्हाट्सएप नंबर, ईमेल, तहसील, थाना, ग्राम पंचायत, गांव, dropdowns for देश/राज्य/ज़िला/लिंग, file uploads for स्वयं की फोटो (max 10MB) and आधार कार्ड की फोटो (max 15MB), and a Submit button",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-3",
-      "summary": "Member login page with नंबर/ईमेल and पासवर्ड fields; all member data saved to admin panel",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-4",
-      "summary": "Post-login ID card request page displaying payment instructions ('कार्ड के लिए 101 राशी अनुदान करे...') with contact number 7008981360; request info sent to admin",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-5",
-      "summary": "Admin panel to view and manage all membership registrations, login records, and ID card requests",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-12",
-      "summary": "Extend the Motoko backend actor to support: storing member registration records (all form fields including base64-encoded file data with size validation metadata), member authentication (store hashed password + mobile/email, validate on login, return a session token or principal), storing ID card requests linked to member records, and query functions for the admin to retrieve all members and all ID card requests.",
-      "reqIds": [
-        "REQ-7"
-      ],
-      "status": "pending"
-    }
-  ],
+  "new_feature_requests": [],
   "gameProjectType": "none",
-  "projectName": "Kattar Sanatani Yodha",
+  "projectName": "Wrap app with MemberAuthProvider context",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

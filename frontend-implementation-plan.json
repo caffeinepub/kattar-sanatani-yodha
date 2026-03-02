@@ -1,149 +1,22 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add Membership Registration, Member Login, ID Card Request, and Admin Panel",
+  "title": "Wrap app with MemberAuthProvider context",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Add a 'सदस्य बनें' (Become a Member) button in the Navigation header that navigates to /membership",
+      "summary": "Wrap the root application component tree with MemberAuthProvider from 'frontend/src/hooks/useMemberAuth.tsx' so that member authentication context is available to all pages and components",
       "acceptanceCriteria": [
-        "A 'सदस्य बनें' button is visible in the Navigation header on all pages.",
-        "Clicking the button navigates the user to /membership.",
-        "The button styling is consistent with the existing saffron/gold theme."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/Navigation.tsx",
-          "operation": "modify",
-          "description": "Add a 'सदस्य बनें' button to the navigation header alongside existing nav links. Style it with a filled/accent appearance (e.g., bg-primary text-primary-foreground) to make it visually distinct. The button should navigate to /membership when clicked. Place it after the existing nav links but before the admin link. Ensure it appears in both desktop and mobile navigation views."
-        }
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "summary": "Create a /membership page with a comprehensive registration form for new members",
-      "acceptanceCriteria": [
-        "The /membership page renders all 11 text input fields with their Hindi labels.",
-        "Dropdown for देश lists all countries; selecting a country populates राज्य; selecting a state populates ज़िला.",
-        "लिंग dropdown offers at least Male/Female/Other options.",
-        "स्वयं की फोटो upload enforces a 10 MB file size limit.",
-        "आधार कार्ड की फोटो upload enforces a 15 MB file size limit.",
-        "Both file uploads accept all file formats.",
-        "Submitting the form stores all member data in the backend actor.",
-        "A success message is shown after successful submission."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/Membership.tsx",
-          "operation": "create",
-          "description": "Create a membership registration page with a form containing: text inputs for पहला नाम (firstName), उपनाम (lastName), पेशा (occupation), पूरा पता (fullAddress), संपर्क सूत्र (contactNumber), व्हाट्सएप नंबर (whatsappNumber), ईमेल (email), तहसील (tehsil), थाना (policeStation), ग्राम पंचायत (gramPanchayat), गांव (village), and पासवर्ड (password - store hashed); cascading dropdowns for देश (country), राज्य (state), ज़िला (district); a लिंग (gender) dropdown with Male/Female/Other; file upload inputs for स्वयं की फोटो (max 10 MB) and आधार कार्ड की फोटो (max 15 MB) with client-side validation; and a Submit button. Convert uploaded files to base64 with FileData structure {fileName, fileSize, base64Data} matching the backend interface. Call the backend registerMember method with the Member object. Show success/error messages using toast or alert. Use the saffron/gold theme from index.css."
-        },
-        {
-          "path": "frontend/src/hooks/useMembership.ts",
-          "operation": "create",
-          "description": "Create a React Query mutation hook for member registration. The hook should call actor.registerMember(member) and return the member ID on success. Include proper error handling and expose loading/success/error states. Also provide a helper function to convert File objects to base64 FileData format with size validation (10 MB for photo, 15 MB for Aadhaar)."
-        },
-        {
-          "path": "frontend/src/utils/locationData.ts",
-          "operation": "create",
-          "description": "Create a utility module providing comprehensive location data: an array of all countries, a function to get states for a selected country, and a function to get districts for a selected state. Use real-world data or a reliable data source. Export functions getCountries(), getStates(country: string), and getDistricts(state: string) that return string arrays."
-        }
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "summary": "Create a /login page for member authentication with mobile number/email and password",
-      "acceptanceCriteria": [
-        "A /login page exists with नंबर/ईमेल and पासवर्ड input fields.",
-        "Login validates against stored member credentials in the backend.",
-        "Successful login redirects the user to /dashboard.",
-        "Failed login shows an error message in Hindi.",
-        "Member login session/identity is tracked so the dashboard knows who is logged in."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/Login.tsx",
-          "operation": "create",
-          "description": "Create a member login page with a form containing नंबर/ईमेल (emailOrPhone) and पासवर्ड (password) input fields. On submit, call the backend loginMember method which returns the member ID if successful. Store the logged-in member ID in React state or context for session tracking. On successful login, navigate to /dashboard. On failure, display an error message in Hindi (e.g., 'लॉगिन विफल। कृपया अपनी जानकारी जांचें।'). Use the saffron/gold theme."
-        },
-        {
-          "path": "frontend/src/hooks/useMemberAuth.tsx",
-          "operation": "create",
-          "description": "Create a React context and hook for member authentication session management. Provide MemberAuthProvider that wraps the app and exposes memberLogin(emailOrPhone, password), memberLogout(), loggedInMemberId, and isLoggedIn state. Use React Query mutation for login and store the member ID in state after successful login. Provide useMemberAuth hook to access the context. Clear member session on logout."
-        },
-        {
-          "path": "frontend/src/hooks/useMemberQueries.ts",
-          "operation": "create",
-          "description": "Create React Query hooks for member-related data fetching: useGetCallerMember() to fetch the logged-in member's full profile via actor.getCallerMember(), and useGetAllMembers(filter) for admin use via actor.getAllMembers(filter). Both hooks depend on the actor being available."
-        }
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "summary": "Create a /dashboard page for logged-in members to view profile and request an ID card",
-      "acceptanceCriteria": [
-        "The /dashboard page is only accessible to logged-in members; unauthenticated users are redirected to /login.",
-        "The dashboard displays the member's name and basic profile info.",
-        "The ID card request section shows the exact Hindi payment instruction text including WhatsApp number 7008981360.",
-        "A request button submits the member's data as an ID card request to the backend.",
-        "The backend stores the ID card request linked to the member's record.",
-        "A confirmation message is shown after a successful request submission."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/MemberDashboard.tsx",
-          "operation": "create",
-          "description": "Create a member dashboard page that checks authentication via useMemberAuth hook. If not logged in, redirect to /login using useNavigate. Fetch and display the logged-in member's profile using useGetCallerMember hook (show firstName, lastName, email, contactNumber, etc.). Include an ID card request section with the exact Hindi text: 'कार्ड के लिए 101 राशी अनुदान करे जो अपनी पार्टी का फंड जमा होगा। भुगतान करने के लिए संपर्क सूत्र जो है उसे कॉल करें या संदेश भेजें या फिर नंबर 7008981360 पर व्हाट्सएप पर संदेश भेजें'. Add an 'ID Card Request' button that calls the backend submitIdCardRequest method with the member's ID. Show a success message after submission. Use the saffron/gold theme."
-        },
-        {
-          "path": "frontend/src/hooks/useMemberAuth.tsx",
-          "operation": "modify",
-          "description": "Extend the MemberAuthProvider to also provide a useRequireMemberAuth hook that checks if the user is logged in and redirects to /login if not. This hook should be called at the top of protected pages like MemberDashboard."
-        }
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "summary": "Extend the existing Admin page to display membership registrations, login activity, and ID card requests",
-      "acceptanceCriteria": [
-        "The Admin page shows a tab or section for Membership Registrations listing all submitted member records.",
-        "The Admin page shows a tab or section for ID Card Requests listing all requests with member details.",
-        "All admin sections are searchable and sortable.",
-        "Admin page remains accessible only to authorized admin users.",
-        "File upload fields show whether a file was attached (name/size reference) for each member."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/Admin.tsx",
-          "operation": "modify",
-          "description": "Add three new data sections to the existing Admin page: (1) Membership Registrations table displaying all members with columns for all form fields (firstName, lastName, occupation, country, state, district, village, email, contactNumber, whatsappNumber, gender, timestamp) and file attachment indicators (photo.fileName with photo.fileSize, aadhaarCardPhoto.fileName with aadhaarCardPhoto.fileSize); (2) ID Card Requests table showing requestedBy principal (if available), memberId, and timestamp; (3) Login Activities table showing memberId, timestamp, and successful status. Use tabs or accordion sections to organize the three data views. Implement search and sort functionality for each table using the Filter interface (searchTerm, sortBy) for members. Fetch data using useGetAllMembers, useGetAllIdCardRequests, and useGetAllLoginActivities hooks. Maintain existing contact form submissions section. Keep the admin-only access guard using Internet Identity authentication."
-        },
-        {
-          "path": "frontend/src/hooks/useMemberQueries.ts",
-          "operation": "modify",
-          "description": "Add two new React Query hooks: useGetAllIdCardRequests() to fetch all ID card requests via actor.getAllIdCardRequests(), and useGetAllLoginActivities() to fetch login activity records via actor.getAllLoginActivities(). Both hooks should be enabled only when the actor is available."
-        }
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "summary": "Add the /membership, /login, and /dashboard routes to the React Router configuration",
-      "acceptanceCriteria": [
-        "Navigating to /membership renders the MembershipForm page.",
-        "Navigating to /login renders the Login page.",
-        "Navigating to /dashboard renders the MemberDashboard page.",
-        "All new routes are nested under the existing Layout root route so the navigation and footer are visible."
+        "MemberAuthProvider wraps the entire component tree rendered by App.tsx",
+        "The useMemberAuth hook resolves correctly (no 'used outside provider' errors) in Login, MemberDashboard, and Navigation components",
+        "All existing routes continue to render without errors",
+        "Member login and logout flows work as before"
       ],
       "file_operations": [
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Import the new Membership, Login, and MemberDashboard page components. Add three new route definitions under the Layout root route: {path: '/membership', element: <Membership />}, {path: '/login', element: <Login />}, and {path: '/dashboard', element: <MemberDashboard />}. Ensure they are siblings to the existing home, about, programs, philosophy, resources, contact, donate, and admin routes so that the Layout component's navigation and footer are rendered on all pages."
-        },
-        {
-          "path": "frontend/src/main.tsx",
-          "operation": "modify",
-          "description": "Wrap the existing InternetIdentityProvider and QueryClientProvider with the new MemberAuthProvider so member authentication state is available throughout the app. Import MemberAuthProvider from hooks/useMemberAuth and nest it inside InternetIdentityProvider but outside QueryClientProvider (or vice versa, ensuring both contexts are available)."
+          "description": "Import MemberAuthProvider from './hooks/useMemberAuth.tsx' and wrap the RouterProvider component (or the entire JSX tree returned by the App function) with <MemberAuthProvider>. Ensure the provider wraps all routing logic so that all child routes and components have access to the member authentication context. Do not modify frontend/src/main.tsx as it is immutable."
         }
       ]
     }

@@ -1,169 +1,37 @@
 {
   "kind": "build_request",
-  "title": "Add Membership Registration, Member Login, ID Card Request, and Admin Panel",
-  "projectName": "Kattar Sanatani Yodha",
-  "priority": "high",
+  "title": "Wrap app with MemberAuthProvider context",
+  "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Add a 'सदस्य बनें' (Become a Member) button in the Navigation header that navigates to the /membership route. The button should be visually distinct (e.g., filled/accent style) and appear alongside the existing nav links.",
+      "text": "Wrap the root application component tree with MemberAuthProvider from 'frontend/src/hooks/useMemberAuth.tsx' so that member authentication context is available to all pages and components. Since 'frontend/src/main.tsx' is immutable, apply the MemberAuthProvider wrapper inside 'frontend/src/App.tsx' — wrap the RouterProvider (or the top-level JSX returned by App) with <MemberAuthProvider>.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-12"
+          "msg-recent"
         ],
         "quotes": [
-          "creat a butten at header of 'सदस्य बनें'"
+          "import { MemberAuthProvider } from './context/MemberAuthContext';",
+          "function App() { return ( <MemberAuthProvider><YourComponent /></MemberAuthProvider> ); }"
         ]
       },
       "acceptanceCriteria": [
-        "A 'सदस्य बनें' button is visible in the Navigation header on all pages.",
-        "Clicking the button navigates the user to /membership.",
-        "The button styling is consistent with the existing saffron/gold theme."
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "text": "Create a /membership page with a registration form containing: text inputs for पहला नाम (First Name), उपनाम (Last Name), पेशा (Occupation), पूरा पता (Full Address), संपर्क सूत्र (Contact Number), व्हाट्सएप नंबर (WhatsApp Number), ईमेल (Email), तहसील (Tehsil), थाना (Police Station), ग्राम पंचायत (Gram Panchayat), गांव (Village); dropdown selects for देश (Country — all countries), राज्य (State — states of selected country), ज़िला (District — districts of selected state), लिंग (Gender: Male/Female/Other); file upload for स्वयं की फोटो (own photo, max 10 MB, all formats) and आधार कार्ड की फोटो (Aadhaar card photo, max 15 MB, all formats); and a Submit button. On submission, store all member data (including file references) in the backend.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-12"
-        ],
-        "quotes": [
-          "page for membership which page show after click on 'सदस्य बनें' and the page include text boxes 'पहला नाम','उपनाम' , 'पेशा' , 'पूरा पता' , 'संपर्क सूत्र' , 'व्हाट्सएप नंबर', 'ईमेल' , 'तहसील' , 'थाना' , 'ग्राम पंचायत' , 'गांव' drop down list – 'देश'(all country name) , 'राज्य'(state of selected country) , 'ज़िला'(district of selected state) , 'लिंग'(gender) attachment – 'स्वयं की फोटो'(max. 10 mb format-all type) , 'आधार कार्ड की फोटो'(max. 15mb format-all type) after it creat a butten of ''submit'' and all these information save at admin page"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The /membership page renders all 11 text input fields with their Hindi labels.",
-        "Dropdown for देश lists all countries; selecting a country populates राज्य; selecting a state populates ज़िला.",
-        "लिंग dropdown offers at least Male/Female/Other options.",
-        "स्वयं की फोटो upload enforces a 10 MB file size limit.",
-        "आधार कार्ड की फोटो upload enforces a 15 MB file size limit.",
-        "Both file uploads accept all file formats.",
-        "Submitting the form stores all member data in the backend actor.",
-        "A success message is shown after successful submission."
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "Create a /login page with a form labeled 'नंबर/ईमेल' (mobile number or email) and 'पासवर्ड' (password). On successful login, authenticate the member session and redirect to their member dashboard (/dashboard). Store member credentials (hashed password, mobile/email) in the backend during registration and validate on login.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-12"
-        ],
-        "quotes": [
-          "creat a login page where they can login via entering theit mobile number/email which name 'नंबर/ईमेल' and password which name 'पासवर्ड' And after it all these information save at admin page"
-        ]
-      },
-      "acceptanceCriteria": [
-        "A /login page exists with नंबर/ईमेल and पासवर्ड input fields.",
-        "Login validates against stored member credentials in the backend.",
-        "Successful login redirects the user to /dashboard.",
-        "Failed login shows an error message in Hindi.",
-        "Member login session/identity is tracked so the dashboard knows who is logged in."
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "text": "Create a /dashboard page (accessible only after login) showing the logged-in member's basic info and an ID card request section. The ID card request section must display the following message verbatim: 'कार्ड के लिए 101 राशी अनुदान करे जो अपनी पार्टी का फंड जमा होगा। भुगतान करने के लिए संपर्क सूत्र जो है उसे कॉल करें या संदेश भेजें या फिर नंबर 7008981360 पर व्हाट्सएप पर संदेश भेजें'. Include a 'ID Card Request' button; when clicked, send the member's registration information as an ID card request to the admin panel in the backend.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-12"
-        ],
-        "quotes": [
-          "After login his id creat a page where they can request for their id card which written as 'कार्ड के लिए 101 राशी अनुदान करे जो अपनी पार्टी का फंड जमा होगा। भुगतान करने के लिए संपर्क सूत्र जो है उसे कॉल करें या संदेश भेजें या फिर नंबर 7008981360 पर व्हाट्सएप पर संदेश भेजें' after their request send their information to admin"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The /dashboard page is only accessible to logged-in members; unauthenticated users are redirected to /login.",
-        "The dashboard displays the member's name and basic profile info.",
-        "The ID card request section shows the exact Hindi payment instruction text including WhatsApp number 7008981360.",
-        "A request button submits the member's data as an ID card request to the backend.",
-        "The backend stores the ID card request linked to the member's record.",
-        "A confirmation message is shown after a successful request submission."
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "text": "Extend the existing Admin page (/admin) to display three additional data sections: (1) All membership registrations with all form fields (including file attachment indicators), (2) Member login activity records, and (3) All ID card requests with member details. Each section should be searchable and sortable. Admin access must remain restricted to authorized admin users only.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-12"
-        ],
-        "quotes": [
-          "all these information save at admin page",
-          "after their request send their information to admin"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The Admin page shows a tab or section for Membership Registrations listing all submitted member records.",
-        "The Admin page shows a tab or section for ID Card Requests listing all requests with member details.",
-        "All admin sections are searchable and sortable.",
-        "Admin page remains accessible only to authorized admin users.",
-        "File upload fields show whether a file was attached (name/size reference) for each member."
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "text": "Add the /membership, /login, and /dashboard routes to the React Router configuration in App.tsx.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-12"
-        ],
-        "quotes": [
-          "creat a butten at header",
-          "creat a login page",
-          "After login his id creat a page"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Navigating to /membership renders the MembershipForm page.",
-        "Navigating to /login renders the Login page.",
-        "Navigating to /dashboard renders the MemberDashboard page.",
-        "All new routes are nested under the existing Layout root route so the navigation and footer are visible."
-      ]
-    },
-    {
-      "id": "REQ-7",
-      "text": "Extend the Motoko backend actor to support: storing member registration records (all form fields including base64-encoded file data with size validation metadata), member authentication (store hashed password + mobile/email, validate on login, return a session token or principal), storing ID card requests linked to member records, and query functions for the admin to retrieve all members and all ID card requests.",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-12"
-        ],
-        "quotes": [
-          "all these information save at admin page",
-          "after their request send their information to admin"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Backend exposes a submitMembership update call that stores all member fields.",
-        "Backend exposes a memberLogin query/update that validates mobile/email + password and returns an auth token or success flag.",
-        "Backend exposes a requestIdCard update call that records the request linked to a member.",
-        "Backend exposes admin-only queries to list all members and all ID card requests.",
-        "File data is stored as base64 text with size metadata.",
-        "Existing contact form and admin functionality is not broken."
+        "MemberAuthProvider wraps the entire component tree rendered by App.tsx",
+        "The useMemberAuth hook resolves correctly (no 'used outside provider' errors) in Login, MemberDashboard, and Navigation components",
+        "All existing routes continue to render without errors",
+        "Member login and logout flows work as before"
       ]
     }
   ],
   "constraints": [
-    "Preserve all existing routes, components, and functionality (contact form, admin submissions, AdSense, etc.).",
-    "Do not modify files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui.",
-    "All new UI must follow the existing saffron/gold/terracotta Sanatani theme defined in frontend/src/index.css and tailwind.config.js.",
-    "The exact Hindi text for the ID card payment instruction must appear verbatim including WhatsApp number 7008981360.",
-    "File uploads should be stored as base64 in the backend since external file storage is not available."
+    "Do not modify frontend/src/main.tsx — it is immutable",
+    "Import MemberAuthProvider from the existing 'frontend/src/hooks/useMemberAuth.tsx', not from a new file"
   ],
   "nonGoals": [
-    "Payment gateway integration — the ID card payment is handled offline via phone/WhatsApp.",
-    "Real-time notifications or WebSocket features.",
-    "SMS OTP verification for login.",
-    "Internet Identity (ICP) login for members — only mobile/email + password login is required.",
-    "External file storage or CDN integration."
+    "Creating a new MemberAuthContext file — the existing useMemberAuth.tsx already exports MemberAuthProvider",
+    "Changing any authentication logic or backend calls",
+    "Modifying any page or component other than App.tsx"
   ],
   "imageRequirements": {
     "required": [],

@@ -11,6 +11,7 @@ import Admin from './pages/Admin';
 import Membership from './pages/Membership';
 import Login from './pages/Login';
 import MemberDashboard from './pages/MemberDashboard';
+import { MemberAuthProvider } from './hooks/useMemberAuth';
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -51,5 +52,9 @@ declare module '@tanstack/react-router' {
 }
 
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <MemberAuthProvider>
+      <RouterProvider router={router} />
+    </MemberAuthProvider>
+  );
 }
