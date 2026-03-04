@@ -1,24 +1,79 @@
 import Text "mo:core/Text";
 import List "mo:core/List";
+import Map "mo:core/Map";
+import Nat "mo:core/Nat";
 import Time "mo:core/Time";
 import Runtime "mo:core/Runtime";
-import Iter "mo:core/Iter";
 import Principal "mo:core/Principal";
-import Map "mo:core/Map";
+import Array "mo:core/Array";
+import Order "mo:core/Order";
+import Iter "mo:core/Iter";
 import MixinAuthorization "authorization/MixinAuthorization";
 import AccessControl "authorization/access-control";
-import Order "mo:core/Order";
+
+
 
 actor {
   let accessControlState = AccessControl.initState();
   include MixinAuthorization(accessControlState);
 
-  public type Submission = {
+  var nextMemberId = 0;
+  var nextId = 0;
+  let userProfiles = Map.empty<Principal, UserProfile>();
+  let loginActivities = List.empty<LoginActivity>();
+  let idCardRequests = List.empty<IdCardRequest>();
+  let members = Map.empty<Nat, Member>();
+
+  public type Gender = {
+    #male;
+    #female;
+    #other;
+  };
+
+  public type Member = {
     id : Nat;
-    name : Text;
+    firstName : Text;
+    lastName : Text;
+    occupation : Text;
+    fullAddress : Text;
+    contactNumber : Text;
+    whatsappNumber : Text;
     email : Text;
-    message : Text;
+    tehsil : Text;
+    policeStation : Text;
+    gramPanchayat : Text;
+    village : Text;
+    country : Text;
+    state : Text;
+    district : Text;
+    gender : Gender;
+    photo : FileData;
+    aadhaarCardPhoto : FileData;
     timestamp : Int;
+    hashedPassword : Text;
+    ownerPrincipal : ?Principal;
+  };
+
+  public type FileData = {
+    base64Data : Text;
+    fileName : Text;
+    fileSize : Nat;
+  };
+
+  public type UserProfile = {
+    name : Text;
+  };
+
+  public type LoginActivity = {
+    memberId : Nat;
+    timestamp : Int;
+    successful : Bool;
+  };
+
+  public type IdCardRequest = {
+    memberId : Nat;
+    timestamp : Int;
+    requestedBy : ?Principal;
   };
 
   public type Filter = {
@@ -29,49 +84,188 @@ actor {
   public type SortBy = {
     #timestampAsc;
     #timestampDesc;
-    #nameAsc;
-    #nameDesc;
+    #lastNameAsc;
+    #lastNameDesc;
   };
 
-  public type UserProfile = {
-    name : Text;
+  let designatedAdminPrincipal = Principal.fromText("txzwk-b2k4v-63dny-xpzzb-qz4ij-fivmw-kuzqk-o6ngk-kib7t-63zon-lae");
+
+  func checkIsAdmin(user : Principal) : Bool {
+    AccessControl.isAdmin(accessControlState, user) or user == designatedAdminPrincipal;
   };
 
-  var nextId = 0;
-  let submissions = List.empty<Submission>();
-  let userProfiles = Map.empty<Principal, UserProfile>();
+  func isMemberOwner(caller : Principal, memberId : Nat) : Bool {
+    switch (members.get(memberId)) {
+      case (null) { false };
+      case (?m) {
+        switch (m.ownerPrincipal) {
+          case (null) { false };
+          case (?owner) { owner == caller };
+        };
+      };
+    };
+  };
 
-  // Contact form submission - publicly accessible (no auth required)
-  public shared ({ caller }) func submitContactForm(name : Text, email : Text, message : Text) : async () {
-    let submission : Submission = {
-      id = nextId;
-      name;
-      email;
-      message;
+  func matchesMemberFilter(member : Member, filter : ?Filter) : Bool {
+    switch (filter) {
+      case (null) { true };
+      case (?f) {
+        switch (f.searchTerm) {
+          case (null) { true };
+          case (?term) {
+            member.firstName.contains(#text term) or
+            member.lastName.contains(#text term) or
+            member.email.contains(#text term) or
+            member.occupation.contains(#text term);
+          };
+        };
+      };
+    };
+  };
+
+  func compareMembers(a : Member, b : Member, filter : ?Filter) : Order.Order {
+    switch (filter) {
+      case (null) { compareTimestamps(b.timestamp, a.timestamp) };
+      case (?f) {
+        switch (f.sortBy) {
+          case (null) { compareTimestamps(b.timestamp, a.timestamp) };
+          case (?(#timestampAsc)) { compareTimestamps(a.timestamp, b.timestamp) };
+          case (?(#timestampDesc)) { compareTimestamps(b.timestamp, a.timestamp) };
+          case (?(#lastNameAsc)) { a.lastName.compare(b.lastName) };
+          case (?(#lastNameDesc)) { b.lastName.compare(a.lastName) };
+        };
+      };
+    };
+  };
+
+  func compareTimestamps(a : Int, b : Int) : Order.Order {
+    if (a < b) { #less } else if (a > b) { #greater } else { #equal };
+  };
+
+  func memberExists(memberId : Nat) : Bool {
+    members.containsKey(memberId);
+  };
+
+  public shared ({ caller }) func registerMember(member : Member) : async Nat {
+    if (member.photo.fileSize > 10_000_000) {
+      Runtime.trap("Photo file size exceeds 10 MB limit");
+    };
+    if (member.aadhaarCardPhoto.fileSize > 15_000_000) {
+      Runtime.trap("Aadhaar card file size exceeds 15 MB limit");
+    };
+
+    let assignedId = nextMemberId;
+    let newMember : Member = {
+      member with
+      id = assignedId;
       timestamp = Time.now();
+      ownerPrincipal = if (caller.isAnonymous()) { null } else { ?caller };
     };
-
-    submissions.add(submission);
-    nextId += 1;
+    members.add(assignedId, newMember);
+    nextMemberId += 1;
+    assignedId;
   };
 
-  // Admin-only: View all submissions with filtering
-  public query ({ caller }) func getAllSubmissions(filter : ?Filter) : async [Submission] {
-    if (not AccessControl.isAdmin(accessControlState, caller)) {
-      Runtime.trap("Unauthorized: Only admin can view submissions");
-    };
-
-    let filtered = submissions.filter(func(submission : Submission) : Bool { matchesFilter(submission, filter) });
-    let sorted = filtered.toArray().sort(
-      func(a, b) {
-        compareSubmissions(a, b, filter);
+  public shared ({ caller }) func loginMember(emailOrPhone : Text, password : Text) : async ?Nat {
+    let member = members.values().find(
+      func(m) {
+        m.email == emailOrPhone or m.contactNumber == emailOrPhone
       }
     );
+
+    switch (member) {
+      case (?m) {
+        if (m.hashedPassword == password) {
+          let activity : LoginActivity = {
+            memberId = m.id;
+            timestamp = Time.now();
+            successful = true;
+          };
+          loginActivities.add(activity);
+          ?m.id;
+        } else {
+          let activity : LoginActivity = {
+            memberId = m.id;
+            timestamp = Time.now();
+            successful = false;
+          };
+          loginActivities.add(activity);
+          null;
+        };
+      };
+      case (null) {
+        null;
+      };
+    };
+  };
+
+  public shared ({ caller }) func submitIdCardRequest(memberId : Nat) : async () {
+    if (caller.isAnonymous()) {
+      Runtime.trap("Unauthorized: Must be logged in to submit an ID card request");
+    };
+
+    if (not memberExists(memberId)) {
+      Runtime.trap("Member does not exist");
+    };
+
+    if (not isMemberOwner(caller, memberId) and not checkIsAdmin(caller)) {
+      Runtime.trap("Unauthorized: You can only submit an ID card request for your own membership");
+    };
+
+    let request : IdCardRequest = {
+      memberId;
+      timestamp = Time.now();
+      requestedBy = ?caller;
+    };
+    idCardRequests.add(request);
+  };
+
+  public shared ({ caller }) func getAllMembers(filter : ?Filter) : async [Member] {
+    if (not checkIsAdmin(caller)) {
+      Runtime.trap("Unauthorized: Only admin can view members");
+    };
+
+    let filtered = members.values().toArray().filter(
+      func(member) {
+        matchesMemberFilter(member, filter);
+      }
+    );
+
+    let sorted = filtered.sort(func(a, b) { compareMembers(a, b, filter) });
 
     sorted;
   };
 
-  // User profile functions
+  public query ({ caller }) func getAllIdCardRequests() : async [IdCardRequest] {
+    if (not checkIsAdmin(caller)) {
+      Runtime.trap("Unauthorized: Only admin can view ID card requests");
+    };
+    idCardRequests.toArray();
+  };
+
+  public query ({ caller }) func getAllLoginActivities() : async [LoginActivity] {
+    if (not checkIsAdmin(caller)) {
+      Runtime.trap("Unauthorized: Only admin can view login activities");
+    };
+    loginActivities.toArray();
+  };
+
+  public query ({ caller }) func getIsCallerAdmin() : async Bool {
+    checkIsAdmin(caller);
+  };
+
+  public query ({ caller }) func getCallerMember() : async ?Member {
+    if (caller.isAnonymous()) {
+      Runtime.trap("Unauthorized: Must be logged in to view member info");
+    };
+    members.values().find(func(m) {
+      switch (m.ownerPrincipal) {
+        case (null) { false };
+        case (?owner) { owner == caller };
+      };
+    });
+  };
+
   public query ({ caller }) func getCallerUserProfile() : async ?UserProfile {
     if (not AccessControl.hasPermission(accessControlState, caller, #user)) {
       Runtime.trap("Unauthorized: Only users can access profiles");
@@ -80,7 +274,7 @@ actor {
   };
 
   public query ({ caller }) func getUserProfile(user : Principal) : async ?UserProfile {
-    if (caller != user and not AccessControl.isAdmin(accessControlState, caller)) {
+    if (caller != user and not checkIsAdmin(caller)) {
       Runtime.trap("Unauthorized: Can only view your own profile");
     };
     userProfiles.get(user);
@@ -91,43 +285,5 @@ actor {
       Runtime.trap("Unauthorized: Only users can save profiles");
     };
     userProfiles.add(caller, profile);
-  };
-
-  // Helper functions
-  func matchesFilter(submission : Submission, filter : ?Filter) : Bool {
-    switch (filter) {
-      case (null) { true };
-      case (?f) {
-        switch (f.searchTerm) {
-          case (null) { true };
-          case (?term) {
-            submission.name.contains(#text term) or
-            submission.email.contains(#text term) or
-            submission.message.contains(#text term);
-          };
-        };
-      };
-    };
-  };
-
-  // Returns Order for sorting
-  func compareSubmissions(a : Submission, b : Submission, filter : ?Filter) : Order.Order {
-    switch (filter) {
-      case (null) { compareTimestamps(b.timestamp, a.timestamp) };
-      case (?f) {
-        switch (f.sortBy) {
-          case (null) { compareTimestamps(b.timestamp, a.timestamp) };
-          case (?(#timestampAsc)) { compareTimestamps(a.timestamp, b.timestamp) };
-          case (?(#timestampDesc)) { compareTimestamps(b.timestamp, a.timestamp) };
-          case (?(#nameAsc)) { a.name.compare(b.name) };
-          case (?(#nameDesc)) { b.name.compare(a.name) };
-        };
-      };
-    };
-  };
-
-  // Compare helper for timestamps using core.Order
-  func compareTimestamps(a : Int, b : Int) : Order.Order {
-    if (a < b) { #less } else if (a > b) { #greater } else { #equal };
   };
 };

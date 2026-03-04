@@ -1,6 +1,6 @@
-import { Outlet } from '@tanstack/react-router';
-import Navigation from './Navigation';
-import Footer from './Footer';
+import { Outlet } from "@tanstack/react-router";
+import Footer from "./Footer";
+import Navigation from "./Navigation";
 
 export default function Layout() {
   return (

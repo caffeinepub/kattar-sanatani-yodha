@@ -1,124 +1,206 @@
-import { Link, useRouterState } from '@tanstack/react-router';
-import { Menu, X, Shield } from 'lucide-react';
-import { useState } from 'react';
-import { useInternetIdentity } from '../hooks/useInternetIdentity';
-import { useIsCallerAdmin } from '../hooks/useQueries';
+import { useLocation, useNavigate } from "@tanstack/react-router";
+import { Menu, Shield, X } from "lucide-react";
+import { useState } from "react";
+import { useMemberAuth } from "../hooks/useMemberAuth";
+
+const navLinks = [
+  { label: "होम", path: "/" },
+  { label: "हमारे बारे में", path: "/about" },
+  { label: "कार्यक्रम", path: "/programs" },
+  { label: "दर्शन", path: "/philosophy" },
+  { label: "संसाधन", path: "/resources" },
+  { label: "संपर्क करें", path: "/contact" },
+  { label: "हमारा समर्थन करें", path: "/donate" },
+];
 
 export default function Navigation() {
-  const [isOpen, setIsOpen] = useState(false);
-  const routerState = useRouterState();
-  const currentPath = routerState.location.pathname;
-  const { identity } = useInternetIdentity();
-  const { data: isAdmin } = useIsCallerAdmin();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { isLoggedIn, memberLogout } = useMemberAuth();
 
-  const isAuthenticated = !!identity;
-  const showAdminLink = isAuthenticated && isAdmin;
-
-  const navLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/about', label: 'About' },
-    { path: '/programs', label: 'Programs' },
-    { path: '/philosophy', label: 'Philosophy' },
-    { path: '/resources', label: 'Resources' },
-    { path: '/contact', label: 'Contact' },
-    { path: '/donate', label: 'Support Us' },
-  ];
-
-  const isActive = (path: string) => currentPath === path;
+  const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-sm">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+    <nav className="bg-background border-b border-border sticky top-0 z-50 shadow-warm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
+          <button
+            type="button"
+            className="flex items-center gap-3 cursor-pointer bg-transparent border-0 p-0"
+            onClick={() => navigate({ to: "/" })}
+          >
             <img
               src="/assets/kattar sanatani yodha logo.jpg"
-              alt="KATTAR SANATANI YODHA logo"
-              className="h-14 w-14 object-contain transition-transform group-hover:scale-105"
+              alt="Logo"
+              className="h-10 w-10 rounded-full object-cover border-2 border-primary"
             />
-            <div className="flex flex-col">
-              <span className="font-display text-xl font-bold text-primary">KATTAR SANATANI YODHA</span>
-              <span className="text-xs text-muted-foreground font-serif italic">Guardians of Tradition</span>
-            </div>
-          </Link>
+            <span className="font-display text-lg font-bold text-primary hidden sm:block">
+              कट्टर सनातनी योद्धा
+            </span>
+          </button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
+          {/* Desktop Nav */}
+          <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
-              <Link
+              <button
+                type="button"
                 key={link.path}
-                to={link.path}
-                className={`px-4 py-2 rounded-md font-medium transition-all ${
+                onClick={() => navigate({ to: link.path })}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                   isActive(link.path)
-                    ? 'bg-primary text-primary-foreground shadow-warm'
-                    : 'text-foreground hover:bg-muted hover:text-primary'
+                    ? "text-primary bg-primary/10"
+                    : "text-foreground/70 hover:text-primary hover:bg-primary/5"
                 }`}
               >
                 {link.label}
-              </Link>
+              </button>
             ))}
-            {showAdminLink && (
-              <Link
-                to="/admin"
-                className={`px-4 py-2 rounded-md font-medium transition-all flex items-center gap-2 ${
-                  isActive('/admin')
-                    ? 'bg-primary text-primary-foreground shadow-warm'
-                    : 'text-foreground hover:bg-muted hover:text-primary'
-                }`}
+
+            {/* सदस्य बनें button */}
+            <button
+              type="button"
+              onClick={() => navigate({ to: "/membership" })}
+              className="ml-2 px-4 py-2 rounded-md text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-sm"
+            >
+              सदस्य बनें
+            </button>
+
+            {/* Member login/dashboard */}
+            {isLoggedIn ? (
+              <>
+                <button
+                  type="button"
+                  onClick={() => navigate({ to: "/dashboard" })}
+                  className="ml-1 px-3 py-2 rounded-md text-sm font-medium text-primary hover:bg-primary/5 transition-colors"
+                >
+                  मेरा खाता
+                </button>
+                <button
+                  type="button"
+                  onClick={memberLogout}
+                  className="ml-1 px-3 py-2 rounded-md text-sm font-medium text-foreground/60 hover:text-destructive transition-colors"
+                >
+                  लॉगआउट
+                </button>
+              </>
+            ) : (
+              <button
+                type="button"
+                onClick={() => navigate({ to: "/login" })}
+                className="ml-1 px-3 py-2 rounded-md text-sm font-medium text-foreground/70 hover:text-primary hover:bg-primary/5 transition-colors"
               >
-                <Shield className="w-4 h-4" />
-                Admin
-              </Link>
+                लॉगिन
+              </button>
             )}
+
+            {/* Admin */}
+            <button
+              type="button"
+              onClick={() => navigate({ to: "/admin" })}
+              className="ml-1 p-2 rounded-md text-foreground/50 hover:text-primary hover:bg-primary/5 transition-colors"
+              title="प्रबंधन"
+            >
+              <Shield className="h-4 w-4" />
+            </button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile menu button */}
           <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-md hover:bg-muted transition-colors"
-            aria-label="Toggle menu"
+            type="button"
+            className="lg:hidden p-2 rounded-md text-foreground/70 hover:text-primary"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
           </button>
         </div>
-
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden py-4 border-t border-border">
-            <div className="flex flex-col gap-2">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={() => setIsOpen(false)}
-                  className={`px-4 py-3 rounded-md font-medium transition-all ${
-                    isActive(link.path)
-                      ? 'bg-primary text-primary-foreground'
-                      : 'text-foreground hover:bg-muted hover:text-primary'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              {showAdminLink && (
-                <Link
-                  to="/admin"
-                  onClick={() => setIsOpen(false)}
-                  className={`px-4 py-3 rounded-md font-medium transition-all flex items-center gap-2 ${
-                    isActive('/admin')
-                      ? 'bg-primary text-primary-foreground'
-                      : 'text-foreground hover:bg-muted hover:text-primary'
-                  }`}
-                >
-                  <Shield className="w-4 h-4" />
-                  Admin
-                </Link>
-              )}
-            </div>
-          </div>
-        )}
       </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="lg:hidden bg-background border-t border-border px-4 py-3 space-y-1">
+          {navLinks.map((link) => (
+            <button
+              type="button"
+              key={link.path}
+              onClick={() => {
+                navigate({ to: link.path });
+                setIsMenuOpen(false);
+              }}
+              className={`block w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                isActive(link.path)
+                  ? "text-primary bg-primary/10"
+                  : "text-foreground/70 hover:text-primary hover:bg-primary/5"
+              }`}
+            >
+              {link.label}
+            </button>
+          ))}
+
+          <button
+            type="button"
+            onClick={() => {
+              navigate({ to: "/membership" });
+              setIsMenuOpen(false);
+            }}
+            className="block w-full text-left px-3 py-2 rounded-md text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/90 transition-colors mt-2"
+          >
+            सदस्य बनें
+          </button>
+
+          {isLoggedIn ? (
+            <>
+              <button
+                type="button"
+                onClick={() => {
+                  navigate({ to: "/dashboard" });
+                  setIsMenuOpen(false);
+                }}
+                className="block w-full text-left px-3 py-2 rounded-md text-sm font-medium text-primary hover:bg-primary/5 transition-colors"
+              >
+                मेरा खाता
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  memberLogout();
+                  setIsMenuOpen(false);
+                }}
+                className="block w-full text-left px-3 py-2 rounded-md text-sm font-medium text-foreground/60 hover:text-destructive transition-colors"
+              >
+                लॉगआउट
+              </button>
+            </>
+          ) : (
+            <button
+              type="button"
+              onClick={() => {
+                navigate({ to: "/login" });
+                setIsMenuOpen(false);
+              }}
+              className="block w-full text-left px-3 py-2 rounded-md text-sm font-medium text-foreground/70 hover:text-primary hover:bg-primary/5 transition-colors"
+            >
+              लॉगिन
+            </button>
+          )}
+
+          <button
+            type="button"
+            onClick={() => {
+              navigate({ to: "/admin" });
+              setIsMenuOpen(false);
+            }}
+            className="block w-full text-left px-3 py-2 rounded-md text-sm font-medium text-foreground/50 hover:text-primary hover:bg-primary/5 transition-colors"
+          >
+            प्रबंधन
+          </button>
+        </div>
+      )}
     </nav>
   );
 }

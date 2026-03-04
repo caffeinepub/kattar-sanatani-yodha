@@ -10,21 +10,55 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
+export interface FileData {
+  'base64Data' : string,
+  'fileName' : string,
+  'fileSize' : bigint,
+}
 export interface Filter {
   'sortBy' : [] | [SortBy],
   'searchTerm' : [] | [string],
 }
-export type SortBy = { 'timestampAsc' : null } |
-  { 'nameDesc' : null } |
-  { 'nameAsc' : null } |
-  { 'timestampDesc' : null };
-export interface Submission {
-  'id' : bigint,
-  'name' : string,
-  'email' : string,
-  'message' : string,
+export type Gender = { 'other' : null } |
+  { 'female' : null } |
+  { 'male' : null };
+export interface IdCardRequest {
+  'memberId' : bigint,
   'timestamp' : bigint,
+  'requestedBy' : [] | [Principal],
 }
+export interface LoginActivity {
+  'memberId' : bigint,
+  'timestamp' : bigint,
+  'successful' : boolean,
+}
+export interface Member {
+  'id' : bigint,
+  'occupation' : string,
+  'country' : string,
+  'gramPanchayat' : string,
+  'ownerPrincipal' : [] | [Principal],
+  'aadhaarCardPhoto' : FileData,
+  'policeStation' : string,
+  'email' : string,
+  'district' : string,
+  'whatsappNumber' : string,
+  'state' : string,
+  'village' : string,
+  'gender' : Gender,
+  'timestamp' : bigint,
+  'contactNumber' : string,
+  'photo' : FileData,
+  'fullAddress' : string,
+  'hashedPassword' : string,
+  'tehsil' : string,
+  'lastName' : string,
+  'firstName' : string,
+}
+export type SortBy = { 'timestampAsc' : null } |
+  { 'lastNameAsc' : null } |
+  { 'lastNameDesc' : null } |
+  { 'timestampDesc' : null };
 export interface UserProfile { 'name' : string }
 export type UserRole = { 'admin' : null } |
   { 'user' : null } |
@@ -32,13 +66,19 @@ export type UserRole = { 'admin' : null } |
 export interface _SERVICE {
   '_initializeAccessControlWithSecret' : ActorMethod<[string], undefined>,
   'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
-  'getAllSubmissions' : ActorMethod<[[] | [Filter]], Array<Submission>>,
+  'getAllIdCardRequests' : ActorMethod<[], Array<IdCardRequest>>,
+  'getAllLoginActivities' : ActorMethod<[], Array<LoginActivity>>,
+  'getAllMembers' : ActorMethod<[[] | [Filter]], Array<Member>>,
+  'getCallerMember' : ActorMethod<[], [] | [Member]>,
   'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
   'getCallerUserRole' : ActorMethod<[], UserRole>,
+  'getIsCallerAdmin' : ActorMethod<[], boolean>,
   'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
   'isCallerAdmin' : ActorMethod<[], boolean>,
+  'loginMember' : ActorMethod<[string, string], [] | [bigint]>,
+  'registerMember' : ActorMethod<[Member], bigint>,
   'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
-  'submitContactForm' : ActorMethod<[string, string, string], undefined>,
+  'submitIdCardRequest' : ActorMethod<[bigint], undefined>,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

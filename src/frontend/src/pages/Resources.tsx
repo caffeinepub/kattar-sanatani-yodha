@@ -1,47 +1,80 @@
-import { BookOpen, Video, FileText, Download } from 'lucide-react';
+import { BookOpen, Download, FileText, Video } from "lucide-react";
 
 export default function Resources() {
   const resourceCategories = [
     {
       icon: BookOpen,
-      title: 'Sacred Texts',
-      description: 'Access digital versions of Vedas, Upanishads, Bhagavad Gita, and other holy scriptures.',
-      items: ['Bhagavad Gita', 'Ramayana', 'Mahabharata', 'Vedic Literature'],
+      title: "पवित्र ग्रंथ",
+      description:
+        "वेद, उपनिषद, भगवद गीता और अन्य पवित्र शास्त्रों के डिजिटल संस्करण देखें।",
+      items: ["भगवद गीता", "रामायण", "महाभारत", "वैदिक साहित्य"],
     },
     {
       icon: Video,
-      title: 'Video Lectures',
-      description: 'Watch spiritual discourses, cultural programs, and educational sessions by learned scholars.',
-      items: ['Dharma Talks', 'Festival Celebrations', 'Ritual Explanations', 'Philosophy Discussions'],
+      title: "वीडियो व्याख्यान",
+      description:
+        "विद्वान पंडितों द्वारा आध्यात्मिक प्रवचन, सांस्कृतिक कार्यक्रम और शैक्षिक सत्र देखें।",
+      items: ["धर्म वार्ता", "त्योहार उत्सव", "अनुष्ठान व्याख्या", "दर्शन चर्चा"],
     },
     {
       icon: FileText,
-      title: 'Articles & Essays',
-      description: 'Read insightful articles on dharmic principles, cultural practices, and spiritual wisdom.',
-      items: ['Philosophy', 'Rituals & Practices', 'History', 'Contemporary Issues'],
+      title: "लेख और निबंध",
+      description:
+        "धार्मिक सिद्धांतों, सांस्कृतिक प्रथाओं और आध्यात्मिक ज्ञान पर ज्ञानवर्धक लेख पढ़ें।",
+      items: ["दर्शन", "अनुष्ठान और प्रथाएं", "इतिहास", "समकालीन मुद्दे"],
     },
     {
       icon: Download,
-      title: 'Downloadable Materials',
-      description: 'Download prayer books, mantras, festival guides, and educational materials.',
-      items: ['Prayer Collections', 'Mantra Books', 'Festival Guides', 'Study Materials'],
+      title: "डाउनलोड योग्य सामग्री",
+      description: "प्रार्थना पुस्तकें, मंत्र, त्योहार गाइड और शैक्षिक सामग्री डाउनलोड करें।",
+      items: ["प्रार्थना संग्रह", "मंत्र पुस्तकें", "त्योहार गाइड", "अध्ययन सामग्री"],
+    },
+  ];
+
+  const featuredResources = [
+    {
+      title: "दैनिक प्रार्थना संग्रह",
+      description:
+        "आध्यात्मिक विकास के लिए दैनिक प्रार्थनाओं, मंत्रों और ध्यान प्रथाओं की एक व्यापक मार्गदर्शिका।",
+      type: "पीडीएफ गाइड",
+      url: "https://adipurgroup.wordpress.com/wp-content/uploads/2016/12/e0a4b8e0a4ade0a4be.pdf",
+    },
+    {
+      title: "वैदिक दर्शन का परिचय",
+      description: "वैदिक दर्शन की मूलभूत अवधारणाओं और शिक्षाओं का एक सुलभ परिचय।",
+      type: "वीडियो श्रृंखला",
+      url: "https://share.google/ofFQSRZ1FTsdJB8Op",
+    },
+    {
+      title: "त्योहार कैलेंडर और अनुष्ठान",
+      description:
+        "हिंदू त्योहारों, उनके महत्व और पारंपरिक पालन विधियों की पूर्ण मार्गदर्शिका।",
+      type: "डिजिटल पुस्तक",
+      url: "https://calendarhindu.com/wp-content/uploads/2025/12/Hindu-Calendar-2026-With-Tithi-in-Hindi-PDF-Download.pdf",
+    },
+    {
+      title: "भगवद गीता अध्ययन मार्गदर्शिका",
+      description:
+        "भगवद गीता की शाश्वत बुद्धि पर अध्याय-दर-अध्याय विश्लेषण और टिप्पणी।",
+      type: "अध्ययन सामग्री",
+      url: "https://www.rupanugabhajanashram.com/wp-content/uploads/2022/11/Bhagavad-Gita-Hindi.pdf",
     },
   ];
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section 
+      <section
         className="relative py-24 bg-cover bg-center"
-        style={{ backgroundImage: 'url(/assets/generated/pattern-bg.png)' }}
+        style={{ backgroundImage: "url(/assets/generated/pattern-bg.png)" }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-background/95 to-background/95" />
         <div className="relative container mx-auto px-4 text-center">
           <h1 className="font-display text-5xl md:text-6xl font-bold text-foreground mb-6">
-            Resources
+            संसाधन
           </h1>
           <p className="font-serif text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Explore our collection of sacred texts, educational materials, and spiritual resources
+            पवित्र ग्रंथों, शैक्षिक सामग्री और आध्यात्मिक संसाधनों के हमारे संग्रह का अन्वेषण करें
           </p>
         </div>
       </section>
@@ -51,9 +84,9 @@ export default function Resources() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <p className="font-serif text-lg text-muted-foreground leading-relaxed">
-              We are committed to making the profound wisdom of Sanatana Dharma accessible to all seekers. 
-              Our resource library contains carefully curated materials to support your spiritual journey 
-              and deepen your understanding of our eternal traditions.
+              हम सनातन धर्म की गहन बुद्धि को सभी साधकों के लिए सुलभ बनाने के लिए प्रतिबद्ध
+              हैं। हमारी संसाधन लाइब्रेरी में आपकी आध्यात्मिक यात्रा का समर्थन करने और हमारी
+              शाश्वत परंपराओं की समझ को गहरा करने के लिए सावधानीपूर्वक चुनी गई सामग्री है।
             </p>
           </div>
         </div>
@@ -63,9 +96,9 @@ export default function Resources() {
       <section className="py-20 bg-muted/30 pattern-overlay">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {resourceCategories.map((category, index) => (
+            {resourceCategories.map((category) => (
               <div
-                key={index}
+                key={category.title}
                 className="bg-card rounded-xl p-8 shadow-sm hover:shadow-warm transition-all border border-border"
               >
                 <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
@@ -78,9 +111,9 @@ export default function Resources() {
                   {category.description}
                 </p>
                 <ul className="space-y-2">
-                  {category.items.map((item, itemIndex) => (
+                  {category.items.map((item) => (
                     <li
-                      key={itemIndex}
+                      key={item}
                       className="flex items-center gap-2 text-foreground/80"
                     >
                       <div className="w-1.5 h-1.5 rounded-full bg-primary" />
@@ -99,33 +132,12 @@ export default function Resources() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-display text-4xl font-bold text-foreground mb-12 text-center">
-              Featured Resources
+              विशेष संसाधन
             </h2>
             <div className="space-y-6">
-              {[
-                {
-                  title: 'Daily Prayer Collection',
-                  description: 'A comprehensive guide to daily prayers, mantras, and meditation practices for spiritual growth.',
-                  type: 'PDF Guide',
-                },
-                {
-                  title: 'Introduction to Vedic Philosophy',
-                  description: 'An accessible introduction to the fundamental concepts and teachings of Vedic philosophy.',
-                  type: 'Video Series',
-                },
-                {
-                  title: 'Festival Calendar & Rituals',
-                  description: 'Complete guide to Hindu festivals, their significance, and traditional observance methods.',
-                  type: 'Digital Book',
-                },
-                {
-                  title: 'Bhagavad Gita Study Guide',
-                  description: 'Chapter-by-chapter analysis and commentary on the timeless wisdom of the Bhagavad Gita.',
-                  type: 'Study Material',
-                },
-              ].map((resource, index) => (
+              {featuredResources.map((resource) => (
                 <div
-                  key={index}
+                  key={resource.title}
                   className="p-6 bg-card rounded-lg border border-border hover:border-primary/50 transition-all hover:shadow-sm"
                 >
                   <div className="flex items-start justify-between gap-4">
@@ -140,9 +152,14 @@ export default function Resources() {
                         {resource.type}
                       </span>
                     </div>
-                    <button className="flex-shrink-0 p-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all">
+                    <a
+                      href={resource.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-shrink-0 p-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all"
+                    >
                       <Download size={20} />
-                    </button>
+                    </a>
                   </div>
                 </div>
               ))}
@@ -156,17 +173,17 @@ export default function Resources() {
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Need More Information?
+              और जानकारी चाहिए?
             </h2>
             <p className="font-serif text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
-              Can't find what you're looking for? Contact us and we'll be happy to help you 
-              access the resources you need for your spiritual journey.
+              जो आप ढूंढ रहे हैं वह नहीं मिला? हमसे संपर्क करें और हम आपकी आध्यात्मिक यात्रा के
+              लिए आवश्यक संसाधनों तक पहुंचने में आपकी मदद करने में प्रसन्न होंगे।
             </p>
             <a
               href="/contact"
               className="inline-block px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-all shadow-warm hover:shadow-warm-lg hover:scale-105"
             >
-              Contact Us
+              संपर्क करें
             </a>
           </div>
         </div>

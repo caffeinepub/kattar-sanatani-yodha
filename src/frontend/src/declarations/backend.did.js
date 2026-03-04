@@ -13,43 +13,81 @@ export const UserRole = IDL.Variant({
   'user' : IDL.Null,
   'guest' : IDL.Null,
 });
+export const IdCardRequest = IDL.Record({
+  'memberId' : IDL.Nat,
+  'timestamp' : IDL.Int,
+  'requestedBy' : IDL.Opt(IDL.Principal),
+});
+export const LoginActivity = IDL.Record({
+  'memberId' : IDL.Nat,
+  'timestamp' : IDL.Int,
+  'successful' : IDL.Bool,
+});
 export const SortBy = IDL.Variant({
   'timestampAsc' : IDL.Null,
-  'nameDesc' : IDL.Null,
-  'nameAsc' : IDL.Null,
+  'lastNameAsc' : IDL.Null,
+  'lastNameDesc' : IDL.Null,
   'timestampDesc' : IDL.Null,
 });
 export const Filter = IDL.Record({
   'sortBy' : IDL.Opt(SortBy),
   'searchTerm' : IDL.Opt(IDL.Text),
 });
-export const Submission = IDL.Record({
+export const FileData = IDL.Record({
+  'base64Data' : IDL.Text,
+  'fileName' : IDL.Text,
+  'fileSize' : IDL.Nat,
+});
+export const Gender = IDL.Variant({
+  'other' : IDL.Null,
+  'female' : IDL.Null,
+  'male' : IDL.Null,
+});
+export const Member = IDL.Record({
   'id' : IDL.Nat,
-  'name' : IDL.Text,
+  'occupation' : IDL.Text,
+  'country' : IDL.Text,
+  'gramPanchayat' : IDL.Text,
+  'ownerPrincipal' : IDL.Opt(IDL.Principal),
+  'aadhaarCardPhoto' : FileData,
+  'policeStation' : IDL.Text,
   'email' : IDL.Text,
-  'message' : IDL.Text,
+  'district' : IDL.Text,
+  'whatsappNumber' : IDL.Text,
+  'state' : IDL.Text,
+  'village' : IDL.Text,
+  'gender' : Gender,
   'timestamp' : IDL.Int,
+  'contactNumber' : IDL.Text,
+  'photo' : FileData,
+  'fullAddress' : IDL.Text,
+  'hashedPassword' : IDL.Text,
+  'tehsil' : IDL.Text,
+  'lastName' : IDL.Text,
+  'firstName' : IDL.Text,
 });
 export const UserProfile = IDL.Record({ 'name' : IDL.Text });
 
 export const idlService = IDL.Service({
   '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
   'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
-  'getAllSubmissions' : IDL.Func(
-      [IDL.Opt(Filter)],
-      [IDL.Vec(Submission)],
-      ['query'],
-    ),
+  'getAllIdCardRequests' : IDL.Func([], [IDL.Vec(IdCardRequest)], ['query']),
+  'getAllLoginActivities' : IDL.Func([], [IDL.Vec(LoginActivity)], ['query']),
+  'getAllMembers' : IDL.Func([IDL.Opt(Filter)], [IDL.Vec(Member)], []),
+  'getCallerMember' : IDL.Func([], [IDL.Opt(Member)], ['query']),
   'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
   'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+  'getIsCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
   'getUserProfile' : IDL.Func(
       [IDL.Principal],
       [IDL.Opt(UserProfile)],
       ['query'],
     ),
   'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+  'loginMember' : IDL.Func([IDL.Text, IDL.Text], [IDL.Opt(IDL.Nat)], []),
+  'registerMember' : IDL.Func([Member], [IDL.Nat], []),
   'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
-  'submitContactForm' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [], []),
+  'submitIdCardRequest' : IDL.Func([IDL.Nat], [], []),
 });
 
 export const idlInitArgs = [];
@@ -60,43 +98,81 @@ export const idlFactory = ({ IDL }) => {
     'user' : IDL.Null,
     'guest' : IDL.Null,
   });
+  const IdCardRequest = IDL.Record({
+    'memberId' : IDL.Nat,
+    'timestamp' : IDL.Int,
+    'requestedBy' : IDL.Opt(IDL.Principal),
+  });
+  const LoginActivity = IDL.Record({
+    'memberId' : IDL.Nat,
+    'timestamp' : IDL.Int,
+    'successful' : IDL.Bool,
+  });
   const SortBy = IDL.Variant({
     'timestampAsc' : IDL.Null,
-    'nameDesc' : IDL.Null,
-    'nameAsc' : IDL.Null,
+    'lastNameAsc' : IDL.Null,
+    'lastNameDesc' : IDL.Null,
     'timestampDesc' : IDL.Null,
   });
   const Filter = IDL.Record({
     'sortBy' : IDL.Opt(SortBy),
     'searchTerm' : IDL.Opt(IDL.Text),
   });
-  const Submission = IDL.Record({
+  const FileData = IDL.Record({
+    'base64Data' : IDL.Text,
+    'fileName' : IDL.Text,
+    'fileSize' : IDL.Nat,
+  });
+  const Gender = IDL.Variant({
+    'other' : IDL.Null,
+    'female' : IDL.Null,
+    'male' : IDL.Null,
+  });
+  const Member = IDL.Record({
     'id' : IDL.Nat,
-    'name' : IDL.Text,
+    'occupation' : IDL.Text,
+    'country' : IDL.Text,
+    'gramPanchayat' : IDL.Text,
+    'ownerPrincipal' : IDL.Opt(IDL.Principal),
+    'aadhaarCardPhoto' : FileData,
+    'policeStation' : IDL.Text,
     'email' : IDL.Text,
-    'message' : IDL.Text,
+    'district' : IDL.Text,
+    'whatsappNumber' : IDL.Text,
+    'state' : IDL.Text,
+    'village' : IDL.Text,
+    'gender' : Gender,
     'timestamp' : IDL.Int,
+    'contactNumber' : IDL.Text,
+    'photo' : FileData,
+    'fullAddress' : IDL.Text,
+    'hashedPassword' : IDL.Text,
+    'tehsil' : IDL.Text,
+    'lastName' : IDL.Text,
+    'firstName' : IDL.Text,
   });
   const UserProfile = IDL.Record({ 'name' : IDL.Text });
   
   return IDL.Service({
     '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
     'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
-    'getAllSubmissions' : IDL.Func(
-        [IDL.Opt(Filter)],
-        [IDL.Vec(Submission)],
-        ['query'],
-      ),
+    'getAllIdCardRequests' : IDL.Func([], [IDL.Vec(IdCardRequest)], ['query']),
+    'getAllLoginActivities' : IDL.Func([], [IDL.Vec(LoginActivity)], ['query']),
+    'getAllMembers' : IDL.Func([IDL.Opt(Filter)], [IDL.Vec(Member)], []),
+    'getCallerMember' : IDL.Func([], [IDL.Opt(Member)], ['query']),
     'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
     'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+    'getIsCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
     'getUserProfile' : IDL.Func(
         [IDL.Principal],
         [IDL.Opt(UserProfile)],
         ['query'],
       ),
     'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+    'loginMember' : IDL.Func([IDL.Text, IDL.Text], [IDL.Opt(IDL.Nat)], []),
+    'registerMember' : IDL.Func([Member], [IDL.Nat], []),
     'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
-    'submitContactForm' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [], []),
+    'submitIdCardRequest' : IDL.Func([IDL.Nat], [], []),
   });
 };
 

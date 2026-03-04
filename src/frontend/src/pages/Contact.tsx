@@ -1,30 +1,71 @@
-import { useState } from 'react';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
-import { SiFacebook, SiX, SiInstagram, SiYoutube } from 'react-icons/si';
-import { useContactForm } from '../hooks/useContactForm';
+import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { useState } from "react";
+import { SiFacebook, SiInstagram, SiX, SiYoutube } from "react-icons/si";
+import { useContactForm } from "../hooks/useContactForm";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
+    name: "",
+    email: "",
+    phoneNumber: "",
+    whatsappNumber: "",
+    message: "",
   });
+
+  const [validationErrors, setValidationErrors] = useState<{
+    phoneNumber?: string;
+    whatsappNumber?: string;
+  }>({});
 
   const { submitForm, isSubmitting, isSuccess, isError } = useContactForm();
 
+  const validate = () => {
+    const errors: { phoneNumber?: string; whatsappNumber?: string } = {};
+    if (!formData.phoneNumber.trim()) {
+      errors.phoneNumber = "फ़ोन नंबर आवश्यक है (Phone Number is required)";
+    }
+    if (!formData.whatsappNumber.trim()) {
+      errors.whatsappNumber =
+        "व्हाट्सएप नंबर आवश्यक है (WhatsApp Number is required)";
+    }
+    return errors;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await submitForm(formData.name, formData.email, formData.message);
+    const errors = validate();
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors(errors);
+      return;
+    }
+    setValidationErrors({});
+    await submitForm(
+      formData.name,
+      formData.email,
+      formData.message,
+      formData.phoneNumber,
+      formData.whatsappNumber,
+    );
     if (!isError) {
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({
+        name: "",
+        email: "",
+        phoneNumber: "",
+        whatsappNumber: "",
+        message: "",
+      });
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    // Clear validation error on change
+    if (name === "phoneNumber" || name === "whatsappNumber") {
+      setValidationErrors((prev) => ({ ...prev, [name]: undefined }));
+    }
   };
 
   return (
@@ -33,10 +74,11 @@ export default function Contact() {
       <section className="py-24 bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 pattern-overlay">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-display text-5xl md:text-6xl font-bold text-foreground mb-6">
-            Contact Us
+            संपर्क करें
           </h1>
           <p className="font-serif text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            We'd love to hear from you. Reach out with questions, suggestions, or to learn more about our mission.
+            हम आपसे सुनना चाहते हैं। प्रश्नों, सुझावों के साथ या हमारे मिशन के बारे में अधिक
+            जानने के लिए संपर्क करें।
           </p>
         </div>
       </section>
@@ -48,12 +90,16 @@ export default function Contact() {
             {/* Contact Form */}
             <div className="bg-card rounded-xl p-8 shadow-sm border border-border">
               <h2 className="font-display text-3xl font-bold text-foreground mb-6">
-                Send Us a Message
+                हमें संदेश भेजें
               </h2>
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Name */}
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                    Your Name *
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-foreground mb-2"
+                  >
+                    आपका नाम *
                   </label>
                   <input
                     type="text"
@@ -63,13 +109,17 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-all"
-                    placeholder="Enter your name"
+                    placeholder="अपना नाम दर्ज करें"
                   />
                 </div>
 
+                {/* Email */}
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                    Email Address *
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-foreground mb-2"
+                  >
+                    ईमेल पता *
                   </label>
                   <input
                     type="email"
@@ -83,9 +133,71 @@ export default function Contact() {
                   />
                 </div>
 
+                {/* Phone Number */}
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                    Your Message *
+                  <label
+                    htmlFor="phoneNumber"
+                    className="block text-sm font-medium text-foreground mb-2"
+                  >
+                    फ़ोन नंबर (Phone Number) *
+                  </label>
+                  <input
+                    type="tel"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    value={formData.phoneNumber}
+                    onChange={handleChange}
+                    required
+                    className={`w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-all ${
+                      validationErrors.phoneNumber
+                        ? "border-destructive focus:ring-destructive"
+                        : "border-input"
+                    }`}
+                    placeholder="अपना फ़ोन नंबर दर्ज करें (e.g. +91 98765 43210)"
+                  />
+                  {validationErrors.phoneNumber && (
+                    <p className="mt-1 text-sm text-destructive">
+                      {validationErrors.phoneNumber}
+                    </p>
+                  )}
+                </div>
+
+                {/* WhatsApp Number */}
+                <div>
+                  <label
+                    htmlFor="whatsappNumber"
+                    className="block text-sm font-medium text-foreground mb-2"
+                  >
+                    व्हाट्सएप नंबर (WhatsApp Number) *
+                  </label>
+                  <input
+                    type="tel"
+                    id="whatsappNumber"
+                    name="whatsappNumber"
+                    value={formData.whatsappNumber}
+                    onChange={handleChange}
+                    required
+                    className={`w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-all ${
+                      validationErrors.whatsappNumber
+                        ? "border-destructive focus:ring-destructive"
+                        : "border-input"
+                    }`}
+                    placeholder="अपना व्हाट्सएप नंबर दर्ज करें (e.g. +91 98765 43210)"
+                  />
+                  {validationErrors.whatsappNumber && (
+                    <p className="mt-1 text-sm text-destructive">
+                      {validationErrors.whatsappNumber}
+                    </p>
+                  )}
+                </div>
+
+                {/* Message */}
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-foreground mb-2"
+                  >
+                    आपका संदेश *
                   </label>
                   <textarea
                     id="message"
@@ -95,19 +207,19 @@ export default function Contact() {
                     required
                     rows={6}
                     className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none"
-                    placeholder="Tell us how we can help..."
+                    placeholder="हमें बताएं कि हम कैसे मदद कर सकते हैं..."
                   />
                 </div>
 
                 {isSuccess && (
                   <div className="p-4 bg-primary/10 border border-primary/20 rounded-lg text-foreground">
-                    Thank you for your message! We'll get back to you soon.
+                    आपके संदेश के लिए धन्यवाद! हम जल्द ही आपसे संपर्क करेंगे।
                   </div>
                 )}
 
                 {isError && (
                   <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg text-destructive">
-                    There was an error sending your message. Please try again.
+                    आपका संदेश भेजने में त्रुटि हुई। कृपया पुनः प्रयास करें।
                   </div>
                 )}
 
@@ -117,11 +229,11 @@ export default function Contact() {
                   className="w-full px-6 py-4 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-all shadow-warm hover:shadow-warm-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? (
-                    'Sending...'
+                    "भेजा जा रहा है..."
                   ) : (
                     <>
                       <Send size={20} />
-                      Send Message
+                      संदेश भेजें
                     </>
                   )}
                 </button>
@@ -132,11 +244,12 @@ export default function Contact() {
             <div className="space-y-8">
               <div>
                 <h2 className="font-display text-3xl font-bold text-foreground mb-6">
-                  Get in Touch
+                  संपर्क में रहें
                 </h2>
                 <p className="font-serif text-lg text-muted-foreground leading-relaxed mb-8">
-                  Whether you want to learn more about our programs, volunteer with us, or simply connect 
-                  with like-minded individuals, we're here to help.
+                  चाहे आप हमारे कार्यक्रमों के बारे में अधिक जानना चाहते हों, हमारे साथ
+                  स्वयंसेवा करना चाहते हों, या समान विचारधारा वाले व्यक्तियों से जुड़ना चाहते
+                  हों, हम यहाँ मदद के लिए हैं।
                 </p>
               </div>
 
@@ -147,8 +260,10 @@ export default function Contact() {
                     <Mail size={24} className="text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold text-foreground mb-1">Email</h3>
-                    <a 
+                    <h3 className="font-display font-semibold text-foreground mb-1">
+                      ईमेल
+                    </h3>
+                    <a
                       href="mailto:adityarajsrivastav76@gmail.com"
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
@@ -162,15 +277,17 @@ export default function Contact() {
                     <Phone size={24} className="text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold text-foreground mb-1">Phone</h3>
+                    <h3 className="font-display font-semibold text-foreground mb-1">
+                      फ़ोन
+                    </h3>
                     <div className="space-y-1">
-                      <a 
+                      <a
                         href="tel:+918130608468"
                         className="block text-muted-foreground hover:text-primary transition-colors"
                       >
                         +91 81306 08468
                       </a>
-                      <a 
+                      <a
                         href="tel:+919259279963"
                         className="block text-muted-foreground hover:text-primary transition-colors"
                       >
@@ -185,8 +302,10 @@ export default function Contact() {
                     <MapPin size={24} className="text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold text-foreground mb-1">Location</h3>
-                    <p className="text-muted-foreground">India</p>
+                    <h3 className="font-display font-semibold text-foreground mb-1">
+                      स्थान
+                    </h3>
+                    <p className="text-muted-foreground">भारत</p>
                   </div>
                 </div>
               </div>
@@ -194,14 +313,26 @@ export default function Contact() {
               {/* Social Media */}
               <div>
                 <h3 className="font-display text-xl font-semibold text-foreground mb-4">
-                  Follow Us
+                  हमें फॉलो करें
                 </h3>
                 <div className="flex gap-3">
                   {[
-                    { Icon: SiFacebook, label: 'Facebook', url: 'https://www.facebook.com/share/14QwdYfhLY2/' },
-                    { Icon: SiX, label: 'X', url: 'https://x.com/VarshneyVi95121?t=ovt3Ut6VVD-WOJPgNLacDA&s=08' },
-                    { Icon: SiInstagram, label: 'Instagram', url: '#' },
-                    { Icon: SiYoutube, label: 'YouTube', url: 'https://www.youtube.com/@sanatani-omkar07' },
+                    {
+                      Icon: SiFacebook,
+                      label: "Facebook",
+                      url: "https://www.facebook.com/share/14QwdYfhLY2/",
+                    },
+                    {
+                      Icon: SiX,
+                      label: "X",
+                      url: "https://x.com/VarshneyVi95121?t=ovt3Ut6VVD-WOJPgNLacDA&s=08",
+                    },
+                    { Icon: SiInstagram, label: "Instagram", url: "#" },
+                    {
+                      Icon: SiYoutube,
+                      label: "YouTube",
+                      url: "https://www.youtube.com/@sanatani-omkar07",
+                    },
                   ].map(({ Icon, label, url }) => (
                     <a
                       key={label}

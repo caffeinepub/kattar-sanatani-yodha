@@ -1,26 +1,26 @@
-import { Heart, Shield, BookOpen, Users } from 'lucide-react';
+import { BookOpen, Heart, Shield, Users } from "lucide-react";
 
 export default function Mission() {
   const values = [
     {
       icon: Heart,
-      title: 'Devotion',
-      description: 'Unwavering commitment to the eternal principles of Dharma',
+      title: "भक्ति",
+      description: "धर्म के शाश्वत सिद्धांतों के प्रति अटूट समर्पण",
     },
     {
       icon: Shield,
-      title: 'Protection',
-      description: 'Safeguarding our sacred traditions and cultural heritage',
+      title: "रक्षा",
+      description: "हमारी पवित्र परंपराओं और सांस्कृतिक विरासत की सुरक्षा",
     },
     {
       icon: BookOpen,
-      title: 'Knowledge',
-      description: 'Spreading the timeless wisdom of our ancient scriptures',
+      title: "ज्ञान",
+      description: "हमारे प्राचीन शास्त्रों की शाश्वत बुद्धि का प्रसार",
     },
     {
       icon: Users,
-      title: 'Unity',
-      description: 'Building a strong community rooted in shared values',
+      title: "एकता",
+      description: "साझा मूल्यों में निहित एक मजबूत समुदाय का निर्माण",
     },
   ];
 
@@ -32,14 +32,15 @@ export default function Mission() {
             हमारा पवित्र मिशन
           </h2>
           <p className="font-serif text-lg md:text-xl text-muted-foreground leading-relaxed">
-            CHANGE हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।
+            हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर
+            बिना थके काम करता है।
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {values.map((value, index) => (
+          {values.map((value) => (
             <div
-              key={index}
+              key={value.title}
               className="bg-card rounded-xl p-6 shadow-sm hover:shadow-warm transition-all hover:-translate-y-1 border border-border"
             >
               <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">

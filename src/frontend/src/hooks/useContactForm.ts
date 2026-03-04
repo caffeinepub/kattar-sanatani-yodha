@@ -1,31 +1,27 @@
-import { useState } from 'react';
-import { useActor } from './useActor';
+import { useState } from "react";
 
 export function useContactForm() {
-  const { actor } = useActor();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const submitForm = async (name: string, email: string, message: string) => {
-    if (!actor) {
-      setIsError(true);
-      return;
-    }
-
+  const submitForm = async (
+    _name: string,
+    _email: string,
+    _message: string,
+    _phoneNumber: string,
+    _whatsappNumber: string,
+  ) => {
     setIsSubmitting(true);
     setIsSuccess(false);
     setIsError(false);
 
-    try {
-      await actor.submitContactForm(name, email, message);
-      setIsSuccess(true);
-    } catch (error) {
-      console.error('Error submitting contact form:', error);
-      setIsError(true);
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Contact form submission is temporarily unavailable.
+    // The backend no longer exposes submitContactForm after migration.
+    // Users are directed to contact via phone/WhatsApp/email directly.
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    setIsError(true);
+    setIsSubmitting(false);
   };
 
   return {

@@ -1,19 +1,19 @@
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown } from "lucide-react";
 
 export default function Hero() {
   const scrollToDonate = () => {
-    const donateSection = document.getElementById('support');
+    const donateSection = document.getElementById("support");
     if (donateSection) {
-      donateSection.scrollIntoView({ behavior: 'smooth' });
+      donateSection.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
     <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: 'url(/assets/generated/hero-banner.png)' }}
+        style={{ backgroundImage: "url(/assets/generated/hero-banner.png)" }}
       >
         <div className="absolute inset-0 hero-gradient opacity-90" />
       </div>
@@ -28,20 +28,22 @@ export default function Hero() {
             धर्मो रक्षति रक्षितः
           </p>
           <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-            आने वाली पीढ़ियों के लिए सनातन धर्म के हमेशा रहने वाले ज्ञान और मूल्यों को बचाने, उनकी रक्षा करने और उन्हें बढ़ावा देने के लिए समर्पित।
+            आने वाली पीढ़ियों के लिए सनातन धर्म के हमेशा रहने वाले ज्ञान और मूल्यों को बचाने,
+            उनकी रक्षा करने और उन्हें बढ़ावा देने के लिए समर्पित।
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
             <button
+              type="button"
               onClick={scrollToDonate}
               className="px-8 py-4 bg-white text-primary font-semibold rounded-lg hover:bg-white/90 transition-all shadow-warm-lg hover:shadow-warm hover:scale-105"
             >
-              Support Our Mission
+              हमारे मिशन का समर्थन करें
             </button>
             <a
               href="/about"
               className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-lg hover:bg-white/20 transition-all border-2 border-white/30"
             >
-              Learn More
+              और जानें
             </a>
           </div>
         </div>
