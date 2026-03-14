@@ -5,11 +5,13 @@ import {
   createRouter,
 } from "@tanstack/react-router";
 import Layout from "./components/Layout";
+import { SiteContentProvider } from "./context/SiteContentContext";
 import { MemberAuthProvider } from "./hooks/useMemberAuth";
 import About from "./pages/About";
 import Admin from "./pages/Admin";
 import Contact from "./pages/Contact";
 import Donate from "./pages/Donate";
+import ForgotPassword from "./pages/ForgotPassword";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import MemberDashboard from "./pages/MemberDashboard";
@@ -77,6 +79,11 @@ const dashboardRoute = createRoute({
   path: "/dashboard",
   component: MemberDashboard,
 });
+const forgotPasswordRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/forgot-password",
+  component: ForgotPassword,
+});
 
 const routeTree = rootRoute.addChildren([
   homeRoute,
@@ -90,6 +97,7 @@ const routeTree = rootRoute.addChildren([
   membershipRoute,
   loginRoute,
   dashboardRoute,
+  forgotPasswordRoute,
 ]);
 
 const router = createRouter({ routeTree });
@@ -103,7 +111,9 @@ declare module "@tanstack/react-router" {
 export default function App() {
   return (
     <MemberAuthProvider>
-      <RouterProvider router={router} />
+      <SiteContentProvider>
+        <RouterProvider router={router} />
+      </SiteContentProvider>
     </MemberAuthProvider>
   );
 }

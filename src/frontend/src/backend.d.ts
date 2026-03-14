@@ -44,6 +44,25 @@ export interface Member {
     lastName: string;
     firstName: string;
 }
+export interface MemberPublic {
+    id: bigint;
+    occupation: string;
+    country: string;
+    gramPanchayat: string;
+    policeStation: string;
+    email: string;
+    district: string;
+    whatsappNumber: string;
+    state: string;
+    village: string;
+    gender: Gender;
+    timestamp: bigint;
+    contactNumber: string;
+    fullAddress: string;
+    tehsil: string;
+    lastName: string;
+    firstName: string;
+}
 export interface UserProfile {
     name: string;
 }
@@ -70,6 +89,7 @@ export enum UserRole {
 }
 export interface backendInterface {
     assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
+    generatePasswordResetOtp(emailOrPhone: string): Promise<string | null>;
     getAllIdCardRequests(): Promise<Array<IdCardRequest>>;
     getAllLoginActivities(): Promise<Array<LoginActivity>>;
     getAllMembers(filter: Filter | null): Promise<Array<Member>>;
@@ -77,10 +97,15 @@ export interface backendInterface {
     getCallerUserProfile(): Promise<UserProfile | null>;
     getCallerUserRole(): Promise<UserRole>;
     getIsCallerAdmin(): Promise<boolean>;
+    getMemberById(memberId: bigint): Promise<MemberPublic | null>;
+    getSiteContent(): Promise<Array<[string, string]>>;
     getUserProfile(user: Principal): Promise<UserProfile | null>;
     isCallerAdmin(): Promise<boolean>;
     loginMember(emailOrPhone: string, password: string): Promise<bigint | null>;
     registerMember(member: Member): Promise<bigint>;
+    resetMemberPassword(emailOrPhone: string, otp: string, newPassword: string): Promise<boolean>;
     saveCallerUserProfile(profile: UserProfile): Promise<void>;
+    setSiteContent(key: string, value: string): Promise<void>;
+    setSiteContentBulk(entries: Array<[string, string]>): Promise<void>;
     submitIdCardRequest(memberId: bigint): Promise<void>;
 }

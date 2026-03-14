@@ -1,30 +1,41 @@
 import { Award, Eye, Target, Users } from "lucide-react";
+import { useSiteContent } from "../context/SiteContentContext";
 
 export default function About() {
+  const { get } = useSiteContent();
+
   const principles = [
     {
       icon: Target,
-      title: "हमारा उद्देश्य",
-      description:
+      title: get("about.principle1.title", "हमारा उद्देश्य"),
+      description: get(
+        "about.principle1.description",
         "सनातन धर्म के अटल रक्षक बनना, यह सुनिश्चित करना कि इसके सिद्धांत सभी पीढ़ियों के लिए जीवंत और प्रासंगिक बने रहें।",
+      ),
     },
     {
       icon: Eye,
-      title: "हमारी दृष्टि",
-      description:
+      title: get("about.principle2.title", "हमारी दृष्टि"),
+      description: get(
+        "about.principle2.description",
         "एक ऐसी दुनिया जहाँ सनातन धर्म की शाश्वत बुद्धि मानवता को धार्मिकता, शांति और आध्यात्मिक पूर्णता की ओर मार्गदर्शन करे।",
+      ),
     },
     {
       icon: Award,
-      title: "हमारे मूल्य",
-      description:
+      title: get("about.principle3.title", "हमारे मूल्य"),
+      description: get(
+        "about.principle3.description",
         "धर्म (धार्मिकता), सत्य (सच्चाई), अहिंसा (अहिंसा), सेवा (निःस्वार्थ सेवा), और भक्ति (समर्पण)।",
+      ),
     },
     {
       icon: Users,
-      title: "हमारा समुदाय",
-      description:
+      title: get("about.principle4.title", "हमारा समुदाय"),
+      description: get(
+        "about.principle4.description",
         "साझा आस्था, परस्पर सम्मान और धार्मिक जीवन के प्रति प्रतिबद्धता से एकजुट समर्पित व्यक्तियों का एक विविध परिवार।",
+      ),
     },
   ];
 
@@ -38,10 +49,13 @@ export default function About() {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background/95 to-background/95" />
         <div className="relative container mx-auto px-4 text-center">
           <h1 className="font-display text-5xl md:text-6xl font-bold text-foreground mb-6">
-            हमारे बारे में
+            {get("about.hero.title", "हमारे बारे में")}
           </h1>
           <p className="font-serif text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            आस्था के योद्धा, परंपरा के रक्षक, धर्म के सेवक
+            {get(
+              "about.hero.subtitle",
+              "आस्था के योद्धा, परंपरा के रक्षक, धर्म के सेवक",
+            )}
           </p>
         </div>
       </section>
@@ -51,20 +65,20 @@ export default function About() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-display text-4xl font-bold text-foreground mb-8 text-center">
-              हमारी कहानी
+              {get("about.story.title", "हमारी कहानी")}
             </h2>
             <div className="space-y-6 font-serif text-lg text-muted-foreground leading-relaxed">
               <p>
-                KATTAR SANATANI YODHA का जन्म एक बदलती दुनिया में सनातन धर्म के शाश्वत
-                सिद्धांतों को संरक्षित और सुरक्षित करने की गहरी प्रतिबद्धता से हुआ। हम
-                समर्पित व्यक्तियों का एक समूह हैं जो हमारी प्राचीन परंपराओं और शास्त्रों में
-                निहित गहन ज्ञान को पहचानते हैं।
+                {get(
+                  "about.story.para1",
+                  "KATTAR SANATANI YODHA का जन्म एक बदलती दुनिया में सनातन धर्म के शाश्वत सिद्धांतों को संरक्षित और सुरक्षित करने की गहरी प्रतिबद्धता से हुआ। हम समर्पित व्यक्तियों का एक समूह हैं जो हमारी प्राचीन परंपराओं और शास्त्रों में निहित गहन ज्ञान को पहचानते हैं।",
+                )}
               </p>
               <p>
-                "कट्टर" शब्द हमारी अटूट निष्ठा को दर्शाता है, "सनातनी" शाश्वत सत्य से
-                हमारे संबंध को व्यक्त करता है, और "योद्धा" धार्मिक मूल्यों की रक्षा और प्रचार
-                में हमारी योद्धा भावना को मूर्त रूप देता है। हम अपनी मान्यताओं में दृढ़ रहते हुए
-                सनातन धर्म की समावेशी और सार्वभौमिक प्रकृति को अपनाते हैं।
+                {get(
+                  "about.story.para2",
+                  '"कट्टर" शब्द हमारी अटूट निष्ठा को दर्शाता है, "सनातनी" शाश्वत सत्य से हमारे संबंध को व्यक्त करता है, और "योद्धा" धार्मिक मूल्यों की रक्षा और प्रचार में हमारी योद्धा भावना को मूर्त रूप देता है। हम अपनी मान्यताओं में दृढ़ रहते हुए सनातन धर्म की समावेशी और सार्वभौमिक प्रकृति को अपनाते हैं।',
+                )}
               </p>
               <p>
                 हमारा संगठन समुदायों को शिक्षित, प्रेरित और सशक्त बनाने के लिए जमीनी स्तर

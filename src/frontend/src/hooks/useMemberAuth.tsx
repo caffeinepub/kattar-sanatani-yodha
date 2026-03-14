@@ -1,10 +1,18 @@
 import { useMutation } from "@tanstack/react-query";
 import type React from "react";
-import { createContext, useCallback, useContext, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import type { MemberPublic } from "../backend";
 import { useActor } from "./useActor";
 
 interface MemberAuthContextType {
   loggedInMemberId: bigint | null;
+  loggedInMember: MemberPublic | null;
   isLoggedIn: boolean;
   memberLogin: (emailOrPhone: string, password: string) => Promise<boolean>;
   memberLogout: () => void;
@@ -15,7 +23,6 @@ interface MemberAuthContextType {
 const MemberAuthContext = createContext<MemberAuthContextType | null>(null);
 
 // Unwrap Candid optional ?Nat -> bigint | null
-// Candid ?Nat is represented as [bigint] on success, [] on null/failure
 function unwrapOptionalNat(result: unknown): bigint | null {
   if (Array.isArray(result)) {
     return result.length > 0 ? (result[0] as bigint) : null;
@@ -34,7 +41,21 @@ export function MemberAuthProvider({
       return stored ? BigInt(stored) : null;
     },
   );
+  const [loggedInMember, setLoggedInMember] = useState<MemberPublic | null>(
+    null,
+  );
   const [loginError, setLoginError] = useState<string | null>(null);
+
+  // Restore member data on page load if we have a stored member ID
+  useEffect(() => {
+    if (!actor || !loggedInMemberId) return;
+    actor
+      .getMemberById(loggedInMemberId)
+      .then((m) => {
+        if (m) setLoggedInMember(m);
+      })
+      .catch(() => {});
+  }, [actor, loggedInMemberId]);
 
   const loginMutation = useMutation({
     mutationFn: async ({
@@ -45,11 +66,18 @@ export function MemberAuthProvider({
       const raw = await actor.loginMember(emailOrPhone, password);
       return unwrapOptionalNat(raw);
     },
-    onSuccess: (memberId) => {
+    onSuccess: async (memberId) => {
       if (memberId !== null) {
         setLoggedInMemberId(memberId);
         localStorage.setItem("memberLoggedInId", memberId.toString());
         setLoginError(null);
+        // Fetch and cache member data
+        if (actor) {
+          try {
+            const member = await actor.getMemberById(memberId);
+            if (member) setLoggedInMember(member);
+          } catch {}
+        }
       } else {
         setLoginError("लॉगिन विफल। कृपया अपनी जानकारी जांचें।");
       }
@@ -73,6 +101,7 @@ export function MemberAuthProvider({
 
   const memberLogout = useCallback(() => {
     setLoggedInMemberId(null);
+    setLoggedInMember(null);
     localStorage.removeItem("memberLoggedInId");
     setLoginError(null);
   }, []);
@@ -81,6 +110,7 @@ export function MemberAuthProvider({
     <MemberAuthContext.Provider
       value={{
         loggedInMemberId,
+        loggedInMember,
         isLoggedIn: loggedInMemberId !== null,
         memberLogin,
         memberLogout,

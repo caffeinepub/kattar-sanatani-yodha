@@ -1,30 +1,43 @@
 import { BookOpen, Flame, Heart, Users } from "lucide-react";
 import Hero from "../components/Hero";
 import Mission from "../components/Mission";
+import { useSiteContent } from "../context/SiteContentContext";
 
 export default function Home() {
+  const { get } = useSiteContent();
+
   const highlights = [
     {
       icon: Flame,
-      title: "सांस्कृतिक संरक्षण",
-      description:
+      title: get("home.highlight1.title", "सांस्कृतिक संरक्षण"),
+      description: get(
+        "home.highlight1.description",
         "हमारी प्राचीन परंपराओं, अनुष्ठानों और पवित्र प्रथाओं की रक्षा और प्रचार।",
+      ),
     },
     {
       icon: BookOpen,
-      title: "आध्यात्मिक शिक्षा",
-      description: "वेद, उपनिषद और अन्य पवित्र ग्रंथों की गहन बुद्धि की शिक्षा।",
+      title: get("home.highlight2.title", "आध्यात्मिक शिक्षा"),
+      description: get(
+        "home.highlight2.description",
+        "वेद, उपनिषद और अन्य पवित्र ग्रंथों की गहन बुद्धि की शिक्षा।",
+      ),
     },
     {
       icon: Users,
-      title: "समुदाय निर्माण",
-      description: "धर्म के प्रति समर्पित व्यक्तियों का एक मजबूत नेटवर्क बनाना।",
+      title: get("home.highlight3.title", "समुदाय निर्माण"),
+      description: get(
+        "home.highlight3.description",
+        "धर्म के प्रति समर्पित व्यक्तियों का एक मजबूत नेटवर्क बनाना।",
+      ),
     },
     {
       icon: Heart,
-      title: "सामाजिक सेवा",
-      description:
+      title: get("home.highlight4.title", "सामाजिक सेवा"),
+      description: get(
+        "home.highlight4.description",
         "धार्मिक मूल्यों में निहित धर्मार्थ गतिविधियों के माध्यम से समाज की सेवा।",
+      ),
     },
   ];
 
@@ -38,11 +51,13 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-              हम क्या करते हैं
+              {get("home.whatwedo.title", "हम क्या करते हैं")}
             </h2>
             <p className="font-serif text-lg text-muted-foreground max-w-2xl mx-auto">
-              हमारा संगठन हमारी पवित्र विरासत को मजबूत करने और संरक्षित करने के लिए कई
-              मोर्चों पर अथक परिश्रम करता है।
+              {get(
+                "home.whatwedo.subtitle",
+                "हमारा संगठन हमारी पवित्र विरासत को मजबूत करने और संरक्षित करने के लिए कई मोर्चों पर अथक परिश्रम करता है।",
+              )}
             </p>
           </div>
 
@@ -79,11 +94,13 @@ export default function Home() {
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-              हमारे पवित्र मिशन से जुड़ें
+              {get("home.cta.title", "हमारे पवित्र मिशन से जुड़ें")}
             </h2>
             <p className="font-serif text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
-              सनातन धर्म के शाश्वत मूल्यों को संरक्षित और प्रचारित करने के लिए समर्पित एक
-              आंदोलन का हिस्सा बनें। मिलकर हम एक स्थायी प्रभाव डाल सकते हैं।
+              {get(
+                "home.cta.description",
+                "सनातन धर्म के शाश्वत मूल्यों को संरक्षित और प्रचारित करने के लिए समर्पित एक आंदोलन का हिस्सा बनें।",
+              )}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a

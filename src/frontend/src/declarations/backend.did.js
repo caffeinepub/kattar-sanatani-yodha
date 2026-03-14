@@ -71,6 +71,7 @@ export const UserProfile = IDL.Record({ 'name' : IDL.Text });
 export const idlService = IDL.Service({
   '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
   'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+  'generatePasswordResetOtp' : IDL.Func([IDL.Text], [IDL.Opt(IDL.Text)], []),
   'getAllIdCardRequests' : IDL.Func([], [IDL.Vec(IdCardRequest)], ['query']),
   'getAllLoginActivities' : IDL.Func([], [IDL.Vec(LoginActivity)], ['query']),
   'getAllMembers' : IDL.Func([IDL.Opt(Filter)], [IDL.Vec(Member)], []),
@@ -78,6 +79,11 @@ export const idlService = IDL.Service({
   'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
   'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
   'getIsCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+  'getSiteContent' : IDL.Func(
+      [],
+      [IDL.Vec(IDL.Tuple(IDL.Text, IDL.Text))],
+      ['query'],
+    ),
   'getUserProfile' : IDL.Func(
       [IDL.Principal],
       [IDL.Opt(UserProfile)],
@@ -86,7 +92,18 @@ export const idlService = IDL.Service({
   'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
   'loginMember' : IDL.Func([IDL.Text, IDL.Text], [IDL.Opt(IDL.Nat)], []),
   'registerMember' : IDL.Func([Member], [IDL.Nat], []),
+  'resetMemberPassword' : IDL.Func(
+      [IDL.Text, IDL.Text, IDL.Text],
+      [IDL.Bool],
+      [],
+    ),
   'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
+  'setSiteContent' : IDL.Func([IDL.Text, IDL.Text], [], []),
+  'setSiteContentBulk' : IDL.Func(
+      [IDL.Vec(IDL.Tuple(IDL.Text, IDL.Text))],
+      [],
+      [],
+    ),
   'submitIdCardRequest' : IDL.Func([IDL.Nat], [], []),
 });
 
@@ -156,6 +173,7 @@ export const idlFactory = ({ IDL }) => {
   return IDL.Service({
     '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
     'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+    'generatePasswordResetOtp' : IDL.Func([IDL.Text], [IDL.Opt(IDL.Text)], []),
     'getAllIdCardRequests' : IDL.Func([], [IDL.Vec(IdCardRequest)], ['query']),
     'getAllLoginActivities' : IDL.Func([], [IDL.Vec(LoginActivity)], ['query']),
     'getAllMembers' : IDL.Func([IDL.Opt(Filter)], [IDL.Vec(Member)], []),
@@ -163,6 +181,11 @@ export const idlFactory = ({ IDL }) => {
     'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
     'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
     'getIsCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+    'getSiteContent' : IDL.Func(
+        [],
+        [IDL.Vec(IDL.Tuple(IDL.Text, IDL.Text))],
+        ['query'],
+      ),
     'getUserProfile' : IDL.Func(
         [IDL.Principal],
         [IDL.Opt(UserProfile)],
@@ -171,7 +194,18 @@ export const idlFactory = ({ IDL }) => {
     'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
     'loginMember' : IDL.Func([IDL.Text, IDL.Text], [IDL.Opt(IDL.Nat)], []),
     'registerMember' : IDL.Func([Member], [IDL.Nat], []),
+    'resetMemberPassword' : IDL.Func(
+        [IDL.Text, IDL.Text, IDL.Text],
+        [IDL.Bool],
+        [],
+      ),
     'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
+    'setSiteContent' : IDL.Func([IDL.Text, IDL.Text], [], []),
+    'setSiteContentBulk' : IDL.Func(
+        [IDL.Vec(IDL.Tuple(IDL.Text, IDL.Text))],
+        [],
+        [],
+      ),
     'submitIdCardRequest' : IDL.Func([IDL.Nat], [], []),
   });
 };

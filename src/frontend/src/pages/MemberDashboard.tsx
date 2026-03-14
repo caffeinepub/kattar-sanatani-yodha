@@ -11,15 +11,12 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useMemberAuth } from "../hooks/useMemberAuth";
-import {
-  useGetCallerMember,
-  useSubmitIdCardRequest,
-} from "../hooks/useMemberQueries";
+import { useSubmitIdCardRequest } from "../hooks/useMemberQueries";
 
 export default function MemberDashboard() {
   const navigate = useNavigate();
-  const { isLoggedIn, loggedInMemberId, memberLogout } = useMemberAuth();
-  const { data: member, isLoading } = useGetCallerMember();
+  const { isLoggedIn, loggedInMemberId, loggedInMember, memberLogout } =
+    useMemberAuth();
   const submitIdCard = useSubmitIdCardRequest();
   const [idCardSuccess, setIdCardSuccess] = useState(false);
   const [idCardError, setIdCardError] = useState("");
@@ -50,14 +47,6 @@ export default function MemberDashboard() {
 
   if (!isLoggedIn) return null;
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-background py-10 px-4">
       <div className="max-w-3xl mx-auto space-y-6">
@@ -65,7 +54,10 @@ export default function MemberDashboard() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="font-display text-2xl md:text-3xl font-bold text-primary">
-              नमस्ते, {member ? `${member.firstName} ${member.lastName}` : "सदस्य"}
+              नमस्ते,{" "}
+              {loggedInMember
+                ? `${loggedInMember.firstName} ${loggedInMember.lastName}`
+                : "सदस्य"}
               !
             </h1>
             <p className="text-foreground/60 text-sm mt-1">
@@ -83,7 +75,7 @@ export default function MemberDashboard() {
         </div>
 
         {/* Profile Card */}
-        {member && (
+        {loggedInMember ? (
           <div className="bg-card border border-border rounded-2xl shadow-warm p-6">
             <div className="flex items-center gap-3 mb-5">
               <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
@@ -94,24 +86,37 @@ export default function MemberDashboard() {
               </h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-              <InfoRow label="पहला नाम" value={member.firstName} />
-              <InfoRow label="उपनाम" value={member.lastName} />
-              <InfoRow label="पेशा" value={member.occupation} />
-              <InfoRow label="ईमेल" value={member.email} />
-              <InfoRow label="संपर्क सूत्र" value={member.contactNumber} />
-              <InfoRow label="व्हाट्सएप नंबर" value={member.whatsappNumber} />
-              <InfoRow label="देश" value={member.country} />
-              <InfoRow label="राज्य" value={member.state} />
-              <InfoRow label="ज़िला" value={member.district} />
-              <InfoRow label="तहसील" value={member.tehsil} />
-              <InfoRow label="थाना" value={member.policeStation} />
-              <InfoRow label="ग्राम पंचायत" value={member.gramPanchayat} />
-              <InfoRow label="गांव" value={member.village} />
-              {member.fullAddress && (
+              <InfoRow label="पहला नाम" value={loggedInMember.firstName} />
+              <InfoRow label="उपनाम" value={loggedInMember.lastName} />
+              <InfoRow label="पेशा" value={loggedInMember.occupation} />
+              <InfoRow label="ईमेल" value={loggedInMember.email} />
+              <InfoRow label="संपर्क सूत्र" value={loggedInMember.contactNumber} />
+              <InfoRow
+                label="व्हाट्सएप नंबर"
+                value={loggedInMember.whatsappNumber}
+              />
+              <InfoRow label="देश" value={loggedInMember.country} />
+              <InfoRow label="राज्य" value={loggedInMember.state} />
+              <InfoRow label="ज़िला" value={loggedInMember.district} />
+              <InfoRow label="तहसील" value={loggedInMember.tehsil} />
+              <InfoRow label="थाना" value={loggedInMember.policeStation} />
+              <InfoRow
+                label="ग्राम पंचायत"
+                value={loggedInMember.gramPanchayat}
+              />
+              <InfoRow label="गांव" value={loggedInMember.village} />
+              {loggedInMember.fullAddress && (
                 <div className="sm:col-span-2">
-                  <InfoRow label="पूरा पता" value={member.fullAddress} />
+                  <InfoRow label="पूरा पता" value={loggedInMember.fullAddress} />
                 </div>
               )}
+            </div>
+          </div>
+        ) : (
+          <div className="bg-card border border-border rounded-2xl shadow-warm p-6 flex items-center justify-center">
+            <div className="text-center">
+              <Loader2 className="h-8 w-8 animate-spin text-primary mx-auto mb-3" />
+              <p className="text-foreground/60">जानकारी लोड हो रही है...</p>
             </div>
           </div>
         )}

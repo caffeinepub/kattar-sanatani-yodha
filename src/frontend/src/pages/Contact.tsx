@@ -1,9 +1,11 @@
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { useState } from "react";
 import { SiFacebook, SiInstagram, SiX, SiYoutube } from "react-icons/si";
+import { useSiteContent } from "../context/SiteContentContext";
 import { useContactForm } from "../hooks/useContactForm";
 
 export default function Contact() {
+  const { get } = useSiteContent();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -62,7 +64,6 @@ export default function Contact() {
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear validation error on change
     if (name === "phoneNumber" || name === "whatsappNumber") {
       setValidationErrors((prev) => ({ ...prev, [name]: undefined }));
     }
@@ -74,11 +75,13 @@ export default function Contact() {
       <section className="py-24 bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 pattern-overlay">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-display text-5xl md:text-6xl font-bold text-foreground mb-6">
-            संपर्क करें
+            {get("contact.title", "संपर्क करें")}
           </h1>
           <p className="font-serif text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            हम आपसे सुनना चाहते हैं। प्रश्नों, सुझावों के साथ या हमारे मिशन के बारे में अधिक
-            जानने के लिए संपर्क करें।
+            {get(
+              "contact.subtitle",
+              "हम आपसे सुनना चाहते हैं। प्रश्नों, सुझावों के साथ या हमारे मिशन के बारे में अधिक जानने के लिए संपर्क करें।",
+            )}
           </p>
         </div>
       </section>
@@ -93,7 +96,6 @@ export default function Contact() {
                 हमें संदेश भेजें
               </h2>
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Name */}
                 <div>
                   <label
                     htmlFor="name"
@@ -113,7 +115,6 @@ export default function Contact() {
                   />
                 </div>
 
-                {/* Email */}
                 <div>
                   <label
                     htmlFor="email"
@@ -133,7 +134,6 @@ export default function Contact() {
                   />
                 </div>
 
-                {/* Phone Number */}
                 <div>
                   <label
                     htmlFor="phoneNumber"
@@ -162,7 +162,6 @@ export default function Contact() {
                   )}
                 </div>
 
-                {/* WhatsApp Number */}
                 <div>
                   <label
                     htmlFor="whatsappNumber"
@@ -191,7 +190,6 @@ export default function Contact() {
                   )}
                 </div>
 
-                {/* Message */}
                 <div>
                   <label
                     htmlFor="message"
@@ -253,7 +251,6 @@ export default function Contact() {
                 </p>
               </div>
 
-              {/* Contact Details */}
               <div className="space-y-6">
                 <div className="flex items-start gap-4 p-4 bg-card rounded-lg border border-border">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -264,10 +261,10 @@ export default function Contact() {
                       ईमेल
                     </h3>
                     <a
-                      href="mailto:adityarajsrivastav76@gmail.com"
+                      href={`mailto:${get("contact.email", "adityarajsrivastav76@gmail.com")}`}
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
-                      adityarajsrivastav76@gmail.com
+                      {get("contact.email", "adityarajsrivastav76@gmail.com")}
                     </a>
                   </div>
                 </div>
@@ -282,16 +279,16 @@ export default function Contact() {
                     </h3>
                     <div className="space-y-1">
                       <a
-                        href="tel:+918130608468"
+                        href={`tel:${get("contact.phone1", "+918130608468")}`}
                         className="block text-muted-foreground hover:text-primary transition-colors"
                       >
-                        +91 81306 08468
+                        {get("contact.phone1", "+91 81306 08468")}
                       </a>
                       <a
-                        href="tel:+919259279963"
+                        href={`tel:${get("contact.phone2", "+919259279963")}`}
                         className="block text-muted-foreground hover:text-primary transition-colors"
                       >
-                        +91 92592 79963
+                        {get("contact.phone2", "+91 92592 79963")}
                       </a>
                     </div>
                   </div>
@@ -305,12 +302,13 @@ export default function Contact() {
                     <h3 className="font-display font-semibold text-foreground mb-1">
                       स्थान
                     </h3>
-                    <p className="text-muted-foreground">भारत</p>
+                    <p className="text-muted-foreground">
+                      {get("contact.address", "भारत")}
+                    </p>
                   </div>
                 </div>
               </div>
 
-              {/* Social Media */}
               <div>
                 <h3 className="font-display text-xl font-semibold text-foreground mb-4">
                   हमें फॉलो करें

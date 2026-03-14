@@ -7,26 +7,35 @@ import {
   Users,
 } from "lucide-react";
 import ProgramCard from "../components/ProgramCard";
+import { useSiteContent } from "../context/SiteContentContext";
 
 export default function Programs() {
+  const { get } = useSiteContent();
+
   const programs = [
     {
       icon: BookOpen,
-      title: "वैदिक स्टडी सर्कल",
-      description:
+      title: get("programs.card1.title", "वैदिक स्टडी सर्कल"),
+      description: get(
+        "programs.card1.description",
         "वेद, उपनिषद और भगवद गीता जैसे पवित्र ग्रंथों की पढ़ाई और चर्चा के लिए नियमित सत्र। अनुभवी विद्वानों से सीखें और अपनी आध्यात्मिक समझ को गहरा करें।",
+      ),
     },
     {
       icon: Sparkles,
-      title: "सांस्कृतिक उत्सव",
-      description:
+      title: get("programs.card2.title", "सांस्कृतिक उत्सव"),
+      description: get(
+        "programs.card2.description",
         "उचित अनुष्ठानों के साथ पारंपरिक हिंदू त्योहारों का आयोजन और उत्सव, प्रामाणिकता बनाए रखते हुए सामुदायिक बंधन और सांस्कृतिक जागरूकता पैदा करना।",
+      ),
     },
     {
       icon: GraduationCap,
-      title: "युवा शिक्षा कार्यक्रम",
-      description:
+      title: get("programs.card3.title", "युवा शिक्षा कार्यक्रम"),
+      description: get(
+        "programs.card3.description",
         "युवा मन को धार्मिक मूल्यों, संस्कृत भाषा, पारंपरिक कलाओं और सनातन धर्म की समृद्ध विरासत के बारे में शिक्षित करने की विशेष पहल।",
+      ),
     },
     {
       icon: Users,
@@ -54,11 +63,13 @@ export default function Programs() {
       <section className="py-24 bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 pattern-overlay">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-display text-5xl md:text-6xl font-bold text-foreground mb-6">
-            हमारे कार्यक्रम
+            {get("programs.title", "हमारे कार्यक्रम")}
           </h1>
           <p className="font-serif text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            परंपरा को संरक्षित करने, ज्ञान फैलाने और समुदाय की सेवा करने के लिए समर्पित
-            विविध पहल
+            {get(
+              "programs.subtitle",
+              "परंपरा को संरक्षित करने, ज्ञान फैलाने और समुदाय की सेवा करने के लिए समर्पित विविध पहल",
+            )}
           </p>
         </div>
       </section>

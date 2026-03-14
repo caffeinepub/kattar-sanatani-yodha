@@ -1,26 +1,41 @@
 import { BookOpen, Heart, Shield, Users } from "lucide-react";
+import { useSiteContent } from "../context/SiteContentContext";
 
 export default function Mission() {
+  const { get } = useSiteContent();
+
   const values = [
     {
       icon: Heart,
-      title: "भक्ति",
-      description: "धर्म के शाश्वत सिद्धांतों के प्रति अटूट समर्पण",
+      title: get("mission.value1.title", "भक्ति"),
+      description: get(
+        "mission.value1.description",
+        "धर्म के शाश्वत सिद्धांतों के प्रति अटूट समर्पण",
+      ),
     },
     {
       icon: Shield,
-      title: "रक्षा",
-      description: "हमारी पवित्र परंपराओं और सांस्कृतिक विरासत की सुरक्षा",
+      title: get("mission.value2.title", "रक्षा"),
+      description: get(
+        "mission.value2.description",
+        "हमारी पवित्र परंपराओं और सांस्कृतिक विरासत की सुरक्षा",
+      ),
     },
     {
       icon: BookOpen,
-      title: "ज्ञान",
-      description: "हमारे प्राचीन शास्त्रों की शाश्वत बुद्धि का प्रसार",
+      title: get("mission.value3.title", "ज्ञान"),
+      description: get(
+        "mission.value3.description",
+        "हमारे प्राचीन शास्त्रों की शाश्वत बुद्धि का प्रसार",
+      ),
     },
     {
       icon: Users,
-      title: "एकता",
-      description: "साझा मूल्यों में निहित एक मजबूत समुदाय का निर्माण",
+      title: get("mission.value4.title", "एकता"),
+      description: get(
+        "mission.value4.description",
+        "साझा मूल्यों में निहित एक मजबूत समुदाय का निर्माण",
+      ),
     },
   ];
 
@@ -29,11 +44,13 @@ export default function Mission() {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-            हमारा पवित्र मिशन
+            {get("mission.title", "हमारा पवित्र मिशन")}
           </h2>
           <p className="font-serif text-lg md:text-xl text-muted-foreground leading-relaxed">
-            हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर
-            बिना थके काम करता है।
+            {get(
+              "mission.description",
+              "हमारा संगठन हमारी पवित्र विरासत को मज़बूत करने और बचाने के लिए कई मोर्चों पर बिना थके काम करता है।",
+            )}
           </p>
         </div>
 

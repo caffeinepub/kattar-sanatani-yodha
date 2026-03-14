@@ -83,6 +83,16 @@ export default function Login() {
                 required
                 autoComplete="current-password"
               />
+              <div className="text-right mt-1">
+                <button
+                  type="button"
+                  onClick={() => navigate({ to: "/forgot-password" })}
+                  className="text-sm text-primary hover:underline font-medium"
+                  data-ocid="login.forgot_password_link"
+                >
+                  पासवर्ड भूल गए?
+                </button>
+              </div>
             </div>
 
             {errorMsg && (

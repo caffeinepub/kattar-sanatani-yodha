@@ -55,6 +55,26 @@ export interface Member {
   'lastName' : string,
   'firstName' : string,
 }
+
+export interface MemberPublic {
+  'id' : bigint,
+  'occupation' : string,
+  'country' : string,
+  'gramPanchayat' : string,
+  'policeStation' : string,
+  'email' : string,
+  'district' : string,
+  'whatsappNumber' : string,
+  'state' : string,
+  'village' : string,
+  'gender' : Gender,
+  'timestamp' : bigint,
+  'contactNumber' : string,
+  'fullAddress' : string,
+  'tehsil' : string,
+  'lastName' : string,
+  'firstName' : string,
+}
 export type SortBy = { 'timestampAsc' : null } |
   { 'lastNameAsc' : null } |
   { 'lastNameDesc' : null } |
@@ -66,6 +86,7 @@ export type UserRole = { 'admin' : null } |
 export interface _SERVICE {
   '_initializeAccessControlWithSecret' : ActorMethod<[string], undefined>,
   'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
+  'generatePasswordResetOtp' : ActorMethod<[string], [] | [string]>,
   'getAllIdCardRequests' : ActorMethod<[], Array<IdCardRequest>>,
   'getAllLoginActivities' : ActorMethod<[], Array<LoginActivity>>,
   'getAllMembers' : ActorMethod<[[] | [Filter]], Array<Member>>,
@@ -73,11 +94,16 @@ export interface _SERVICE {
   'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
   'getCallerUserRole' : ActorMethod<[], UserRole>,
   'getIsCallerAdmin' : ActorMethod<[], boolean>,
+  'getMemberById' : ActorMethod<[bigint], [] | [MemberPublic]>,
+  'getSiteContent' : ActorMethod<[], Array<[string, string]>>,
   'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
   'isCallerAdmin' : ActorMethod<[], boolean>,
   'loginMember' : ActorMethod<[string, string], [] | [bigint]>,
   'registerMember' : ActorMethod<[Member], bigint>,
+  'resetMemberPassword' : ActorMethod<[string, string, string], boolean>,
   'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
+  'setSiteContent' : ActorMethod<[string, string], undefined>,
+  'setSiteContentBulk' : ActorMethod<[Array<[string, string]>], undefined>,
   'submitIdCardRequest' : ActorMethod<[bigint], undefined>,
 }
 export declare const idlService: IDL.ServiceClass;

@@ -11,19 +11,26 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Textarea } from "@/components/ui/textarea";
 import { useNavigate } from "@tanstack/react-router";
 import {
   Activity,
   CreditCard,
   Download,
+  FileEdit,
+  Loader2,
   LogIn,
+  Save,
   Search,
   Shield,
   Users,
 } from "lucide-react";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { toast } from "sonner";
 import type { Filter } from "../backend";
 import { Gender, SortBy } from "../backend";
+import { useSiteContent } from "../context/SiteContentContext";
+import { useActor } from "../hooks/useActor";
 import { useInternetIdentity } from "../hooks/useInternetIdentity";
 import {
   useGetAllIdCardRequests,
@@ -40,16 +47,488 @@ function formatDate(timestamp: bigint | number): string {
 
 function formatFileSize(bytes: bigint): string {
   const n = Number(bytes);
-  if (n === 0) return "—";
+  if (n === 0) return "\u2014";
   if (n < 1024) return `${n} B`;
   if (n < 1024 * 1024) return `${(n / 1024).toFixed(1)} KB`;
   return `${(n / (1024 * 1024)).toFixed(1)} MB`;
 }
 
 function genderLabel(g: Gender): string {
-  if (g === Gender.male) return "पुरुष";
-  if (g === Gender.female) return "महिला";
-  return "अन्य";
+  if (g === Gender.male) return "\u092a\u0941\u0930\u0941\u0937";
+  if (g === Gender.female) return "\u092e\u0939\u093f\u0932\u093e";
+  return "\u0905\u0928\u094d\u092f";
+}
+
+// Content editor section definition
+type ContentField = { key: string; label: string; multiline?: boolean };
+type ContentSection = { id: string; title: string; fields: ContentField[] };
+
+const CONTENT_SECTIONS: ContentSection[] = [
+  {
+    id: "hero",
+    title:
+      "\u0939\u0940\u0930\u094b \u0938\u0947\u0915\u094d\u0936\u0928 (Hero)",
+    fields: [
+      {
+        key: "hero.title",
+        label: "\u0936\u0940\u0930\u094d\u0937\u0915 (Title)",
+      },
+      {
+        key: "hero.tagline",
+        label: "\u091f\u0948\u0917\u0932\u093e\u0907\u0928",
+      },
+      {
+        key: "hero.description",
+        label: "\u0935\u093f\u0935\u0930\u0923 (Description)",
+        multiline: true,
+      },
+      {
+        key: "hero.cta_primary",
+        label:
+          "\u092a\u094d\u0930\u093e\u0925\u092e\u093f\u0915 \u092c\u091f\u0928",
+      },
+      {
+        key: "hero.cta_secondary",
+        label:
+          "\u0926\u094d\u0935\u093f\u0924\u0940\u092f\u0915 \u092c\u091f\u0928",
+      },
+    ],
+  },
+  {
+    id: "mission",
+    title:
+      "\u092e\u093f\u0936\u0928 \u0938\u0947\u0915\u094d\u0936\u0928 (Mission)",
+    fields: [
+      { key: "mission.title", label: "\u0936\u0940\u0930\u094d\u0937\u0915" },
+      {
+        key: "mission.description",
+        label: "\u0935\u093f\u0935\u0930\u0923",
+        multiline: true,
+      },
+      {
+        key: "mission.value1.title",
+        label:
+          "\u092e\u0942\u0932\u094d\u092f 1 \u0936\u0940\u0930\u094d\u0937\u0915",
+      },
+      {
+        key: "mission.value1.description",
+        label:
+          "\u092e\u0942\u0932\u094d\u092f 1 \u0935\u093f\u0935\u0930\u0923",
+        multiline: true,
+      },
+      {
+        key: "mission.value2.title",
+        label:
+          "\u092e\u0942\u0932\u094d\u092f 2 \u0936\u0940\u0930\u094d\u0937\u0915",
+      },
+      {
+        key: "mission.value2.description",
+        label:
+          "\u092e\u0942\u0932\u094d\u092f 2 \u0935\u093f\u0935\u0930\u0923",
+        multiline: true,
+      },
+      {
+        key: "mission.value3.title",
+        label:
+          "\u092e\u0942\u0932\u094d\u092f 3 \u0936\u0940\u0930\u094d\u0937\u0915",
+      },
+      {
+        key: "mission.value3.description",
+        label:
+          "\u092e\u0942\u0932\u094d\u092f 3 \u0935\u093f\u0935\u0930\u0923",
+        multiline: true,
+      },
+      {
+        key: "mission.value4.title",
+        label:
+          "\u092e\u0942\u0932\u094d\u092f 4 \u0936\u0940\u0930\u094d\u0937\u0915",
+      },
+      {
+        key: "mission.value4.description",
+        label:
+          "\u092e\u0942\u0932\u094d\u092f 4 \u0935\u093f\u0935\u0930\u0923",
+        multiline: true,
+      },
+    ],
+  },
+  {
+    id: "home",
+    title: "\u0939\u094b\u092e \u092a\u0947\u091c (Home)",
+    fields: [
+      {
+        key: "home.whatwedo.title",
+        label:
+          "\u0938\u0947\u0915\u094d\u0936\u0928 \u0936\u0940\u0930\u094d\u0937\u0915",
+      },
+      {
+        key: "home.whatwedo.subtitle",
+        label:
+          "\u0938\u0947\u0915\u094d\u0936\u0928 \u0909\u092a\u0936\u0940\u0930\u094d\u0937\u0915",
+        multiline: true,
+      },
+      {
+        key: "home.highlight1.title",
+        label:
+          "\u0915\u093e\u0930\u094d\u0921 1 \u0936\u0940\u0930\u094d\u0937\u0915",
+      },
+      {
+        key: "home.highlight1.description",
+        label:
+          "\u0915\u093e\u0930\u094d\u0921 1 \u0935\u093f\u0935\u0930\u0923",
+        multiline: true,
+      },
+      {
+        key: "home.highlight2.title",
+        label:
+          "\u0915\u093e\u0930\u094d\u0921 2 \u0936\u0940\u0930\u094d\u0937\u0915",
+      },
+      {
+        key: "home.highlight2.description",
+        label:
+          "\u0915\u093e\u0930\u094d\u0921 2 \u0935\u093f\u0935\u0930\u0923",
+        multiline: true,
+      },
+      {
+        key: "home.highlight3.title",
+        label:
+          "\u0915\u093e\u0930\u094d\u0921 3 \u0936\u0940\u0930\u094d\u0937\u0915",
+      },
+      {
+        key: "home.highlight3.description",
+        label:
+          "\u0915\u093e\u0930\u094d\u0921 3 \u0935\u093f\u0935\u0930\u0923",
+        multiline: true,
+      },
+      {
+        key: "home.highlight4.title",
+        label:
+          "\u0915\u093e\u0930\u094d\u0921 4 \u0936\u0940\u0930\u094d\u0937\u0915",
+      },
+      {
+        key: "home.highlight4.description",
+        label:
+          "\u0915\u093e\u0930\u094d\u0921 4 \u0935\u093f\u0935\u0930\u0923",
+        multiline: true,
+      },
+      {
+        key: "home.cta.title",
+        label: "CTA \u0936\u0940\u0930\u094d\u0937\u0915",
+      },
+      {
+        key: "home.cta.description",
+        label: "CTA \u0935\u093f\u0935\u0930\u0923",
+        multiline: true,
+      },
+    ],
+  },
+  {
+    id: "about",
+    title:
+      "\u0939\u092e\u093e\u0930\u0947 \u092c\u093e\u0930\u0947 \u092e\u0947\u0902 (About)",
+    fields: [
+      {
+        key: "about.hero.title",
+        label: "\u0939\u0940\u0930\u094b \u0936\u0940\u0930\u094d\u0937\u0915",
+      },
+      {
+        key: "about.hero.subtitle",
+        label:
+          "\u0939\u0940\u0930\u094b \u0909\u092a\u0936\u0940\u0930\u094d\u0937\u0915",
+        multiline: true,
+      },
+      {
+        key: "about.story.title",
+        label:
+          "\u0915\u0939\u093e\u0928\u0940 \u0936\u0940\u0930\u094d\u0937\u0915",
+      },
+      {
+        key: "about.story.para1",
+        label: "\u0905\u0928\u0941\u091a\u094d\u091b\u0947\u0926 1",
+        multiline: true,
+      },
+      {
+        key: "about.story.para2",
+        label: "\u0905\u0928\u0941\u091a\u094d\u091b\u0947\u0926 2",
+        multiline: true,
+      },
+      {
+        key: "about.principle1.title",
+        label:
+          "\u0938\u093f\u0926\u094d\u0927\u093e\u0902\u0924 1 \u0936\u0940\u0930\u094d\u0937\u0915",
+      },
+      {
+        key: "about.principle1.description",
+        label:
+          "\u0938\u093f\u0926\u094d\u0927\u093e\u0902\u0924 1 \u0935\u093f\u0935\u0930\u0923",
+        multiline: true,
+      },
+      {
+        key: "about.principle2.title",
+        label:
+          "\u0938\u093f\u0926\u094d\u0927\u093e\u0902\u0924 2 \u0936\u0940\u0930\u094d\u0937\u0915",
+      },
+      {
+        key: "about.principle2.description",
+        label:
+          "\u0938\u093f\u0926\u094d\u0927\u093e\u0902\u0924 2 \u0935\u093f\u0935\u0930\u0923",
+        multiline: true,
+      },
+      {
+        key: "about.principle3.title",
+        label:
+          "\u0938\u093f\u0926\u094d\u0927\u093e\u0902\u0924 3 \u0936\u0940\u0930\u094d\u0937\u0915",
+      },
+      {
+        key: "about.principle3.description",
+        label:
+          "\u0938\u093f\u0926\u094d\u0927\u093e\u0902\u0924 3 \u0935\u093f\u0935\u0930\u0923",
+        multiline: true,
+      },
+      {
+        key: "about.principle4.title",
+        label:
+          "\u0938\u093f\u0926\u094d\u0927\u093e\u0902\u0924 4 \u0936\u0940\u0930\u094d\u0937\u0915",
+      },
+      {
+        key: "about.principle4.description",
+        label:
+          "\u0938\u093f\u0926\u094d\u0927\u093e\u0902\u0924 4 \u0935\u093f\u0935\u0930\u0923",
+        multiline: true,
+      },
+    ],
+  },
+  {
+    id: "programs",
+    title: "\u0915\u093e\u0930\u094d\u092f\u0915\u094d\u0930\u092e (Programs)",
+    fields: [
+      { key: "programs.title", label: "\u0936\u0940\u0930\u094d\u0937\u0915" },
+      {
+        key: "programs.subtitle",
+        label: "\u0909\u092a\u0936\u0940\u0930\u094d\u0937\u0915",
+        multiline: true,
+      },
+      {
+        key: "programs.card1.title",
+        label:
+          "\u0915\u093e\u0930\u094d\u0921 1 \u0936\u0940\u0930\u094d\u0937\u0915",
+      },
+      {
+        key: "programs.card1.description",
+        label:
+          "\u0915\u093e\u0930\u094d\u0921 1 \u0935\u093f\u0935\u0930\u0923",
+        multiline: true,
+      },
+      {
+        key: "programs.card2.title",
+        label:
+          "\u0915\u093e\u0930\u094d\u0921 2 \u0936\u0940\u0930\u094d\u0937\u0915",
+      },
+      {
+        key: "programs.card2.description",
+        label:
+          "\u0915\u093e\u0930\u094d\u0921 2 \u0935\u093f\u0935\u0930\u0923",
+        multiline: true,
+      },
+      {
+        key: "programs.card3.title",
+        label:
+          "\u0915\u093e\u0930\u094d\u0921 3 \u0936\u0940\u0930\u094d\u0937\u0915",
+      },
+      {
+        key: "programs.card3.description",
+        label:
+          "\u0915\u093e\u0930\u094d\u0921 3 \u0935\u093f\u0935\u0930\u0923",
+        multiline: true,
+      },
+    ],
+  },
+  {
+    id: "contact",
+    title: "\u0938\u0902\u092a\u0930\u094d\u0915 (Contact)",
+    fields: [
+      {
+        key: "contact.title",
+        label: "\u092a\u0947\u091c \u0936\u0940\u0930\u094d\u0937\u0915",
+      },
+      {
+        key: "contact.subtitle",
+        label:
+          "\u092a\u0947\u091c \u0909\u092a\u0936\u0940\u0930\u094d\u0937\u0915",
+        multiline: true,
+      },
+      { key: "contact.email", label: "\u0908\u092e\u0947\u0932" },
+      { key: "contact.phone1", label: "\u092b\u093c\u094b\u0928 1" },
+      { key: "contact.phone2", label: "\u092b\u093c\u094b\u0928 2" },
+      { key: "contact.address", label: "\u092a\u0924\u093e" },
+    ],
+  },
+  {
+    id: "footer",
+    title: "\u092b\u0942\u091f\u0930 (Footer)",
+    fields: [
+      {
+        key: "footer.tagline",
+        label: "\u091f\u0948\u0917\u0932\u093e\u0907\u0928",
+      },
+      {
+        key: "footer.description",
+        label: "\u0935\u093f\u0935\u0930\u0923",
+        multiline: true,
+      },
+    ],
+  },
+];
+
+function ContentEditor() {
+  const { contentMap, refresh } = useSiteContent();
+  const { actor } = useActor();
+  const [localValues, setLocalValues] = useState<Record<string, string>>({});
+  const [savingSection, setSavingSection] = useState<string | null>(null);
+  const [savingAll, setSavingAll] = useState(false);
+
+  // Initialize local values from contentMap
+  useEffect(() => {
+    const init: Record<string, string> = {};
+    for (const section of CONTENT_SECTIONS) {
+      for (const field of section.fields) {
+        init[field.key] = contentMap.get(field.key) ?? "";
+      }
+    }
+    setLocalValues(init);
+  }, [contentMap]);
+
+  const handleChange = useCallback((key: string, value: string) => {
+    setLocalValues((prev) => ({ ...prev, [key]: value }));
+  }, []);
+
+  const saveSection = async (section: ContentSection) => {
+    if (!actor) return;
+    setSavingSection(section.id);
+    try {
+      const entries: Array<[string, string]> = section.fields.map((f) => [
+        f.key,
+        localValues[f.key] ?? "",
+      ]);
+      await actor.setSiteContentBulk(entries);
+      await refresh();
+      toast.success(
+        `${section.title} \u0938\u0939\u0947\u091c\u093e \u0917\u092f\u093e!`,
+      );
+    } catch (_e) {
+      toast.error(
+        "\u0938\u0939\u0947\u091c\u0928\u0947 \u092e\u0947\u0902 \u0924\u094d\u0930\u0941\u091f\u093f \u0939\u0941\u0908",
+      );
+    } finally {
+      setSavingSection(null);
+    }
+  };
+
+  const saveAll = async () => {
+    if (!actor) return;
+    setSavingAll(true);
+    try {
+      const entries: Array<[string, string]> = Object.entries(localValues);
+      await actor.setSiteContentBulk(entries);
+      await refresh();
+      toast.success(
+        "\u0938\u092d\u0940 \u0938\u093e\u092e\u0917\u094d\u0930\u0940 \u0938\u0939\u0947\u091c\u0940 \u0917\u0908!",
+      );
+    } catch (_e) {
+      toast.error(
+        "\u0938\u0939\u0947\u091c\u0928\u0947 \u092e\u0947\u0902 \u0924\u094d\u0930\u0941\u091f\u093f \u0939\u0941\u0908",
+      );
+    } finally {
+      setSavingAll(false);
+    }
+  };
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <p className="text-sm text-muted-foreground">
+          \u0938\u093e\u0907\u091f \u0915\u0940
+          \u0938\u093e\u092e\u0917\u094d\u0930\u0940
+          \u0938\u0902\u092a\u093e\u0926\u093f\u0924 \u0915\u0930\u0947\u0902
+          \u0914\u0930 \u0938\u0939\u0947\u091c\u0947\u0902
+        </p>
+        <Button
+          onClick={saveAll}
+          disabled={savingAll}
+          data-ocid="admin.content.save_button"
+          className="flex items-center gap-2"
+        >
+          {savingAll ? (
+            <Loader2 className="h-4 w-4 animate-spin" />
+          ) : (
+            <Save className="h-4 w-4" />
+          )}
+          \u0938\u092d\u0940 \u0938\u0939\u0947\u091c\u0947\u0902
+        </Button>
+      </div>
+
+      {CONTENT_SECTIONS.map((section) => (
+        <div
+          key={section.id}
+          className="bg-card border border-border rounded-xl p-6"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-display text-lg font-semibold text-foreground">
+              {section.title}
+            </h3>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => saveSection(section)}
+              disabled={savingSection === section.id}
+              data-ocid={`admin.content.${section.id}.save_button`}
+              className="flex items-center gap-1.5"
+            >
+              {savingSection === section.id ? (
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              ) : (
+                <Save className="h-3.5 w-3.5" />
+              )}
+              \u0938\u0939\u0947\u091c\u0947\u0902
+            </Button>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4">
+            {section.fields.map((field) => (
+              <div key={field.key}>
+                <label
+                  htmlFor={field.key}
+                  className="block text-sm font-medium text-foreground mb-1"
+                >
+                  {field.label}
+                  <span className="ml-2 text-xs text-muted-foreground font-mono">
+                    ({field.key})
+                  </span>
+                </label>
+                {field.multiline ? (
+                  <Textarea
+                    id={field.key}
+                    value={localValues[field.key] ?? ""}
+                    onChange={(e) => handleChange(field.key, e.target.value)}
+                    rows={3}
+                    className="text-sm"
+                    data-ocid={`admin.content.${field.key.replace(/\./g, "_")}.textarea`}
+                  />
+                ) : (
+                  <Input
+                    id={field.key}
+                    value={localValues[field.key] ?? ""}
+                    onChange={(e) => handleChange(field.key, e.target.value)}
+                    className="text-sm"
+                    data-ocid={`admin.content.${field.key.replace(/\./g, "_")}.input`}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default function Admin() {
@@ -82,19 +561,23 @@ export default function Admin() {
             <Shield className="h-8 w-8 text-primary" />
           </div>
           <h1 className="font-display text-2xl font-bold text-primary mb-3">
-            प्रशासन पैनल
+            \u092a\u094d\u0930\u0936\u093e\u0938\u0928 \u092a\u0948\u0928\u0932
           </h1>
           <p className="text-foreground/60 mb-6">
-            प्रशासन पैनल तक पहुंचने के लिए लॉगिन करें।
+            \u092a\u094d\u0930\u0936\u093e\u0938\u0928 \u092a\u0948\u0928\u0932
+            \u0924\u0915 \u092a\u0939\u0941\u0902\u091a\u0928\u0947 \u0915\u0947
+            \u0932\u093f\u090f \u0932\u0949\u0917\u0907\u0928
+            \u0915\u0930\u0947\u0902\u0964
           </p>
           <Button
             onClick={login}
             disabled={loginStatus === "logging-in"}
             className="bg-primary text-primary-foreground"
+            data-ocid="admin.login.button"
           >
             {loginStatus === "logging-in"
-              ? "लॉगिन हो रहा है..."
-              : "Internet Identity से लॉगिन करें"}
+              ? "\u0932\u0949\u0917\u0907\u0928 \u0939\u094b \u0930\u0939\u093e \u0939\u0948..."
+              : "Internet Identity \u0938\u0947 \u0932\u0949\u0917\u0907\u0928 \u0915\u0930\u0947\u0902"}
           </Button>
         </div>
       </div>
@@ -106,7 +589,10 @@ export default function Admin() {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-3" />
-          <p className="text-foreground/60">जांच हो रही है...</p>
+          <p className="text-foreground/60">
+            \u091c\u093e\u0902\u091a \u0939\u094b \u0930\u0939\u0940
+            \u0939\u0948...
+          </p>
         </div>
       </div>
     );
@@ -118,13 +604,18 @@ export default function Admin() {
         <div className="text-center max-w-md">
           <Shield className="h-12 w-12 text-destructive mx-auto mb-4" />
           <h2 className="font-display text-xl font-bold text-destructive mb-2">
-            पहुंच अस्वीकृत
+            \u092a\u0939\u0941\u0902\u091a
+            \u0905\u0938\u094d\u0935\u0940\u0915\u0943\u0924
           </h2>
           <p className="text-foreground/60 mb-4">
-            आपके पास प्रशासन पैनल तक पहुंचने की अनुमति नहीं है।
+            \u0906\u092a\u0915\u0947 \u092a\u093e\u0938
+            \u092a\u094d\u0930\u0936\u093e\u0938\u0928 \u092a\u0948\u0928\u0932
+            \u0924\u0915 \u092a\u0939\u0941\u0902\u091a\u0928\u0947 \u0915\u0940
+            \u0905\u0928\u0941\u092e\u0924\u093f \u0928\u0939\u0940\u0902
+            \u0939\u0948\u0964
           </p>
           <Button variant="outline" onClick={() => navigate({ to: "/" })}>
-            होम पर जाएं
+            \u0939\u094b\u092e \u092a\u0930 \u091c\u093e\u090f\u0902
           </Button>
         </div>
       </div>
@@ -134,23 +625,23 @@ export default function Admin() {
   const exportMembersCSV = () => {
     const headers = [
       "ID",
-      "पहला नाम",
-      "उपनाम",
-      "पेशा",
-      "ईमेल",
-      "संपर्क",
-      "व्हाट्सएप",
-      "देश",
-      "राज्य",
-      "ज़िला",
-      "तहसील",
-      "थाना",
-      "ग्राम पंचायत",
-      "गांव",
-      "लिंग",
-      "फोटो",
-      "आधार",
-      "समय",
+      "\u092a\u0939\u0932\u093e \u0928\u093e\u092e",
+      "\u0909\u092a\u0928\u093e\u092e",
+      "\u092a\u0947\u0936\u093e",
+      "\u0908\u092e\u0947\u0932",
+      "\u0938\u0902\u092a\u0930\u094d\u0915",
+      "\u0935\u094d\u0939\u093e\u091f\u094d\u0938\u090f\u092a",
+      "\u0926\u0947\u0936",
+      "\u0930\u093e\u091c\u094d\u092f",
+      "\u091c\u093c\u093f\u0932\u093e",
+      "\u0924\u0939\u0938\u0940\u0932",
+      "\u0925\u093e\u0928\u093e",
+      "\u0917\u094d\u0930\u093e\u092e \u092a\u0902\u091a\u093e\u092f\u0924",
+      "\u0917\u093e\u0902\u0935",
+      "\u0932\u093f\u0902\u0917",
+      "\u092b\u094b\u091f\u094b",
+      "\u0906\u0927\u093e\u0930",
+      "\u0938\u092e\u092f",
     ];
     const rows = members.map((m) => [
       m.id.toString(),
@@ -170,10 +661,10 @@ export default function Admin() {
       genderLabel(m.gender),
       m.photo.fileName
         ? `${m.photo.fileName} (${formatFileSize(m.photo.fileSize)})`
-        : "—",
+        : "\u2014",
       m.aadhaarCardPhoto.fileName
         ? `${m.aadhaarCardPhoto.fileName} (${formatFileSize(m.aadhaarCardPhoto.fileSize)})`
-        : "—",
+        : "\u2014",
       formatDate(m.timestamp),
     ]);
     const csv = [headers, ...rows]
@@ -199,37 +690,61 @@ export default function Admin() {
             </div>
             <div>
               <h1 className="font-display text-2xl font-bold text-primary">
-                प्रशासन पैनल
+                \u092a\u094d\u0930\u0936\u093e\u0938\u0928
+                \u092a\u0948\u0928\u0932
               </h1>
-              <p className="text-foreground/50 text-sm">सभी डेटा प्रबंधन</p>
+              <p className="text-foreground/50 text-sm">
+                \u0938\u092d\u0940 \u0921\u0947\u091f\u093e
+                \u092a\u094d\u0930\u092c\u0902\u0927\u0928
+              </p>
             </div>
           </div>
           <div className="flex gap-2">
             <Badge variant="outline" className="text-xs">
-              {members.length} सदस्य
+              {members.length} \u0938\u0926\u0938\u094d\u092f
             </Badge>
             <Badge variant="outline" className="text-xs">
-              {idCardRequests.length} ID अनुरोध
+              {idCardRequests.length} ID \u0905\u0928\u0941\u0930\u094b\u0927
             </Badge>
           </div>
         </div>
 
         <Tabs defaultValue="members">
           <TabsList className="mb-6 flex flex-wrap gap-1 h-auto">
-            <TabsTrigger value="members" className="flex items-center gap-1.5">
+            <TabsTrigger
+              value="members"
+              className="flex items-center gap-1.5"
+              data-ocid="admin.members.tab"
+            >
               <Users className="h-4 w-4" />
-              सदस्य ({members.length})
+              \u0938\u0926\u0938\u094d\u092f ({members.length})
             </TabsTrigger>
-            <TabsTrigger value="idcards" className="flex items-center gap-1.5">
+            <TabsTrigger
+              value="idcards"
+              className="flex items-center gap-1.5"
+              data-ocid="admin.idcards.tab"
+            >
               <CreditCard className="h-4 w-4" />
-              ID अनुरोध ({idCardRequests.length})
+              ID \u0905\u0928\u0941\u0930\u094b\u0927 ({idCardRequests.length})
             </TabsTrigger>
             <TabsTrigger
               value="activities"
               className="flex items-center gap-1.5"
+              data-ocid="admin.activities.tab"
             >
               <Activity className="h-4 w-4" />
-              लॉगिन गतिविधि ({loginActivities.length})
+              \u0932\u0949\u0917\u0907\u0928
+              \u0917\u0924\u093f\u0935\u093f\u0927\u093f (
+              {loginActivities.length})
+            </TabsTrigger>
+            <TabsTrigger
+              value="content"
+              className="flex items-center gap-1.5"
+              data-ocid="admin.content.tab"
+            >
+              <FileEdit className="h-4 w-4" />
+              \u0938\u093e\u092e\u0917\u094d\u0930\u0940
+              \u0938\u0902\u092a\u093e\u0926\u0915
             </TabsTrigger>
           </TabsList>
 
@@ -240,10 +755,11 @@ export default function Admin() {
                 <div className="flex items-center gap-2 flex-1 max-w-sm">
                   <Search className="h-4 w-4 text-foreground/40" />
                   <Input
-                    placeholder="नाम, ईमेल या पेशा खोजें..."
+                    placeholder="\u0928\u093e\u092e, \u0908\u092e\u0947\u0932 \u092f\u093e \u092a\u0947\u0936\u093e \u0916\u094b\u091c\u0947\u0902..."
                     value={memberSearch}
                     onChange={(e) => setMemberSearch(e.target.value)}
                     className="h-8 text-sm"
+                    data-ocid="admin.members.search_input"
                   />
                 </div>
                 <div className="flex items-center gap-2">
@@ -251,17 +767,29 @@ export default function Admin() {
                     value={memberSort}
                     onChange={(e) => setMemberSort(e.target.value as SortBy)}
                     className="text-sm border border-border rounded-md px-2 py-1 bg-background text-foreground"
+                    data-ocid="admin.members.select"
                   >
-                    <option value={SortBy.timestampDesc}>नवीनतम पहले</option>
-                    <option value={SortBy.timestampAsc}>पुराने पहले</option>
-                    <option value={SortBy.lastNameAsc}>उपनाम A-Z</option>
-                    <option value={SortBy.lastNameDesc}>उपनाम Z-A</option>
+                    <option value={SortBy.timestampDesc}>
+                      \u0928\u0935\u0940\u0928\u0924\u092e
+                      \u092a\u0939\u0932\u0947
+                    </option>
+                    <option value={SortBy.timestampAsc}>
+                      \u092a\u0941\u0930\u093e\u0928\u0947
+                      \u092a\u0939\u0932\u0947
+                    </option>
+                    <option value={SortBy.lastNameAsc}>
+                      \u0909\u092a\u0928\u093e\u092e A-Z
+                    </option>
+                    <option value={SortBy.lastNameDesc}>
+                      \u0909\u092a\u0928\u093e\u092e Z-A
+                    </option>
                   </select>
                   <Button
                     size="sm"
                     variant="outline"
                     onClick={exportMembersCSV}
                     className="flex items-center gap-1.5"
+                    data-ocid="admin.members.secondary_button"
                   >
                     <Download className="h-3.5 w-3.5" />
                     CSV
@@ -270,36 +798,71 @@ export default function Admin() {
               </div>
 
               {membersLoading ? (
-                <div className="p-8 text-center text-foreground/50">
-                  लोड हो रहा है...
+                <div
+                  className="p-8 text-center text-foreground/50"
+                  data-ocid="admin.members.loading_state"
+                >
+                  \u0932\u094b\u0921 \u0939\u094b \u0930\u0939\u093e
+                  \u0939\u0948...
                 </div>
               ) : members.length === 0 ? (
-                <div className="p-8 text-center text-foreground/50">
-                  कोई सदस्य नहीं मिला।
+                <div
+                  className="p-8 text-center text-foreground/50"
+                  data-ocid="admin.members.empty_state"
+                >
+                  \u0915\u094b\u0908 \u0938\u0926\u0938\u094d\u092f
+                  \u0928\u0939\u0940\u0902 \u092e\u093f\u0932\u093e\u0964
                 </div>
               ) : (
                 <ScrollArea className="w-full">
-                  <Table>
+                  <Table data-ocid="admin.members.table">
                     <TableHeader>
                       <TableRow>
                         <TableHead className="text-xs">ID</TableHead>
-                        <TableHead className="text-xs">नाम</TableHead>
-                        <TableHead className="text-xs">पेशा</TableHead>
-                        <TableHead className="text-xs">ईमेल</TableHead>
-                        <TableHead className="text-xs">संपर्क</TableHead>
-                        <TableHead className="text-xs">व्हाट्सएप</TableHead>
-                        <TableHead className="text-xs">देश/राज्य/ज़िला</TableHead>
-                        <TableHead className="text-xs">तहसील/थाना</TableHead>
-                        <TableHead className="text-xs">ग्राम/गांव</TableHead>
-                        <TableHead className="text-xs">लिंग</TableHead>
-                        <TableHead className="text-xs">फोटो</TableHead>
-                        <TableHead className="text-xs">आधार</TableHead>
-                        <TableHead className="text-xs">समय</TableHead>
+                        <TableHead className="text-xs">
+                          \u0928\u093e\u092e
+                        </TableHead>
+                        <TableHead className="text-xs">
+                          \u092a\u0947\u0936\u093e
+                        </TableHead>
+                        <TableHead className="text-xs">
+                          \u0908\u092e\u0947\u0932
+                        </TableHead>
+                        <TableHead className="text-xs">
+                          \u0938\u0902\u092a\u0930\u094d\u0915
+                        </TableHead>
+                        <TableHead className="text-xs">
+                          \u0935\u094d\u0939\u093e\u091f\u094d\u0938\u090f\u092a
+                        </TableHead>
+                        <TableHead className="text-xs">
+                          \u0926\u0947\u0936/\u0930\u093e\u091c\u094d\u092f/\u091c\u093c\u093f\u0932\u093e
+                        </TableHead>
+                        <TableHead className="text-xs">
+                          \u0924\u0939\u0938\u0940\u0932/\u0925\u093e\u0928\u093e
+                        </TableHead>
+                        <TableHead className="text-xs">
+                          \u0917\u094d\u0930\u093e\u092e/\u0917\u093e\u0902\u0935
+                        </TableHead>
+                        <TableHead className="text-xs">
+                          \u0932\u093f\u0902\u0917
+                        </TableHead>
+                        <TableHead className="text-xs">
+                          \u092b\u094b\u091f\u094b
+                        </TableHead>
+                        <TableHead className="text-xs">
+                          \u0906\u0927\u093e\u0930
+                        </TableHead>
+                        <TableHead className="text-xs">
+                          \u0938\u092e\u092f
+                        </TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {members.map((m) => (
-                        <TableRow key={m.id.toString()}>
+                      {members.map((m, idx) => (
+                        <TableRow
+                          key={m.id.toString()}
+                          data-ocid={`admin.members.row.${idx + 1}`}
+                        >
                           <TableCell className="text-xs font-mono">
                             {m.id.toString()}
                           </TableCell>
@@ -307,7 +870,7 @@ export default function Admin() {
                             {m.firstName} {m.lastName}
                           </TableCell>
                           <TableCell className="text-xs">
-                            {m.occupation || "—"}
+                            {m.occupation || "\u2014"}
                           </TableCell>
                           <TableCell className="text-xs">{m.email}</TableCell>
                           <TableCell className="text-xs">
@@ -319,7 +882,7 @@ export default function Admin() {
                                 {m.contactNumber}
                               </a>
                             ) : (
-                              "—"
+                              "\u2014"
                             )}
                           </TableCell>
                           <TableCell className="text-xs">
@@ -333,23 +896,23 @@ export default function Admin() {
                                 {m.whatsappNumber}
                               </a>
                             ) : (
-                              "—"
+                              "\u2014"
                             )}
                           </TableCell>
                           <TableCell className="text-xs whitespace-nowrap">
                             {[m.country, m.state, m.district]
                               .filter(Boolean)
-                              .join(" / ") || "—"}
+                              .join(" / ") || "\u2014"}
                           </TableCell>
                           <TableCell className="text-xs whitespace-nowrap">
                             {[m.tehsil, m.policeStation]
                               .filter(Boolean)
-                              .join(" / ") || "—"}
+                              .join(" / ") || "\u2014"}
                           </TableCell>
                           <TableCell className="text-xs whitespace-nowrap">
                             {[m.gramPanchayat, m.village]
                               .filter(Boolean)
-                              .join(" / ") || "—"}
+                              .join(" / ") || "\u2014"}
                           </TableCell>
                           <TableCell className="text-xs">
                             {genderLabel(m.gender)}
@@ -364,7 +927,7 @@ export default function Admin() {
                                 </span>
                               </span>
                             ) : (
-                              "—"
+                              "\u2014"
                             )}
                           </TableCell>
                           <TableCell className="text-xs">
@@ -377,7 +940,7 @@ export default function Admin() {
                                 </span>
                               </span>
                             ) : (
-                              "—"
+                              "\u2014"
                             )}
                           </TableCell>
                           <TableCell className="text-xs whitespace-nowrap">
@@ -398,34 +961,50 @@ export default function Admin() {
               <div className="p-4 border-b border-border">
                 <h3 className="font-semibold text-foreground flex items-center gap-2">
                   <CreditCard className="h-4 w-4 text-primary" />
-                  ID Card अनुरोध
+                  ID Card \u0905\u0928\u0941\u0930\u094b\u0927
                 </h3>
               </div>
               {idCardLoading ? (
-                <div className="p-8 text-center text-foreground/50">
-                  लोड हो रहा है...
+                <div
+                  className="p-8 text-center text-foreground/50"
+                  data-ocid="admin.idcards.loading_state"
+                >
+                  \u0932\u094b\u0921 \u0939\u094b \u0930\u0939\u093e
+                  \u0939\u0948...
                 </div>
               ) : idCardRequests.length === 0 ? (
-                <div className="p-8 text-center text-foreground/50">
-                  कोई ID Card अनुरोध नहीं।
+                <div
+                  className="p-8 text-center text-foreground/50"
+                  data-ocid="admin.idcards.empty_state"
+                >
+                  \u0915\u094b\u0908 ID Card
+                  \u0905\u0928\u0941\u0930\u094b\u0927
+                  \u0928\u0939\u0940\u0902\u0964
                 </div>
               ) : (
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>सदस्य ID</TableHead>
-                      <TableHead>अनुरोधकर्ता</TableHead>
-                      <TableHead>समय</TableHead>
+                      <TableHead>\u0938\u0926\u0938\u094d\u092f ID</TableHead>
+                      <TableHead>
+                        \u0905\u0928\u0941\u0930\u094b\u0927\u0915\u0930\u094d\u0924\u093e
+                      </TableHead>
+                      <TableHead>\u0938\u092e\u092f</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {idCardRequests.map((req, i) => (
-                      <TableRow key={`req-${req.memberId.toString()}-${i}`}>
+                      <TableRow
+                        key={`req-${req.memberId.toString()}-${i}`}
+                        data-ocid={`admin.idcards.row.${i + 1}`}
+                      >
                         <TableCell className="font-mono">
                           {req.memberId.toString()}
                         </TableCell>
                         <TableCell className="text-xs text-foreground/60 font-mono">
-                          {req.requestedBy ? req.requestedBy.toString() : "—"}
+                          {req.requestedBy
+                            ? req.requestedBy.toString()
+                            : "\u2014"}
                         </TableCell>
                         <TableCell className="text-sm">
                           {formatDate(req.timestamp)}
@@ -444,29 +1023,44 @@ export default function Admin() {
               <div className="p-4 border-b border-border">
                 <h3 className="font-semibold text-foreground flex items-center gap-2">
                   <LogIn className="h-4 w-4 text-primary" />
-                  लॉगिन गतिविधि
+                  \u0932\u0949\u0917\u0907\u0928
+                  \u0917\u0924\u093f\u0935\u093f\u0927\u093f
                 </h3>
               </div>
               {activitiesLoading ? (
-                <div className="p-8 text-center text-foreground/50">
-                  लोड हो रहा है...
+                <div
+                  className="p-8 text-center text-foreground/50"
+                  data-ocid="admin.activities.loading_state"
+                >
+                  \u0932\u094b\u0921 \u0939\u094b \u0930\u0939\u093e
+                  \u0939\u0948...
                 </div>
               ) : loginActivities.length === 0 ? (
-                <div className="p-8 text-center text-foreground/50">
-                  कोई लॉगिन गतिविधि नहीं।
+                <div
+                  className="p-8 text-center text-foreground/50"
+                  data-ocid="admin.activities.empty_state"
+                >
+                  \u0915\u094b\u0908 \u0932\u0949\u0917\u0907\u0928
+                  \u0917\u0924\u093f\u0935\u093f\u0927\u093f
+                  \u0928\u0939\u0940\u0902\u0964
                 </div>
               ) : (
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>सदस्य ID</TableHead>
-                      <TableHead>स्थिति</TableHead>
-                      <TableHead>समय</TableHead>
+                      <TableHead>\u0938\u0926\u0938\u094d\u092f ID</TableHead>
+                      <TableHead>
+                        \u0938\u094d\u0925\u093f\u0924\u093f
+                      </TableHead>
+                      <TableHead>\u0938\u092e\u092f</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {loginActivities.map((act, i) => (
-                      <TableRow key={`act-${act.memberId.toString()}-${i}`}>
+                      <TableRow
+                        key={`act-${act.memberId.toString()}-${i}`}
+                        data-ocid={`admin.activities.row.${i + 1}`}
+                      >
                         <TableCell className="font-mono">
                           {act.memberId.toString()}
                         </TableCell>
@@ -475,7 +1069,9 @@ export default function Admin() {
                             variant={act.successful ? "default" : "destructive"}
                             className="text-xs"
                           >
-                            {act.successful ? "सफल" : "विफल"}
+                            {act.successful
+                              ? "\u0938\u092b\u0932"
+                              : "\u0935\u093f\u092b\u0932"}
                           </Badge>
                         </TableCell>
                         <TableCell className="text-sm">
@@ -487,6 +1083,11 @@ export default function Admin() {
                 </Table>
               )}
             </div>
+          </TabsContent>
+
+          {/* Content Editor Tab */}
+          <TabsContent value="content">
+            <ContentEditor />
           </TabsContent>
         </Tabs>
       </div>
