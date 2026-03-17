@@ -15,11 +15,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { useNavigate } from "@tanstack/react-router";
 import {
   Activity,
+  Check,
+  Copy,
   CreditCard,
   Download,
   FileEdit,
   Loader2,
   LogIn,
+  LogOut,
   Save,
   Search,
   Shield,
@@ -533,11 +536,12 @@ function ContentEditor() {
 
 export default function Admin() {
   const navigate = useNavigate();
-  const { identity, login, loginStatus } = useInternetIdentity();
+  const { identity, login, loginStatus, clear } = useInternetIdentity();
   const { data: isAdmin, isLoading: adminLoading } = useGetIsCallerAdmin();
 
   const [memberSearch, setMemberSearch] = useState("");
   const [memberSort, setMemberSort] = useState<SortBy>(SortBy.timestampDesc);
+  const [copied, setCopied] = useState(false);
 
   const memberFilter: Filter = {
     searchTerm: memberSearch || undefined,
@@ -552,6 +556,14 @@ export default function Admin() {
     useGetAllLoginActivities();
 
   const isAuthenticated = !!identity;
+
+  const handleCopyPrincipal = () => {
+    const principalId = identity?.getPrincipal().toString() ?? "";
+    navigator.clipboard.writeText(principalId).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
 
   if (!isAuthenticated) {
     return (
@@ -599,9 +611,10 @@ export default function Admin() {
   }
 
   if (!isAdmin) {
+    const principalId = identity?.getPrincipal().toString() ?? "";
     return (
       <div className="min-h-screen bg-background flex items-center justify-center px-4">
-        <div className="text-center max-w-md">
+        <div className="text-center max-w-lg w-full">
           <Shield className="h-12 w-12 text-destructive mx-auto mb-4" />
           <h2 className="font-display text-xl font-bold text-destructive mb-2">
             \u092a\u0939\u0941\u0902\u091a
@@ -614,9 +627,60 @@ export default function Admin() {
             \u0905\u0928\u0941\u092e\u0924\u093f \u0928\u0939\u0940\u0902
             \u0939\u0948\u0964
           </p>
-          <Button variant="outline" onClick={() => navigate({ to: "/" })}>
-            \u0939\u094b\u092e \u092a\u0930 \u091c\u093e\u090f\u0902
-          </Button>
+
+          {/* Principal ID display box */}
+          <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-5 text-left">
+            <p className="text-sm font-semibold text-amber-800 mb-2">
+              \u0906\u092a\u0915\u093e Principal ID:
+            </p>
+            <p className="text-xs text-amber-700 mb-3">
+              \u0907\u0938 ID \u0915\u094b \u0915\u0949\u092a\u0940
+              \u0915\u0930\u0947\u0902 \u0914\u0930 chat \u092e\u0947\u0902
+              \u092d\u0947\u091c\u0947\u0902 \u0924\u093e\u0915\u093f admin
+              \u0906\u092a\u0915\u094b access \u0926\u0947
+              \u0938\u0915\u0947\u0964
+            </p>
+            <div className="flex items-center gap-2">
+              <code className="flex-1 bg-white border border-amber-200 rounded-lg px-3 py-2 text-xs font-mono text-amber-900 break-all select-all">
+                {principalId ||
+                  "\u0932\u094b\u0921 \u0939\u094b \u0930\u0939\u093e \u0939\u0948..."}
+              </code>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={handleCopyPrincipal}
+                className="shrink-0 border-amber-300 text-amber-800 hover:bg-amber-100"
+                data-ocid="admin.principal.secondary_button"
+              >
+                {copied ? (
+                  <Check className="h-4 w-4 text-green-600" />
+                ) : (
+                  <Copy className="h-4 w-4" />
+                )}
+                <span className="ml-1.5">
+                  {copied
+                    ? "\u0915\u0949\u092a\u0940!"
+                    : "\u0915\u0949\u092a\u0940"}
+                </span>
+              </Button>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Button variant="outline" onClick={() => navigate({ to: "/" })}>
+              \u0939\u094b\u092e \u092a\u0930 \u091c\u093e\u090f\u0902
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={clear}
+              className="flex items-center gap-2"
+              data-ocid="admin.logout.button"
+            >
+              <LogOut className="h-4 w-4" />
+              \u0926\u0942\u0938\u0930\u0947 Account \u0938\u0947 Login
+              \u0915\u0930\u0947\u0902
+            </Button>
+          </div>
         </div>
       </div>
     );
