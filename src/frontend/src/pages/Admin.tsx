@@ -768,7 +768,7 @@ export default function Admin() {
               {members.length} \u0938\u0926\u0938\u094d\u092f
             </Badge>
             <Badge variant="outline" className="text-xs">
-              {idCardRequests.length} ID \u0905\u0928\u0941\u0930\u094b\u0927
+              {idCardRequests.length} पहचान पत्र अनुरोध
             </Badge>
           </div>
         </div>
