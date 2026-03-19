@@ -50,16 +50,16 @@ function formatDate(timestamp: bigint | number): string {
 
 function formatFileSize(bytes: bigint): string {
   const n = Number(bytes);
-  if (n === 0) return "\u2014";
+  if (n === 0) return "—";
   if (n < 1024) return `${n} B`;
   if (n < 1024 * 1024) return `${(n / 1024).toFixed(1)} KB`;
   return `${(n / (1024 * 1024)).toFixed(1)} MB`;
 }
 
 function genderLabel(g: Gender): string {
-  if (g === Gender.male) return "\u092a\u0941\u0930\u0941\u0937";
-  if (g === Gender.female) return "\u092e\u0939\u093f\u0932\u093e";
-  return "\u0905\u0928\u094d\u092f";
+  if (g === Gender.male) return "पुरुष";
+  if (g === Gender.female) return "महिला";
+  return "अन्य";
 }
 
 // Content editor section definition
@@ -69,315 +69,164 @@ type ContentSection = { id: string; title: string; fields: ContentField[] };
 const CONTENT_SECTIONS: ContentSection[] = [
   {
     id: "hero",
-    title:
-      "\u0939\u0940\u0930\u094b \u0938\u0947\u0915\u094d\u0936\u0928 (Hero)",
+    title: "हीरो सेक्शन (Hero)",
     fields: [
-      {
-        key: "hero.title",
-        label: "\u0936\u0940\u0930\u094d\u0937\u0915 (Title)",
-      },
-      {
-        key: "hero.tagline",
-        label: "\u091f\u0948\u0917\u0932\u093e\u0907\u0928",
-      },
+      { key: "hero.title", label: "शीर्षक (Title)" },
+      { key: "hero.tagline", label: "टैगलाइन" },
       {
         key: "hero.description",
-        label: "\u0935\u093f\u0935\u0930\u0923 (Description)",
+        label: "विवरण (Description)",
         multiline: true,
       },
-      {
-        key: "hero.cta_primary",
-        label:
-          "\u092a\u094d\u0930\u093e\u0925\u092e\u093f\u0915 \u092c\u091f\u0928",
-      },
-      {
-        key: "hero.cta_secondary",
-        label:
-          "\u0926\u094d\u0935\u093f\u0924\u0940\u092f\u0915 \u092c\u091f\u0928",
-      },
+      { key: "hero.cta_primary", label: "प्राथमिक बटन" },
+      { key: "hero.cta_secondary", label: "द्वितीयक बटन" },
     ],
   },
   {
     id: "mission",
-    title:
-      "\u092e\u093f\u0936\u0928 \u0938\u0947\u0915\u094d\u0936\u0928 (Mission)",
+    title: "मिशन सेक्शन (Mission)",
     fields: [
-      { key: "mission.title", label: "\u0936\u0940\u0930\u094d\u0937\u0915" },
-      {
-        key: "mission.description",
-        label: "\u0935\u093f\u0935\u0930\u0923",
-        multiline: true,
-      },
-      {
-        key: "mission.value1.title",
-        label:
-          "\u092e\u0942\u0932\u094d\u092f 1 \u0936\u0940\u0930\u094d\u0937\u0915",
-      },
+      { key: "mission.title", label: "शीर्षक" },
+      { key: "mission.description", label: "विवरण", multiline: true },
+      { key: "mission.value1.title", label: "मूल्य 1 शीर्षक" },
       {
         key: "mission.value1.description",
-        label:
-          "\u092e\u0942\u0932\u094d\u092f 1 \u0935\u093f\u0935\u0930\u0923",
+        label: "मूल्य 1 विवरण",
         multiline: true,
       },
-      {
-        key: "mission.value2.title",
-        label:
-          "\u092e\u0942\u0932\u094d\u092f 2 \u0936\u0940\u0930\u094d\u0937\u0915",
-      },
+      { key: "mission.value2.title", label: "मूल्य 2 शीर्षक" },
       {
         key: "mission.value2.description",
-        label:
-          "\u092e\u0942\u0932\u094d\u092f 2 \u0935\u093f\u0935\u0930\u0923",
+        label: "मूल्य 2 विवरण",
         multiline: true,
       },
-      {
-        key: "mission.value3.title",
-        label:
-          "\u092e\u0942\u0932\u094d\u092f 3 \u0936\u0940\u0930\u094d\u0937\u0915",
-      },
+      { key: "mission.value3.title", label: "मूल्य 3 शीर्षक" },
       {
         key: "mission.value3.description",
-        label:
-          "\u092e\u0942\u0932\u094d\u092f 3 \u0935\u093f\u0935\u0930\u0923",
+        label: "मूल्य 3 विवरण",
         multiline: true,
       },
-      {
-        key: "mission.value4.title",
-        label:
-          "\u092e\u0942\u0932\u094d\u092f 4 \u0936\u0940\u0930\u094d\u0937\u0915",
-      },
+      { key: "mission.value4.title", label: "मूल्य 4 शीर्षक" },
       {
         key: "mission.value4.description",
-        label:
-          "\u092e\u0942\u0932\u094d\u092f 4 \u0935\u093f\u0935\u0930\u0923",
+        label: "मूल्य 4 विवरण",
         multiline: true,
       },
     ],
   },
   {
     id: "home",
-    title: "\u0939\u094b\u092e \u092a\u0947\u091c (Home)",
+    title: "होम पेज (Home)",
     fields: [
-      {
-        key: "home.whatwedo.title",
-        label:
-          "\u0938\u0947\u0915\u094d\u0936\u0928 \u0936\u0940\u0930\u094d\u0937\u0915",
-      },
-      {
-        key: "home.whatwedo.subtitle",
-        label:
-          "\u0938\u0947\u0915\u094d\u0936\u0928 \u0909\u092a\u0936\u0940\u0930\u094d\u0937\u0915",
-        multiline: true,
-      },
-      {
-        key: "home.highlight1.title",
-        label:
-          "\u0915\u093e\u0930\u094d\u0921 1 \u0936\u0940\u0930\u094d\u0937\u0915",
-      },
+      { key: "home.whatwedo.title", label: "सेक्शन शीर्षक" },
+      { key: "home.whatwedo.subtitle", label: "सेक्शन उपशीर्षक", multiline: true },
+      { key: "home.highlight1.title", label: "कार्ड 1 शीर्षक" },
       {
         key: "home.highlight1.description",
-        label:
-          "\u0915\u093e\u0930\u094d\u0921 1 \u0935\u093f\u0935\u0930\u0923",
+        label: "कार्ड 1 विवरण",
         multiline: true,
       },
-      {
-        key: "home.highlight2.title",
-        label:
-          "\u0915\u093e\u0930\u094d\u0921 2 \u0936\u0940\u0930\u094d\u0937\u0915",
-      },
+      { key: "home.highlight2.title", label: "कार्ड 2 शीर्षक" },
       {
         key: "home.highlight2.description",
-        label:
-          "\u0915\u093e\u0930\u094d\u0921 2 \u0935\u093f\u0935\u0930\u0923",
+        label: "कार्ड 2 विवरण",
         multiline: true,
       },
-      {
-        key: "home.highlight3.title",
-        label:
-          "\u0915\u093e\u0930\u094d\u0921 3 \u0936\u0940\u0930\u094d\u0937\u0915",
-      },
+      { key: "home.highlight3.title", label: "कार्ड 3 शीर्षक" },
       {
         key: "home.highlight3.description",
-        label:
-          "\u0915\u093e\u0930\u094d\u0921 3 \u0935\u093f\u0935\u0930\u0923",
+        label: "कार्ड 3 विवरण",
         multiline: true,
       },
-      {
-        key: "home.highlight4.title",
-        label:
-          "\u0915\u093e\u0930\u094d\u0921 4 \u0936\u0940\u0930\u094d\u0937\u0915",
-      },
+      { key: "home.highlight4.title", label: "कार्ड 4 शीर्षक" },
       {
         key: "home.highlight4.description",
-        label:
-          "\u0915\u093e\u0930\u094d\u0921 4 \u0935\u093f\u0935\u0930\u0923",
+        label: "कार्ड 4 विवरण",
         multiline: true,
       },
-      {
-        key: "home.cta.title",
-        label: "CTA \u0936\u0940\u0930\u094d\u0937\u0915",
-      },
-      {
-        key: "home.cta.description",
-        label: "CTA \u0935\u093f\u0935\u0930\u0923",
-        multiline: true,
-      },
+      { key: "home.cta.title", label: "CTA शीर्षक" },
+      { key: "home.cta.description", label: "CTA विवरण", multiline: true },
     ],
   },
   {
     id: "about",
-    title:
-      "\u0939\u092e\u093e\u0930\u0947 \u092c\u093e\u0930\u0947 \u092e\u0947\u0902 (About)",
+    title: "हमारे बारे में (About)",
     fields: [
-      {
-        key: "about.hero.title",
-        label: "\u0939\u0940\u0930\u094b \u0936\u0940\u0930\u094d\u0937\u0915",
-      },
-      {
-        key: "about.hero.subtitle",
-        label:
-          "\u0939\u0940\u0930\u094b \u0909\u092a\u0936\u0940\u0930\u094d\u0937\u0915",
-        multiline: true,
-      },
-      {
-        key: "about.story.title",
-        label:
-          "\u0915\u0939\u093e\u0928\u0940 \u0936\u0940\u0930\u094d\u0937\u0915",
-      },
-      {
-        key: "about.story.para1",
-        label: "\u0905\u0928\u0941\u091a\u094d\u091b\u0947\u0926 1",
-        multiline: true,
-      },
-      {
-        key: "about.story.para2",
-        label: "\u0905\u0928\u0941\u091a\u094d\u091b\u0947\u0926 2",
-        multiline: true,
-      },
-      {
-        key: "about.principle1.title",
-        label:
-          "\u0938\u093f\u0926\u094d\u0927\u093e\u0902\u0924 1 \u0936\u0940\u0930\u094d\u0937\u0915",
-      },
+      { key: "about.hero.title", label: "हीरो शीर्षक" },
+      { key: "about.hero.subtitle", label: "हीरो उपशीर्षक", multiline: true },
+      { key: "about.story.title", label: "कहानी शीर्षक" },
+      { key: "about.story.para1", label: "अनुच्छेद 1", multiline: true },
+      { key: "about.story.para2", label: "अनुच्छेद 2", multiline: true },
+      { key: "about.principle1.title", label: "सिद्धांत 1 शीर्षक" },
       {
         key: "about.principle1.description",
-        label:
-          "\u0938\u093f\u0926\u094d\u0927\u093e\u0902\u0924 1 \u0935\u093f\u0935\u0930\u0923",
+        label: "सिद्धांत 1 विवरण",
         multiline: true,
       },
-      {
-        key: "about.principle2.title",
-        label:
-          "\u0938\u093f\u0926\u094d\u0927\u093e\u0902\u0924 2 \u0936\u0940\u0930\u094d\u0937\u0915",
-      },
+      { key: "about.principle2.title", label: "सिद्धांत 2 शीर्षक" },
       {
         key: "about.principle2.description",
-        label:
-          "\u0938\u093f\u0926\u094d\u0927\u093e\u0902\u0924 2 \u0935\u093f\u0935\u0930\u0923",
+        label: "सिद्धांत 2 विवरण",
         multiline: true,
       },
-      {
-        key: "about.principle3.title",
-        label:
-          "\u0938\u093f\u0926\u094d\u0927\u093e\u0902\u0924 3 \u0936\u0940\u0930\u094d\u0937\u0915",
-      },
+      { key: "about.principle3.title", label: "सिद्धांत 3 शीर्षक" },
       {
         key: "about.principle3.description",
-        label:
-          "\u0938\u093f\u0926\u094d\u0927\u093e\u0902\u0924 3 \u0935\u093f\u0935\u0930\u0923",
+        label: "सिद्धांत 3 विवरण",
         multiline: true,
       },
-      {
-        key: "about.principle4.title",
-        label:
-          "\u0938\u093f\u0926\u094d\u0927\u093e\u0902\u0924 4 \u0936\u0940\u0930\u094d\u0937\u0915",
-      },
+      { key: "about.principle4.title", label: "सिद्धांत 4 शीर्षक" },
       {
         key: "about.principle4.description",
-        label:
-          "\u0938\u093f\u0926\u094d\u0927\u093e\u0902\u0924 4 \u0935\u093f\u0935\u0930\u0923",
+        label: "सिद्धांत 4 विवरण",
         multiline: true,
       },
     ],
   },
   {
     id: "programs",
-    title: "\u0915\u093e\u0930\u094d\u092f\u0915\u094d\u0930\u092e (Programs)",
+    title: "कार्यक्रम (Programs)",
     fields: [
-      { key: "programs.title", label: "\u0936\u0940\u0930\u094d\u0937\u0915" },
-      {
-        key: "programs.subtitle",
-        label: "\u0909\u092a\u0936\u0940\u0930\u094d\u0937\u0915",
-        multiline: true,
-      },
-      {
-        key: "programs.card1.title",
-        label:
-          "\u0915\u093e\u0930\u094d\u0921 1 \u0936\u0940\u0930\u094d\u0937\u0915",
-      },
+      { key: "programs.title", label: "शीर्षक" },
+      { key: "programs.subtitle", label: "उपशीर्षक", multiline: true },
+      { key: "programs.card1.title", label: "कार्ड 1 शीर्षक" },
       {
         key: "programs.card1.description",
-        label:
-          "\u0915\u093e\u0930\u094d\u0921 1 \u0935\u093f\u0935\u0930\u0923",
+        label: "कार्ड 1 विवरण",
         multiline: true,
       },
-      {
-        key: "programs.card2.title",
-        label:
-          "\u0915\u093e\u0930\u094d\u0921 2 \u0936\u0940\u0930\u094d\u0937\u0915",
-      },
+      { key: "programs.card2.title", label: "कार्ड 2 शीर्षक" },
       {
         key: "programs.card2.description",
-        label:
-          "\u0915\u093e\u0930\u094d\u0921 2 \u0935\u093f\u0935\u0930\u0923",
+        label: "कार्ड 2 विवरण",
         multiline: true,
       },
-      {
-        key: "programs.card3.title",
-        label:
-          "\u0915\u093e\u0930\u094d\u0921 3 \u0936\u0940\u0930\u094d\u0937\u0915",
-      },
+      { key: "programs.card3.title", label: "कार्ड 3 शीर्षक" },
       {
         key: "programs.card3.description",
-        label:
-          "\u0915\u093e\u0930\u094d\u0921 3 \u0935\u093f\u0935\u0930\u0923",
+        label: "कार्ड 3 विवरण",
         multiline: true,
       },
     ],
   },
   {
     id: "contact",
-    title: "\u0938\u0902\u092a\u0930\u094d\u0915 (Contact)",
+    title: "संपर्क (Contact)",
     fields: [
-      {
-        key: "contact.title",
-        label: "\u092a\u0947\u091c \u0936\u0940\u0930\u094d\u0937\u0915",
-      },
-      {
-        key: "contact.subtitle",
-        label:
-          "\u092a\u0947\u091c \u0909\u092a\u0936\u0940\u0930\u094d\u0937\u0915",
-        multiline: true,
-      },
-      { key: "contact.email", label: "\u0908\u092e\u0947\u0932" },
-      { key: "contact.phone1", label: "\u092b\u093c\u094b\u0928 1" },
-      { key: "contact.phone2", label: "\u092b\u093c\u094b\u0928 2" },
-      { key: "contact.address", label: "\u092a\u0924\u093e" },
+      { key: "contact.title", label: "पेज शीर्षक" },
+      { key: "contact.subtitle", label: "पेज उपशीर्षक", multiline: true },
+      { key: "contact.email", label: "ईमेल" },
+      { key: "contact.phone1", label: "फ़ोन 1" },
+      { key: "contact.phone2", label: "फ़ोन 2" },
+      { key: "contact.address", label: "पता" },
     ],
   },
   {
     id: "footer",
-    title: "\u092b\u0942\u091f\u0930 (Footer)",
+    title: "फूटर (Footer)",
     fields: [
-      {
-        key: "footer.tagline",
-        label: "\u091f\u0948\u0917\u0932\u093e\u0907\u0928",
-      },
-      {
-        key: "footer.description",
-        label: "\u0935\u093f\u0935\u0930\u0923",
-        multiline: true,
-      },
+      { key: "footer.tagline", label: "टैगलाइन" },
+      { key: "footer.description", label: "विवरण", multiline: true },
     ],
   },
 ];
@@ -414,13 +263,9 @@ function ContentEditor() {
       ]);
       await actor.setSiteContentBulk(entries);
       await refresh();
-      toast.success(
-        `${section.title} \u0938\u0939\u0947\u091c\u093e \u0917\u092f\u093e!`,
-      );
+      toast.success(`${section.title} सहेजा गया!`);
     } catch (_e) {
-      toast.error(
-        "\u0938\u0939\u0947\u091c\u0928\u0947 \u092e\u0947\u0902 \u0924\u094d\u0930\u0941\u091f\u093f \u0939\u0941\u0908",
-      );
+      toast.error("सहेजने में त्रुटि हुई");
     } finally {
       setSavingSection(null);
     }
@@ -433,13 +278,9 @@ function ContentEditor() {
       const entries: Array<[string, string]> = Object.entries(localValues);
       await actor.setSiteContentBulk(entries);
       await refresh();
-      toast.success(
-        "\u0938\u092d\u0940 \u0938\u093e\u092e\u0917\u094d\u0930\u0940 \u0938\u0939\u0947\u091c\u0940 \u0917\u0908!",
-      );
+      toast.success("सभी सामग्री सहेजी गई!");
     } catch (_e) {
-      toast.error(
-        "\u0938\u0939\u0947\u091c\u0928\u0947 \u092e\u0947\u0902 \u0924\u094d\u0930\u0941\u091f\u093f \u0939\u0941\u0908",
-      );
+      toast.error("सहेजने में त्रुटि हुई");
     } finally {
       setSavingAll(false);
     }
@@ -449,10 +290,7 @@ function ContentEditor() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <p className="text-sm text-muted-foreground">
-          \u0938\u093e\u0907\u091f \u0915\u0940
-          \u0938\u093e\u092e\u0917\u094d\u0930\u0940
-          \u0938\u0902\u092a\u093e\u0926\u093f\u0924 \u0915\u0930\u0947\u0902
-          \u0914\u0930 \u0938\u0939\u0947\u091c\u0947\u0902
+          साइट की सामग्री संपादित करें और सहेजें
         </p>
         <Button
           onClick={saveAll}
@@ -465,7 +303,7 @@ function ContentEditor() {
           ) : (
             <Save className="h-4 w-4" />
           )}
-          \u0938\u092d\u0940 \u0938\u0939\u0947\u091c\u0947\u0902
+          सभी सहेजें
         </Button>
       </div>
 
@@ -491,7 +329,7 @@ function ContentEditor() {
               ) : (
                 <Save className="h-3.5 w-3.5" />
               )}
-              \u0938\u0939\u0947\u091c\u0947\u0902
+              सहेजें
             </Button>
           </div>
 
@@ -573,13 +411,10 @@ export default function Admin() {
             <Shield className="h-8 w-8 text-primary" />
           </div>
           <h1 className="font-display text-2xl font-bold text-primary mb-3">
-            \u092a\u094d\u0930\u0936\u093e\u0938\u0928 \u092a\u0948\u0928\u0932
+            प्रशासन पैनल
           </h1>
           <p className="text-foreground/60 mb-6">
-            \u092a\u094d\u0930\u0936\u093e\u0938\u0928 \u092a\u0948\u0928\u0932
-            \u0924\u0915 \u092a\u0939\u0941\u0902\u091a\u0928\u0947 \u0915\u0947
-            \u0932\u093f\u090f \u0932\u0949\u0917\u0907\u0928
-            \u0915\u0930\u0947\u0902\u0964
+            प्रशासन पैनल तक पहुंचने के लिए लॉगिन करें।
           </p>
           <Button
             onClick={login}
@@ -588,8 +423,8 @@ export default function Admin() {
             data-ocid="admin.login.button"
           >
             {loginStatus === "logging-in"
-              ? "\u0932\u0949\u0917\u0907\u0928 \u0939\u094b \u0930\u0939\u093e \u0939\u0948..."
-              : "Internet Identity \u0938\u0947 \u0932\u0949\u0917\u0907\u0928 \u0915\u0930\u0947\u0902"}
+              ? "लॉगिन हो रहा है..."
+              : "Internet Identity से लॉगिन करें"}
           </Button>
         </div>
       </div>
@@ -601,10 +436,7 @@ export default function Admin() {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-3" />
-          <p className="text-foreground/60">
-            \u091c\u093e\u0902\u091a \u0939\u094b \u0930\u0939\u0940
-            \u0939\u0948...
-          </p>
+          <p className="text-foreground/60">जांच हो रही है...</p>
         </div>
       </div>
     );
@@ -617,33 +449,23 @@ export default function Admin() {
         <div className="text-center max-w-lg w-full">
           <Shield className="h-12 w-12 text-destructive mx-auto mb-4" />
           <h2 className="font-display text-xl font-bold text-destructive mb-2">
-            \u092a\u0939\u0941\u0902\u091a
-            \u0905\u0938\u094d\u0935\u0940\u0915\u0943\u0924
+            पहुंच अस्वीकृत
           </h2>
           <p className="text-foreground/60 mb-4">
-            \u0906\u092a\u0915\u0947 \u092a\u093e\u0938
-            \u092a\u094d\u0930\u0936\u093e\u0938\u0928 \u092a\u0948\u0928\u0932
-            \u0924\u0915 \u092a\u0939\u0941\u0902\u091a\u0928\u0947 \u0915\u0940
-            \u0905\u0928\u0941\u092e\u0924\u093f \u0928\u0939\u0940\u0902
-            \u0939\u0948\u0964
+            आपके पास प्रशासन पैनल तक पहुंचने की अनुमति नहीं है।
           </p>
 
           {/* Principal ID display box */}
           <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-5 text-left">
             <p className="text-sm font-semibold text-amber-800 mb-2">
-              \u0906\u092a\u0915\u093e Principal ID:
+              आपका Principal ID:
             </p>
             <p className="text-xs text-amber-700 mb-3">
-              \u0907\u0938 ID \u0915\u094b \u0915\u0949\u092a\u0940
-              \u0915\u0930\u0947\u0902 \u0914\u0930 chat \u092e\u0947\u0902
-              \u092d\u0947\u091c\u0947\u0902 \u0924\u093e\u0915\u093f admin
-              \u0906\u092a\u0915\u094b access \u0926\u0947
-              \u0938\u0915\u0947\u0964
+              इस ID को कॉपी करें और chat में भेजें ताकि admin आपको access दे सके।
             </p>
             <div className="flex items-center gap-2">
               <code className="flex-1 bg-white border border-amber-200 rounded-lg px-3 py-2 text-xs font-mono text-amber-900 break-all select-all">
-                {principalId ||
-                  "\u0932\u094b\u0921 \u0939\u094b \u0930\u0939\u093e \u0939\u0948..."}
+                {principalId || "लोड हो रहा है..."}
               </code>
               <Button
                 size="sm"
@@ -657,18 +479,14 @@ export default function Admin() {
                 ) : (
                   <Copy className="h-4 w-4" />
                 )}
-                <span className="ml-1.5">
-                  {copied
-                    ? "\u0915\u0949\u092a\u0940!"
-                    : "\u0915\u0949\u092a\u0940"}
-                </span>
+                <span className="ml-1.5">{copied ? "कॉपी!" : "कॉपी"}</span>
               </Button>
             </div>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button variant="outline" onClick={() => navigate({ to: "/" })}>
-              \u0939\u094b\u092e \u092a\u0930 \u091c\u093e\u090f\u0902
+              होम पर जाएं
             </Button>
             <Button
               variant="destructive"
@@ -677,8 +495,7 @@ export default function Admin() {
               data-ocid="admin.logout.button"
             >
               <LogOut className="h-4 w-4" />
-              \u0926\u0942\u0938\u0930\u0947 Account \u0938\u0947 Login
-              \u0915\u0930\u0947\u0902
+              दूसरे Account से Login करें
             </Button>
           </div>
         </div>
@@ -689,23 +506,23 @@ export default function Admin() {
   const exportMembersCSV = () => {
     const headers = [
       "ID",
-      "\u092a\u0939\u0932\u093e \u0928\u093e\u092e",
-      "\u0909\u092a\u0928\u093e\u092e",
-      "\u092a\u0947\u0936\u093e",
-      "\u0908\u092e\u0947\u0932",
-      "\u0938\u0902\u092a\u0930\u094d\u0915",
-      "\u0935\u094d\u0939\u093e\u091f\u094d\u0938\u090f\u092a",
-      "\u0926\u0947\u0936",
-      "\u0930\u093e\u091c\u094d\u092f",
-      "\u091c\u093c\u093f\u0932\u093e",
-      "\u0924\u0939\u0938\u0940\u0932",
-      "\u0925\u093e\u0928\u093e",
-      "\u0917\u094d\u0930\u093e\u092e \u092a\u0902\u091a\u093e\u092f\u0924",
-      "\u0917\u093e\u0902\u0935",
-      "\u0932\u093f\u0902\u0917",
-      "\u092b\u094b\u091f\u094b",
-      "\u0906\u0927\u093e\u0930",
-      "\u0938\u092e\u092f",
+      "पहला नाम",
+      "उपनाम",
+      "पेशा",
+      "ईमेल",
+      "संपर्क",
+      "व्हाट्सएप",
+      "देश",
+      "राज्य",
+      "ज़िला",
+      "तहसील",
+      "थाना",
+      "ग्राम पंचायत",
+      "गांव",
+      "लिंग",
+      "फोटो",
+      "आधार",
+      "समय",
     ];
     const rows = members.map((m) => [
       m.id.toString(),
@@ -725,10 +542,10 @@ export default function Admin() {
       genderLabel(m.gender),
       m.photo.fileName
         ? `${m.photo.fileName} (${formatFileSize(m.photo.fileSize)})`
-        : "\u2014",
+        : "—",
       m.aadhaarCardPhoto.fileName
         ? `${m.aadhaarCardPhoto.fileName} (${formatFileSize(m.aadhaarCardPhoto.fileSize)})`
-        : "\u2014",
+        : "—",
       formatDate(m.timestamp),
     ]);
     const csv = [headers, ...rows]
@@ -754,18 +571,14 @@ export default function Admin() {
             </div>
             <div>
               <h1 className="font-display text-2xl font-bold text-primary">
-                \u092a\u094d\u0930\u0936\u093e\u0938\u0928
-                \u092a\u0948\u0928\u0932
+                प्रशासन पैनल
               </h1>
-              <p className="text-foreground/50 text-sm">
-                \u0938\u092d\u0940 \u0921\u0947\u091f\u093e
-                \u092a\u094d\u0930\u092c\u0902\u0927\u0928
-              </p>
+              <p className="text-foreground/50 text-sm">सभी डेटा प्रबंधन</p>
             </div>
           </div>
           <div className="flex gap-2">
             <Badge variant="outline" className="text-xs">
-              {members.length} \u0938\u0926\u0938\u094d\u092f
+              {members.length} सदस्य
             </Badge>
             <Badge variant="outline" className="text-xs">
               {idCardRequests.length} पहचान पत्र अनुरोध
@@ -781,7 +594,7 @@ export default function Admin() {
               data-ocid="admin.members.tab"
             >
               <Users className="h-4 w-4" />
-              \u0938\u0926\u0938\u094d\u092f ({members.length})
+              सदस्य ({members.length})
             </TabsTrigger>
             <TabsTrigger
               value="idcards"
@@ -789,7 +602,7 @@ export default function Admin() {
               data-ocid="admin.idcards.tab"
             >
               <CreditCard className="h-4 w-4" />
-              ID \u0905\u0928\u0941\u0930\u094b\u0927 ({idCardRequests.length})
+              ID अनुरोध ({idCardRequests.length})
             </TabsTrigger>
             <TabsTrigger
               value="activities"
@@ -797,9 +610,7 @@ export default function Admin() {
               data-ocid="admin.activities.tab"
             >
               <Activity className="h-4 w-4" />
-              \u0932\u0949\u0917\u0907\u0928
-              \u0917\u0924\u093f\u0935\u093f\u0927\u093f (
-              {loginActivities.length})
+              लॉगिन गतिविधि ({loginActivities.length})
             </TabsTrigger>
             <TabsTrigger
               value="content"
@@ -807,8 +618,7 @@ export default function Admin() {
               data-ocid="admin.content.tab"
             >
               <FileEdit className="h-4 w-4" />
-              \u0938\u093e\u092e\u0917\u094d\u0930\u0940
-              \u0938\u0902\u092a\u093e\u0926\u0915
+              सामग्री संपादक
             </TabsTrigger>
           </TabsList>
 
@@ -819,7 +629,7 @@ export default function Admin() {
                 <div className="flex items-center gap-2 flex-1 max-w-sm">
                   <Search className="h-4 w-4 text-foreground/40" />
                   <Input
-                    placeholder="\u0928\u093e\u092e, \u0908\u092e\u0947\u0932 \u092f\u093e \u092a\u0947\u0936\u093e \u0916\u094b\u091c\u0947\u0902..."
+                    placeholder="नाम, ईमेल या पेशा खोजें..."
                     value={memberSearch}
                     onChange={(e) => setMemberSearch(e.target.value)}
                     className="h-8 text-sm"
@@ -833,20 +643,10 @@ export default function Admin() {
                     className="text-sm border border-border rounded-md px-2 py-1 bg-background text-foreground"
                     data-ocid="admin.members.select"
                   >
-                    <option value={SortBy.timestampDesc}>
-                      \u0928\u0935\u0940\u0928\u0924\u092e
-                      \u092a\u0939\u0932\u0947
-                    </option>
-                    <option value={SortBy.timestampAsc}>
-                      \u092a\u0941\u0930\u093e\u0928\u0947
-                      \u092a\u0939\u0932\u0947
-                    </option>
-                    <option value={SortBy.lastNameAsc}>
-                      \u0909\u092a\u0928\u093e\u092e A-Z
-                    </option>
-                    <option value={SortBy.lastNameDesc}>
-                      \u0909\u092a\u0928\u093e\u092e Z-A
-                    </option>
+                    <option value={SortBy.timestampDesc}>नवीनतम पहले</option>
+                    <option value={SortBy.timestampAsc}>पुराने पहले</option>
+                    <option value={SortBy.lastNameAsc}>उपनाम A-Z</option>
+                    <option value={SortBy.lastNameDesc}>उपनाम Z-A</option>
                   </select>
                   <Button
                     size="sm"
@@ -866,16 +666,14 @@ export default function Admin() {
                   className="p-8 text-center text-foreground/50"
                   data-ocid="admin.members.loading_state"
                 >
-                  \u0932\u094b\u0921 \u0939\u094b \u0930\u0939\u093e
-                  \u0939\u0948...
+                  लोड हो रहा है...
                 </div>
               ) : members.length === 0 ? (
                 <div
                   className="p-8 text-center text-foreground/50"
                   data-ocid="admin.members.empty_state"
                 >
-                  \u0915\u094b\u0908 \u0938\u0926\u0938\u094d\u092f
-                  \u0928\u0939\u0940\u0902 \u092e\u093f\u0932\u093e\u0964
+                  कोई सदस्य नहीं मिला।
                 </div>
               ) : (
                 <ScrollArea className="w-full">
@@ -883,42 +681,18 @@ export default function Admin() {
                     <TableHeader>
                       <TableRow>
                         <TableHead className="text-xs">ID</TableHead>
-                        <TableHead className="text-xs">
-                          \u0928\u093e\u092e
-                        </TableHead>
-                        <TableHead className="text-xs">
-                          \u092a\u0947\u0936\u093e
-                        </TableHead>
-                        <TableHead className="text-xs">
-                          \u0908\u092e\u0947\u0932
-                        </TableHead>
-                        <TableHead className="text-xs">
-                          \u0938\u0902\u092a\u0930\u094d\u0915
-                        </TableHead>
-                        <TableHead className="text-xs">
-                          \u0935\u094d\u0939\u093e\u091f\u094d\u0938\u090f\u092a
-                        </TableHead>
-                        <TableHead className="text-xs">
-                          \u0926\u0947\u0936/\u0930\u093e\u091c\u094d\u092f/\u091c\u093c\u093f\u0932\u093e
-                        </TableHead>
-                        <TableHead className="text-xs">
-                          \u0924\u0939\u0938\u0940\u0932/\u0925\u093e\u0928\u093e
-                        </TableHead>
-                        <TableHead className="text-xs">
-                          \u0917\u094d\u0930\u093e\u092e/\u0917\u093e\u0902\u0935
-                        </TableHead>
-                        <TableHead className="text-xs">
-                          \u0932\u093f\u0902\u0917
-                        </TableHead>
-                        <TableHead className="text-xs">
-                          \u092b\u094b\u091f\u094b
-                        </TableHead>
-                        <TableHead className="text-xs">
-                          \u0906\u0927\u093e\u0930
-                        </TableHead>
-                        <TableHead className="text-xs">
-                          \u0938\u092e\u092f
-                        </TableHead>
+                        <TableHead className="text-xs">नाम</TableHead>
+                        <TableHead className="text-xs">पेशा</TableHead>
+                        <TableHead className="text-xs">ईमेल</TableHead>
+                        <TableHead className="text-xs">संपर्क</TableHead>
+                        <TableHead className="text-xs">व्हाट्सएप</TableHead>
+                        <TableHead className="text-xs">देश/राज्य/ज़िला</TableHead>
+                        <TableHead className="text-xs">तहसील/थाना</TableHead>
+                        <TableHead className="text-xs">ग्राम/गांव</TableHead>
+                        <TableHead className="text-xs">लिंग</TableHead>
+                        <TableHead className="text-xs">फोटो</TableHead>
+                        <TableHead className="text-xs">आधार</TableHead>
+                        <TableHead className="text-xs">समय</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -934,7 +708,7 @@ export default function Admin() {
                             {m.firstName} {m.lastName}
                           </TableCell>
                           <TableCell className="text-xs">
-                            {m.occupation || "\u2014"}
+                            {m.occupation || "—"}
                           </TableCell>
                           <TableCell className="text-xs">{m.email}</TableCell>
                           <TableCell className="text-xs">
@@ -946,7 +720,7 @@ export default function Admin() {
                                 {m.contactNumber}
                               </a>
                             ) : (
-                              "\u2014"
+                              "—"
                             )}
                           </TableCell>
                           <TableCell className="text-xs">
@@ -960,23 +734,23 @@ export default function Admin() {
                                 {m.whatsappNumber}
                               </a>
                             ) : (
-                              "\u2014"
+                              "—"
                             )}
                           </TableCell>
                           <TableCell className="text-xs whitespace-nowrap">
                             {[m.country, m.state, m.district]
                               .filter(Boolean)
-                              .join(" / ") || "\u2014"}
+                              .join(" / ") || "—"}
                           </TableCell>
                           <TableCell className="text-xs whitespace-nowrap">
                             {[m.tehsil, m.policeStation]
                               .filter(Boolean)
-                              .join(" / ") || "\u2014"}
+                              .join(" / ") || "—"}
                           </TableCell>
                           <TableCell className="text-xs whitespace-nowrap">
                             {[m.gramPanchayat, m.village]
                               .filter(Boolean)
-                              .join(" / ") || "\u2014"}
+                              .join(" / ") || "—"}
                           </TableCell>
                           <TableCell className="text-xs">
                             {genderLabel(m.gender)}
@@ -991,7 +765,7 @@ export default function Admin() {
                                 </span>
                               </span>
                             ) : (
-                              "\u2014"
+                              "—"
                             )}
                           </TableCell>
                           <TableCell className="text-xs">
@@ -1004,7 +778,7 @@ export default function Admin() {
                                 </span>
                               </span>
                             ) : (
-                              "\u2014"
+                              "—"
                             )}
                           </TableCell>
                           <TableCell className="text-xs whitespace-nowrap">
@@ -1025,7 +799,7 @@ export default function Admin() {
               <div className="p-4 border-b border-border">
                 <h3 className="font-semibold text-foreground flex items-center gap-2">
                   <CreditCard className="h-4 w-4 text-primary" />
-                  ID Card \u0905\u0928\u0941\u0930\u094b\u0927
+                  ID Card अनुरोध
                 </h3>
               </div>
               {idCardLoading ? (
@@ -1033,27 +807,22 @@ export default function Admin() {
                   className="p-8 text-center text-foreground/50"
                   data-ocid="admin.idcards.loading_state"
                 >
-                  \u0932\u094b\u0921 \u0939\u094b \u0930\u0939\u093e
-                  \u0939\u0948...
+                  लोड हो रहा है...
                 </div>
               ) : idCardRequests.length === 0 ? (
                 <div
                   className="p-8 text-center text-foreground/50"
                   data-ocid="admin.idcards.empty_state"
                 >
-                  \u0915\u094b\u0908 ID Card
-                  \u0905\u0928\u0941\u0930\u094b\u0927
-                  \u0928\u0939\u0940\u0902\u0964
+                  कोई ID Card अनुरोध नहीं।
                 </div>
               ) : (
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>\u0938\u0926\u0938\u094d\u092f ID</TableHead>
-                      <TableHead>
-                        \u0905\u0928\u0941\u0930\u094b\u0927\u0915\u0930\u094d\u0924\u093e
-                      </TableHead>
-                      <TableHead>\u0938\u092e\u092f</TableHead>
+                      <TableHead>सदस्य ID</TableHead>
+                      <TableHead>अनुरोधकर्ता</TableHead>
+                      <TableHead>समय</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -1066,9 +835,7 @@ export default function Admin() {
                           {req.memberId.toString()}
                         </TableCell>
                         <TableCell className="text-xs text-foreground/60 font-mono">
-                          {req.requestedBy
-                            ? req.requestedBy.toString()
-                            : "\u2014"}
+                          {req.requestedBy ? req.requestedBy.toString() : "—"}
                         </TableCell>
                         <TableCell className="text-sm">
                           {formatDate(req.timestamp)}
@@ -1087,8 +854,7 @@ export default function Admin() {
               <div className="p-4 border-b border-border">
                 <h3 className="font-semibold text-foreground flex items-center gap-2">
                   <LogIn className="h-4 w-4 text-primary" />
-                  \u0932\u0949\u0917\u0907\u0928
-                  \u0917\u0924\u093f\u0935\u093f\u0927\u093f
+                  लॉगिन गतिविधि
                 </h3>
               </div>
               {activitiesLoading ? (
@@ -1096,27 +862,22 @@ export default function Admin() {
                   className="p-8 text-center text-foreground/50"
                   data-ocid="admin.activities.loading_state"
                 >
-                  \u0932\u094b\u0921 \u0939\u094b \u0930\u0939\u093e
-                  \u0939\u0948...
+                  लोड हो रहा है...
                 </div>
               ) : loginActivities.length === 0 ? (
                 <div
                   className="p-8 text-center text-foreground/50"
                   data-ocid="admin.activities.empty_state"
                 >
-                  \u0915\u094b\u0908 \u0932\u0949\u0917\u0907\u0928
-                  \u0917\u0924\u093f\u0935\u093f\u0927\u093f
-                  \u0928\u0939\u0940\u0902\u0964
+                  कोई लॉगिन गतिविधि नहीं।
                 </div>
               ) : (
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>\u0938\u0926\u0938\u094d\u092f ID</TableHead>
-                      <TableHead>
-                        \u0938\u094d\u0925\u093f\u0924\u093f
-                      </TableHead>
-                      <TableHead>\u0938\u092e\u092f</TableHead>
+                      <TableHead>सदस्य ID</TableHead>
+                      <TableHead>स्थिति</TableHead>
+                      <TableHead>समय</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -1133,9 +894,7 @@ export default function Admin() {
                             variant={act.successful ? "default" : "destructive"}
                             className="text-xs"
                           >
-                            {act.successful
-                              ? "\u0938\u092b\u0932"
-                              : "\u0935\u093f\u092b\u0932"}
+                            {act.successful ? "सफल" : "विफल"}
                           </Badge>
                         </TableCell>
                         <TableCell className="text-sm">

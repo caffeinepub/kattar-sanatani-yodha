@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "@tanstack/react-router";
-import { Menu, Shield, X } from "lucide-react";
+import { Instagram, Menu, Shield, X } from "lucide-react";
 import { useState } from "react";
 import { useMemberAuth } from "../hooks/useMemberAuth";
 
@@ -63,9 +63,26 @@ export default function Navigation() {
               type="button"
               onClick={() => navigate({ to: "/membership" })}
               className="ml-2 px-4 py-2 rounded-md text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-sm"
+              data-ocid="nav.membership_button"
             >
               सदस्य बनें
             </button>
+
+            {/* हमसे जुड़ें button — Instagram channel */}
+            <a
+              href="https://www.instagram.com/channel/AbbCvz8W_V33BEbr/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-2 inline-flex items-center gap-1.5 px-4 py-2 rounded-md text-sm font-bold text-white transition-all shadow-sm hover:opacity-90 hover:shadow-md"
+              style={{
+                background:
+                  "linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)",
+              }}
+              data-ocid="nav.join_us_button"
+            >
+              <Instagram className="h-4 w-4" />
+              हमसे जुड़ें
+            </a>
 
             {/* Member login/dashboard */}
             {isLoggedIn ? (
@@ -149,9 +166,27 @@ export default function Navigation() {
               setIsMenuOpen(false);
             }}
             className="block w-full text-left px-3 py-2 rounded-md text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/90 transition-colors mt-2"
+            data-ocid="nav.membership_button"
           >
             सदस्य बनें
           </button>
+
+          {/* हमसे जुड़ें — Mobile */}
+          <a
+            href="https://www.instagram.com/channel/AbbCvz8W_V33BEbr/"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setIsMenuOpen(false)}
+            className="flex items-center gap-2 w-full px-3 py-2 rounded-md text-sm font-bold text-white transition-all hover:opacity-90 mt-1"
+            style={{
+              background:
+                "linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)",
+            }}
+            data-ocid="nav.join_us_button"
+          >
+            <Instagram className="h-4 w-4" />
+            हमसे जुड़ें
+          </a>
 
           {isLoggedIn ? (
             <>
