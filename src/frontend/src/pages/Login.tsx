@@ -25,7 +25,7 @@ export default function Login() {
 
     const success = await memberLogin(emailOrPhone, password);
     if (success) {
-      navigate({ to: "/dashboard" });
+      navigate({ to: "/" });
     }
   };
 
@@ -86,7 +86,7 @@ export default function Login() {
               <div className="text-right mt-1">
                 <button
                   type="button"
-                  onClick={() => navigate({ to: "/forgot-password" })}
+                  onClick={() => navigate({ to: "/" })}
                   className="text-sm text-primary hover:underline font-medium"
                   data-ocid="login.forgot_password_link"
                 >
@@ -123,7 +123,7 @@ export default function Login() {
               सदस्य नहीं हैं?{" "}
               <button
                 type="button"
-                onClick={() => navigate({ to: "/membership" })}
+                onClick={() => navigate({ to: "/" })}
                 className="text-primary hover:underline font-medium"
               >
                 सदस्यता लें

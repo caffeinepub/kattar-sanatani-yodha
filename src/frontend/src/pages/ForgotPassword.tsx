@@ -125,7 +125,7 @@ export default function ForgotPassword() {
         {/* Back link */}
         <button
           type="button"
-          onClick={() => navigate({ to: "/login" })}
+          onClick={() => navigate({ to: "/" })}
           className="flex items-center gap-2 text-sm text-foreground/60 hover:text-primary mb-6 transition-colors"
           data-ocid="forgot.back_link"
         >
@@ -409,7 +409,7 @@ export default function ForgotPassword() {
                 </p>
               </div>
               <Button
-                onClick={() => navigate({ to: "/login" })}
+                onClick={() => navigate({ to: "/" })}
                 className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-base font-bold"
                 data-ocid="forgot.go_to_login_button"
               >

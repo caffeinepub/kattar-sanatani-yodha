@@ -46,6 +46,83 @@ export default function Home() {
       <Hero />
       <Mission />
 
+      {/* राष्ट्रीय उपाध्यक्ष Section */}
+      <section className="py-16 bg-gradient-to-br from-orange-50 via-amber-50 to-orange-100">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="flex flex-col md:flex-row items-center gap-10">
+              {/* Left: Text Content */}
+              <div className="flex-1 text-center md:text-left order-2 md:order-1">
+                <div className="inline-block bg-orange-600 text-white text-sm font-semibold px-4 py-1 rounded-full mb-4">
+                  राष्ट्रीय उपाध्यक्ष व संस्थापक
+                </div>
+                <h2 className="font-display text-3xl md:text-4xl font-bold text-orange-900 mb-2">
+                  आदित्य राज श्रीवास्तव
+                </h2>
+                <p className="text-orange-700 font-semibold text-lg mb-6">
+                  राष्ट्रीय उपाध्यक्ष व संस्थापक — कट्टर सनातनी योद्धा संघ
+                </p>
+                <blockquote className="border-l-4 border-orange-500 pl-5 text-gray-700 text-base md:text-lg leading-relaxed italic">
+                  "धर्म की रक्षा के लिए समर्पित, सनातन संस्कृति के सजग प्रहरी। जिनके नेतृत्व
+                  में 'कट्टर सनातनी योद्धा संघ' निरंतर धर्म-ध्वजा फहरा रहा है, ऐसे हमारे
+                  मार्गदर्शक एवं राष्ट्रीय उपाध्यक्ष व संस्थापक जी को सादर नमन।"
+                </blockquote>
+              </div>
+              {/* Right: Photo */}
+              <div className="flex-shrink-0 order-1 md:order-2">
+                <div className="relative">
+                  <div className="absolute inset-0 rounded-2xl bg-orange-400 translate-x-2 translate-y-2" />
+                  <img
+                    src="/assets/uploads/WhatsApp-Image-2026-03-20-at-4.01.30-PM-1.jpeg"
+                    alt="आदित्य राज श्रीवास्तव - राष्ट्रीय उपाध्यक्ष व संस्थापक"
+                    className="relative w-64 h-80 object-cover rounded-2xl shadow-xl border-4 border-orange-300"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* राष्ट्रीय अध्यक्ष Section */}
+      <section className="py-16 bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="flex flex-col md:flex-row items-center gap-10">
+              {/* Left: Text Content */}
+              <div className="flex-1 text-center md:text-left">
+                <div className="inline-block bg-orange-700 text-white text-sm font-semibold px-4 py-1 rounded-full mb-4">
+                  राष्ट्रीय अध्यक्ष
+                </div>
+                <h2 className="font-display text-3xl md:text-4xl font-bold text-orange-900 mb-2">
+                  विष्णु वार्ष्णेय
+                </h2>
+                <p className="text-orange-700 font-semibold text-lg mb-6">
+                  राष्ट्रीय अध्यक्ष — कट्टर सनातनी योद्धा संघ
+                </p>
+                <blockquote className="border-l-4 border-orange-600 pl-5 text-gray-700 text-base md:text-lg leading-relaxed italic">
+                  सनातन धर्म के ध्वजवाहक और कट्टर सनातनी योद्धा संघ के सर्वोच्च मार्गदर्शक,
+                  आदरणीय राष्ट्रीय अध्यक्ष जी। हिंदू एकता और राष्ट्रवाद के प्रखर स्वर, कट्टर
+                  सनातनी योद्धा संघ के यशस्वी राष्ट्रीय अध्यक्ष। हिंदू एकता और राष्ट्रवाद के
+                  प्रखर स्वर, कट्टर सनातनी योद्धा संघ के यशस्वी राष्ट्रीय अध्यक्ष।
+                </blockquote>
+              </div>
+              {/* Right: Photo */}
+              <div className="flex-shrink-0">
+                <div className="relative">
+                  <div className="absolute inset-0 rounded-2xl bg-orange-500 translate-x-2 translate-y-2" />
+                  <img
+                    src="/assets/uploads/WhatsApp-Image-2026-03-20-at-6.29.46-PM-1.jpeg"
+                    alt="विष्णु वार्ष्णेय - राष्ट्रीय अध्यक्ष"
+                    className="relative w-64 h-80 object-cover rounded-2xl shadow-xl border-4 border-orange-400"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* What We Do Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">

@@ -23,7 +23,7 @@ export default function MemberDashboard() {
 
   useEffect(() => {
     if (!isLoggedIn) {
-      navigate({ to: "/login" });
+      navigate({ to: "/" });
     }
   }, [isLoggedIn, navigate]);
 

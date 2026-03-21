@@ -1,7 +1,6 @@
 import { useLocation, useNavigate } from "@tanstack/react-router";
-import { Instagram, Menu, Shield, X } from "lucide-react";
+import { Menu, Shield, X } from "lucide-react";
 import { useState } from "react";
-import { useMemberAuth } from "../hooks/useMemberAuth";
 
 const navLinks = [
   { label: "होम", path: "/" },
@@ -17,7 +16,6 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { isLoggedIn, memberLogout } = useMemberAuth();
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -58,59 +56,19 @@ export default function Navigation() {
               </button>
             ))}
 
-            {/* सदस्य बनें button */}
-            <button
-              type="button"
-              onClick={() => navigate({ to: "/membership" })}
-              className="ml-2 px-4 py-2 rounded-md text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-sm"
-              data-ocid="nav.membership_button"
-            >
-              सदस्य बनें
-            </button>
-
-            {/* हमसे जुड़ें button — Instagram channel */}
+            {/* हमसे जुड़ें button — Form */}
             <a
-              href="https://www.instagram.com/channel/AbbCvz8W_V33BEbr/"
+              href="https://te8dzxj2.forms.app/untitled-form"
               target="_blank"
               rel="noopener noreferrer"
               className="ml-2 inline-flex items-center gap-1.5 px-4 py-2 rounded-md text-sm font-bold text-white transition-all shadow-sm hover:opacity-90 hover:shadow-md"
               style={{
                 background:
-                  "linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)",
+                  "linear-gradient(135deg, #f97316 0%, #ea580c 50%, #c2410c 100%)",
               }}
-              data-ocid="nav.join_us_button"
             >
-              <Instagram className="h-4 w-4" />
               हमसे जुड़ें
             </a>
-
-            {/* Member login/dashboard */}
-            {isLoggedIn ? (
-              <>
-                <button
-                  type="button"
-                  onClick={() => navigate({ to: "/dashboard" })}
-                  className="ml-1 px-3 py-2 rounded-md text-sm font-medium text-primary hover:bg-primary/5 transition-colors"
-                >
-                  मेरा खाता
-                </button>
-                <button
-                  type="button"
-                  onClick={memberLogout}
-                  className="ml-1 px-3 py-2 rounded-md text-sm font-medium text-foreground/60 hover:text-destructive transition-colors"
-                >
-                  लॉगआउट
-                </button>
-              </>
-            ) : (
-              <button
-                type="button"
-                onClick={() => navigate({ to: "/login" })}
-                className="ml-1 px-3 py-2 rounded-md text-sm font-medium text-foreground/70 hover:text-primary hover:bg-primary/5 transition-colors"
-              >
-                लॉगिन
-              </button>
-            )}
 
             {/* Admin */}
             <button
@@ -159,70 +117,20 @@ export default function Navigation() {
             </button>
           ))}
 
-          <button
-            type="button"
-            onClick={() => {
-              navigate({ to: "/membership" });
-              setIsMenuOpen(false);
-            }}
-            className="block w-full text-left px-3 py-2 rounded-md text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/90 transition-colors mt-2"
-            data-ocid="nav.membership_button"
-          >
-            सदस्य बनें
-          </button>
-
           {/* हमसे जुड़ें — Mobile */}
           <a
-            href="https://www.instagram.com/channel/AbbCvz8W_V33BEbr/"
+            href="https://te8dzxj2.forms.app/untitled-form"
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setIsMenuOpen(false)}
-            className="flex items-center gap-2 w-full px-3 py-2 rounded-md text-sm font-bold text-white transition-all hover:opacity-90 mt-1"
+            className="flex items-center justify-center gap-2 w-full px-3 py-2 rounded-md text-sm font-bold text-white transition-all hover:opacity-90 mt-1"
             style={{
               background:
-                "linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)",
+                "linear-gradient(135deg, #f97316 0%, #ea580c 50%, #c2410c 100%)",
             }}
-            data-ocid="nav.join_us_button"
           >
-            <Instagram className="h-4 w-4" />
             हमसे जुड़ें
           </a>
-
-          {isLoggedIn ? (
-            <>
-              <button
-                type="button"
-                onClick={() => {
-                  navigate({ to: "/dashboard" });
-                  setIsMenuOpen(false);
-                }}
-                className="block w-full text-left px-3 py-2 rounded-md text-sm font-medium text-primary hover:bg-primary/5 transition-colors"
-              >
-                मेरा खाता
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  memberLogout();
-                  setIsMenuOpen(false);
-                }}
-                className="block w-full text-left px-3 py-2 rounded-md text-sm font-medium text-foreground/60 hover:text-destructive transition-colors"
-              >
-                लॉगआउट
-              </button>
-            </>
-          ) : (
-            <button
-              type="button"
-              onClick={() => {
-                navigate({ to: "/login" });
-                setIsMenuOpen(false);
-              }}
-              className="block w-full text-left px-3 py-2 rounded-md text-sm font-medium text-foreground/70 hover:text-primary hover:bg-primary/5 transition-colors"
-            >
-              लॉगिन
-            </button>
-          )}
 
           <button
             type="button"

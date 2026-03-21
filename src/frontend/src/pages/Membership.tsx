@@ -200,7 +200,7 @@ export default function Membership() {
           </p>
           <div className="flex gap-3 justify-center">
             <Button
-              onClick={() => navigate({ to: "/login" })}
+              onClick={() => navigate({ to: "/" })}
               className="bg-primary text-primary-foreground"
             >
               लॉगिन करें
@@ -676,7 +676,7 @@ export default function Membership() {
             पहले से सदस्य हैं?{" "}
             <button
               type="button"
-              onClick={() => navigate({ to: "/login" })}
+              onClick={() => navigate({ to: "/" })}
               className="text-primary hover:underline font-medium"
             >
               लॉगिन करें
