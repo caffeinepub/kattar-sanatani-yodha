@@ -7,6 +7,7 @@ const navLinks = [
   { label: "हमारे बारे में", path: "/about" },
   { label: "कार्यक्रम", path: "/programs" },
   { label: "दर्शन", path: "/philosophy" },
+  { label: "हमारा सफ़लता", path: "/safalta" },
   { label: "संसाधन", path: "/resources" },
   { label: "संपर्क करें", path: "/contact" },
   { label: "हमारा समर्थन करें", path: "/donate" },
@@ -46,6 +47,7 @@ export default function Navigation() {
                 type="button"
                 key={link.path}
                 onClick={() => navigate({ to: link.path })}
+                data-ocid={`nav.${link.path.replace("/", "") || "home"}.link`}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                   isActive(link.path)
                     ? "text-primary bg-primary/10"

@@ -14,6 +14,7 @@ import Home from "./pages/Home";
 import Philosophy from "./pages/Philosophy";
 import Programs from "./pages/Programs";
 import Resources from "./pages/Resources";
+import Safalta from "./pages/Safalta";
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -59,6 +60,11 @@ const adminRoute = createRoute({
   path: "/admin",
   component: Admin,
 });
+const safaltaRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/safalta",
+  component: Safalta,
+});
 
 const routeTree = rootRoute.addChildren([
   homeRoute,
@@ -69,6 +75,7 @@ const routeTree = rootRoute.addChildren([
   contactRoute,
   donateRoute,
   adminRoute,
+  safaltaRoute,
 ]);
 
 const router = createRouter({ routeTree });
